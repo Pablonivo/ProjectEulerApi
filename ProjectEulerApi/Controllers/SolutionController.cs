@@ -15,7 +15,7 @@ namespace ProjectEulerApi.Controllers
         }
 
         [HttpGet]
-        public long GetSolutionById(int solutionId)
+        public ActionResult<long> GetSolutionById(int solutionId)
         {
             return solutionId switch
             {

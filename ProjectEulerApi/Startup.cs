@@ -10,6 +10,8 @@ namespace ProjectEulerApi
 {
     public class Startup
     {
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -20,6 +22,16 @@ namespace ProjectEulerApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:4200/",
+                                                          "TODO: Hier moet de url komen waar de site op gaat draaien");
+                                  });
+            });
+
             services.AddControllers();
             services.AddTransient<ISolutionComputer, SolutionComputer>();
 
@@ -49,6 +61,8 @@ namespace ProjectEulerApi
             });
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 

@@ -26,5 +26,11 @@ namespace Data.Computers
             var max = 600851475143;
             return PrimeHelper.GetPrimesFactors(max).Max();
         }
+
+        public static long GetSolutionOfProblem4()
+        {
+            var max = 1000;
+            return PalindromeHelper.GetLargestPalindromeOfProductOfTwoNumbersBelowMax(max);
+        }
     }
 }

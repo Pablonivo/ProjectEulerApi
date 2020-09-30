@@ -20,5 +20,11 @@ namespace Data.Computers
             var max = 4000000;
             return FibonacciHelper.GetFibonacciListBelowMax(max).Where(x => x % 2 == 0).Sum();
         }
+
+        public static long GetSolutionOfProblem3()
+        {
+            var max = 600851475143;
+            return PrimeHelper.GetPrimesFactors(max).Max();
+        }
     }
 }

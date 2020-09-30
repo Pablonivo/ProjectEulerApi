@@ -14,6 +14,7 @@ namespace ProjectEulerApi.Controllers
             {
                 1 => SolutionComputer.GetSolutionOfProblem1(),
                 2 => SolutionComputer.GetSolutionOfProblem2(),
+                3 => SolutionComputer.GetSolutionOfProblem3(),
                 _ => 0,
             };
         }

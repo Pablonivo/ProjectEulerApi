@@ -13,6 +13,7 @@ namespace ProjectEulerApi.Controllers
             return solutionId switch
             {
                 1 => SolutionComputer.GetSolutionOfProblem1(),
+                2 => SolutionComputer.GetSolutionOfProblem2(),
                 _ => 0,
             };
         }

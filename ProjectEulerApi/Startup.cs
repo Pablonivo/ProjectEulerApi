@@ -25,9 +25,7 @@ namespace ProjectEulerApi
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
             });
 
-
             services.AddControllers();
-            services.AddTransient<ISolutionComputer, SolutionComputer>();
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();

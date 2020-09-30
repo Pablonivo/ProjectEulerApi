@@ -12,10 +12,22 @@ namespace Tests
         {
             // Arrange
             var expectedResult = 233168;
-            var sut = new SolutionComputer();
 
             // Act
-            var result = sut.GetSolutionOfProblem1();
+            var result = SolutionComputer.GetSolutionOfProblem1();
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void GetSolutionOfProblem2_WhenCalled_ReturnsExpectedResult()
+        {
+            // Arrange
+            var expectedResult = 4613732;
+
+            // Act
+            var result = SolutionComputer.GetSolutionOfProblem2();
 
             // Assert
             result.Should().Be(expectedResult);

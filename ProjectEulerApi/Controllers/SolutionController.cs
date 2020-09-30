@@ -1,4 +1,4 @@
-﻿using Data.Computers.Interfaces;
+﻿using Data.Computers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ProjectEulerApi.Controllers
@@ -7,19 +7,12 @@ namespace ProjectEulerApi.Controllers
     [ApiController]
     public class SolutionController : ControllerBase
     {
-        private readonly ISolutionComputer _solutionComputer;
-
-        public SolutionController(ISolutionComputer solutioncomputer)
-        {
-            _solutionComputer = solutioncomputer;
-        }
-
         [HttpGet]
         public ActionResult<long> GetSolutionById(int solutionId)
         {
             return solutionId switch
             {
-                1 => _solutionComputer.GetSolutionOfProblem1(),
+                1 => SolutionComputer.GetSolutionOfProblem1(),
                 _ => 0,
             };
         }

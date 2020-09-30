@@ -1,29 +1,24 @@
-﻿using System.Collections.Generic;
-using Data.Computers.Interfaces;
+﻿using System.Linq;
 
 namespace Data.Computers
 {
-    public class SolutionComputer : ISolutionComputer
+    public static class SolutionComputer
     {
-        public int GetSolutionOfProblem1()
+        public static int GetSolutionOfProblem1()
         {
-            var listOfNaturalNumbers = new List<int>{ 3, 5 };
             var max = 1000;
-            var sumOfNaturalNumbersBelowMax = 0;
+            var multiplesOfThree = NumberHelper.GetMultiplesOfNumberBelowMax(3, max);
+            var multiplesOfFive = NumberHelper.GetMultiplesOfNumberBelowMax(5, max);
 
-            for (int i = 0; i < max; i++)
-            {
-                foreach (int naturalNumber in listOfNaturalNumbers)
-                {
-                    if (i % naturalNumber == 0)
-                    {
-                        sumOfNaturalNumbersBelowMax += i;
-                        break;
-                    }
-                }
-            }
+            var multiplesOfThreeAndFiveBelowMax = multiplesOfThree.Union(multiplesOfFive);
 
-            return sumOfNaturalNumbersBelowMax;
+            return multiplesOfThreeAndFiveBelowMax.Sum();
+        }
+
+        public static int GetSolutionOfProblem2()
+        {
+            var max = 4000000;
+            return FibonacciHelper.GetFibonacciListBelowMax(max).Where(x => x % 2 == 0).Sum();
         }
     }
 }

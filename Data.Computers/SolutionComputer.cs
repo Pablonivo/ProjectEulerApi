@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Data.Computers
 {
@@ -37,6 +38,15 @@ namespace Data.Computers
         {
             var numberFrom1To20 = Enumerable.Range(1, 20).ToList();
             return NumberHelper.GetSmallestMultiple(numberFrom1To20);
+        }
+
+        public static long GetSolutionOfProblem6()
+        {
+            var number = 100;
+            var sumOfSquares = (long)Enumerable.Range(1, number).Select(x => x * x).Sum();
+            var squareOfSum = (long)Math.Pow(Enumerable.Range(1, number).Sum(), 2);
+
+            return squareOfSum - sumOfSquares;
         }
     }
 }

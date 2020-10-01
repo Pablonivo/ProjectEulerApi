@@ -48,5 +48,11 @@ namespace Data.Computers
 
             return squareOfSum - sumOfSquares;
         }
+
+        public static long GetSolutionOfProblem7()
+        {
+            var number = 10001;
+            return PrimeHelper.GetNthPrime(number);
+        }
     }
 }

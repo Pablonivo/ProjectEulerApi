@@ -39,5 +39,28 @@ namespace Test.Data.Computers
             // Assert
             result.Should().BeEquivalentTo(expectedDictionary);
         }
+
+        [DataRow(9, false)]
+        [DataRow(17, true)]
+        [DataRow(4, false)]
+        [DataRow(5, true)]
+        [DataRow(3, true)]
+        [TestMethod]
+        public void IsPrime_ReturnsCorrectResult(int number, bool expectedResult)
+        {
+            PrimeHelper.IsPrime(number).Should().Be(expectedResult);
+        }
+
+        [DataRow(1, 2)]
+        [DataRow(2, 3)]
+        [DataRow(3, 5)]
+        [DataRow(4, 7)]
+        [DataRow(5, 11)]
+        [DataRow(6, 13)]
+        [TestMethod]
+        public void GetNthPrime_ReturnsCorrectResult(int number, int expectedResult)
+        {
+            PrimeHelper.GetNthPrime(number).Should().Be(expectedResult);
+        }
     }
 }

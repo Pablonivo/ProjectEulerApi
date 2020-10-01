@@ -21,5 +21,23 @@ namespace Test.Data.Computers
             // Assert
             result.Should().BeEquivalentTo(expectedResult);
         }
+
+        [TestMethod]
+        public void GetPrimeFactorization_18_ReturnsExpectedDictionary()
+        {
+            // Arrange
+            var number = 18;
+            var expectedDictionary = new Dictionary<int, int>
+            {
+                [2] = 1,
+                [3] = 2
+            };
+
+            // Act
+            var result = PrimeHelper.GetPrimeFactorization(number);
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedDictionary);
+        }
     }
 }

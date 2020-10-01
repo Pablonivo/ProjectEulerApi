@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Data.Computers;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,6 +22,20 @@ namespace Test.Data.Computers
 
             // Assert
             result.Should().BeEquivalentTo(expectedResult);
+        }
+
+        [TestMethod]
+        public void GetSmallestMultiple_WhenAskedForSmallestMultipleOfIntegersFrom1To10_ReturnsCorrectList()
+        {
+            // Arrange
+            var numberList = Enumerable.Range(1, 10).ToList();
+            var expectedResult = 2520;
+
+            // Act
+            var result = NumberHelper.GetSmallestMultiple(numberList);
+
+            // Assert
+            result.Should().Be(expectedResult);
         }
     }
 }

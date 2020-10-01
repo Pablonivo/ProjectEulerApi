@@ -32,5 +32,11 @@ namespace Data.Computers
             var max = 1000;
             return PalindromeHelper.GetLargestPalindromeOfProductOfTwoNumbersBelowMax(max);
         }
+
+        public static long GetSolutionOfProblem5()
+        {
+            var numberFrom1To20 = Enumerable.Range(1, 20).ToList();
+            return NumberHelper.GetSmallestMultiple(numberFrom1To20);
+        }
     }
 }

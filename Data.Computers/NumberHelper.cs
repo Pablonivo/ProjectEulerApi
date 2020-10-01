@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Data.Computers
 {
@@ -14,6 +16,31 @@ namespace Data.Computers
             }
 
             return multiplesList;
+        }
+
+        public static long GetSmallestMultiple(List<int> numbers)
+        {
+            var listOfFactorizations = numbers.Select(number => PrimeHelper.GetPrimeFactorization(number));
+            var factorizationOfAnswer = new Dictionary<int, int>();
+
+            foreach (var factorization in listOfFactorizations)
+            {
+                foreach (var key in factorization.Keys)
+                {
+                    if (!factorizationOfAnswer.ContainsKey(key) || factorizationOfAnswer[key] < factorization[key])
+                    {
+                        factorizationOfAnswer[key] = factorization[key];
+                    }
+                }
+            }
+
+            long smallestMultiple = 1;
+            foreach (var key in factorizationOfAnswer.Keys)
+            {
+                smallestMultiple *= (long)Math.Pow(key, factorizationOfAnswer[key]);
+            }
+
+            return smallestMultiple;
         }
     }
 }

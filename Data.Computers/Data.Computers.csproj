@@ -5,9 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="DataFiles\1000digitNumberProblem8.txt">
+    <None Remove="DataFiles\1000digitNumberProblem8.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="DataFiles\1000digitNumberProblem8.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

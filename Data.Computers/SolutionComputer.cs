@@ -69,5 +69,11 @@ namespace Data.Computers
             var (a, b, c) =  NumberHelper.GetPythagoreanTripletForWhichSumEquals(sum);
             return a * b * c;
         }
+
+        public static long GetSolutionOfProblem10()
+        {
+            var max = 2000000;
+            return PrimeHelper.GetListOfPrimesUpTo(max).Sum();
+        }
     }
 }

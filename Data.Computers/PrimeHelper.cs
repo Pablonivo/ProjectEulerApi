@@ -88,5 +88,29 @@ namespace Data.Computers
 
             return primeFactorization;
         }
+
+        public static List<long> GetListOfPrimesUpTo(int max)
+        {
+            var listOfPrimes = new List<long>();
+
+            if (max >= 2)
+            {
+                listOfPrimes.Add(2);
+            }
+            else
+            {
+                return listOfPrimes;
+            }
+
+            for (int i = 3; i < max; i += 2)
+            {
+                if (IsPrime(i))
+                {
+                    listOfPrimes.Add(i);
+                }
+            }
+
+            return listOfPrimes;
+        }
     }
 }

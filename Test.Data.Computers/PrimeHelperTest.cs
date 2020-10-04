@@ -62,5 +62,19 @@ namespace Test.Data.Computers
         {
             PrimeHelper.GetNthPrime(number).Should().Be(expectedResult);
         }
+
+        [TestMethod]
+        public void GetListOfPrimesUpTo_10_ReturnsExpectedListOfPrimes()
+        {
+            // Arrange
+            var max = 10;
+            var expectedListOfPrimes = new List<int> { 2, 3, 5, 7 };
+
+            // Act
+            var result = PrimeHelper.GetListOfPrimesUpTo(max);
+
+            // Result
+            result.Should().BeEquivalentTo(expectedListOfPrimes);
+        }
     }
 }

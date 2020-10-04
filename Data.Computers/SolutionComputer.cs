@@ -62,5 +62,12 @@ namespace Data.Computers
 
             return NumberHelper.GetLargestProductOfAdjacentNumbersInString(testData, numberOfAdjacentDigits);
         }
+
+        public static long GetSolutionOfProblem9()
+        {
+            var sum = 1000;
+            var (a, b, c) =  NumberHelper.GetPythagoreanTripletForWhichSumEquals(sum);
+            return a * b * c;
+        }
     }
 }

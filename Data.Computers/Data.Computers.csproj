@@ -9,9 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="DataFiles\1000digitNumberProblem8.txt">
+    <EmbeddedResource Include="DataFiles\1000digitNumberProblem8.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

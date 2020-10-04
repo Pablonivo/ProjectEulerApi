@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
 
 namespace Data.Computers.TestData
 {
@@ -8,12 +7,14 @@ namespace Data.Computers.TestData
     {
         public static string Get1000digitNumberProblem8()
         {
-            string number = "";
+            string number = string.Empty;
 
             try
             {
-                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"DataFiles\1000digitNumberProblem8.txt");
-                var streamReader = new StreamReader(path);
+                var assembly = typeof(TestData).Assembly;
+                Stream textFileForProblem8 = assembly.GetManifestResourceStream("Data.Computers.DataFiles.1000digitNumberProblem8.txt");
+
+                var streamReader = new StreamReader(textFileForProblem8);
                 var line = streamReader.ReadLine();
 
                 while (line != null)

@@ -42,5 +42,26 @@ namespace Data.Computers
 
             return smallestMultiple;
         }
+
+        public static long GetLargestProductOfAdjacentNumbersInString(string series, int numberOfAdjacentDigits)
+        {
+            long largestProductFound = 0;
+
+            for (int i = 0; i < series.Length - numberOfAdjacentDigits; i++)
+            {
+                long currentProduct = 1;
+                for (int j = i; j < i + numberOfAdjacentDigits; j++)
+                {
+                    currentProduct *= (long)char.GetNumericValue(series[j]);
+                }
+
+                if (currentProduct > largestProductFound)
+                {
+                    largestProductFound = currentProduct;
+                }
+            }
+
+            return largestProductFound;
+        }
     }
 }

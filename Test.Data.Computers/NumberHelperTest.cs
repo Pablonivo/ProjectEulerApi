@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Data.Computers;
+using Data.Computers.TestData;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -33,6 +34,21 @@ namespace Test.Data.Computers
 
             // Act
             var result = NumberHelper.GetSmallestMultiple(numberList);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void GetLargestProductOfAdjacentNumbersInString_AGridWith1000Digits_ReturnsCorrectResult()
+        {
+            // Arrange
+            var testData = TestData.Get1000digitNumberProblem8();
+            var numberOfAdjacentDigits = 4;
+            var expectedResult = 5832;
+
+            // Act
+            var result = NumberHelper.GetLargestProductOfAdjacentNumbersInString(testData, numberOfAdjacentDigits);
 
             // Assert
             result.Should().Be(expectedResult);

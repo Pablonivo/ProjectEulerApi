@@ -54,5 +54,13 @@ namespace Data.Computers
             var number = 10001;
             return PrimeHelper.GetNthPrime(number);
         }
+
+        public static long GetSolutionOfProblem8()
+        {
+            var testData = TestData.TestData.Get1000digitNumberProblem8();
+            var numberOfAdjacentDigits = 13;
+
+            return NumberHelper.GetLargestProductOfAdjacentNumbersInString(testData, numberOfAdjacentDigits);
+        }
     }
 }

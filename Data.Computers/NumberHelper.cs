@@ -64,6 +64,63 @@ namespace Data.Computers
             return largestProductFound;
         }
 
+        public static long GetLargestProductOf4AdjacentNumberInGrid(int[,] grid)
+        {
+            var largestProductFound = 0;
+            var numberOfAdjacentDigits = 4;
+            var sizeOfGrid = 20;
+
+            for (int i = 0; i < sizeOfGrid; i++)
+            {
+                for (int j = 0; j < sizeOfGrid - numberOfAdjacentDigits; j++)
+                {
+                    var currentProduct = grid[i, j] * grid[i, j + 1] * grid[i, j + 2] * grid[i, j + 3];
+                    if (currentProduct > largestProductFound)
+                    {
+                        largestProductFound = currentProduct;
+                    }
+                }
+            }
+
+            for (int i = 0; i < sizeOfGrid - numberOfAdjacentDigits; i++)
+            {
+                for (int j = 0; j < sizeOfGrid; j++)
+                {
+                    var currentProduct = grid[i, j] * grid[i + 1, j] * grid[i + 2, j] * grid[i + 3, j];
+                    if (currentProduct > largestProductFound)
+                    {
+                        largestProductFound = currentProduct;
+                    }
+                }
+            }
+
+            for (int i = 0; i < sizeOfGrid - numberOfAdjacentDigits; i++)
+            {
+                for (int j = 0; j < sizeOfGrid - numberOfAdjacentDigits; j++)
+                {
+                    var currentProduct = grid[i, j] * grid[i + 1, j + 1] * grid[i + 2, j + 2] * grid[i + 3, j + 3];
+                    if (currentProduct > largestProductFound)
+                    {
+                        largestProductFound = currentProduct;
+                    }
+                }
+            }
+
+            for (int i = 0; i < sizeOfGrid - numberOfAdjacentDigits; i++)
+            {
+                for (int j = numberOfAdjacentDigits - 1; j < sizeOfGrid; j++)
+                {
+                    var currentProduct = grid[i, j] * grid[i + 1, j - 1] * grid[i + 2, j - 2] * grid[i + 3, j - 3];
+                    if (currentProduct > largestProductFound)
+                    {
+                        largestProductFound = currentProduct;
+                    }
+                }
+            }
+
+            return largestProductFound;
+        }
+
         public static bool IsPythagoreanTriplet(int a, int b, int c)
         {
             return a * a + b * b == c * c;

@@ -19,5 +19,19 @@ namespace Test.Data.Computers
             // Assert
             result.Should().HaveLength(expectedLength);
         }
+
+        [TestMethod]
+        public void Get20By20GridProblem11_WhenCalled_ReturnsGridOf400Numbers()
+        {
+            // Arrange
+            var expectedNumberOfIntegers = 20 * 20;
+
+            // Act
+            var result = TestData.Get20By20GridProblem11();
+
+            // Assert
+            result.Should().HaveCount(expectedNumberOfIntegers);
+            result.Should().AllBeOfType(typeof(int));
+        }
     }
 }

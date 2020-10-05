@@ -75,5 +75,11 @@ namespace Data.Computers
             var max = 2000000;
             return PrimeHelper.GetListOfPrimesUpTo(max).Sum();
         }
+
+        public static long GetSolutionOfProblem11()
+        {
+            var grid = TestData.TestData.Get20By20GridProblem11();
+            return NumberHelper.GetLargestProductOf4AdjacentNumberInGrid(grid);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Data.Computers.TestData;
+﻿using System.Numerics;
+using Data.Computers.TestData;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -32,6 +33,24 @@ namespace Test.Data.Computers
             // Assert
             result.Should().HaveCount(expectedNumberOfIntegers);
             result.Should().AllBeOfType(typeof(int));
+        }
+
+        [TestMethod]
+        public void Get100NumbersWith50DigitsProblem13_WhenCalled_Returns100NumbersWith50Digits()
+        {
+            // Arrange
+            var expectedNumberOfIntegers = 100;
+            var expectedNumberOfDigitsPerInteger = 50;
+
+            // Act
+            var result = TestData.Get100NumbersWith50DigitsProblem13();
+
+            // Assert
+            result.Should().HaveCount(expectedNumberOfIntegers);
+            foreach(BigInteger integer in result)
+            {
+                integer.ToString().Length.Should().Be(expectedNumberOfDigitsPerInteger);
+            }
         }
     }
 }

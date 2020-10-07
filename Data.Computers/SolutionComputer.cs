@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Numerics;
 
 namespace Data.Computers
 {
@@ -86,6 +87,13 @@ namespace Data.Computers
         {
             var numberOfDivisors = 500;
             return TriangleNumberHelper.GetFirstTriangleNumberWithAtLeastNDivisor(numberOfDivisors);
+        }
+
+        public static long GetSolutionOfProblem13()
+        {
+            var sum = TestData.TestData.Get100NumbersWith50DigitsProblem13().Aggregate(BigInteger.Add);
+            var first10DigitsAsString = sum.ToString().Substring(0, 10);
+            return long.Parse(first10DigitsAsString);
         }
     }
 }

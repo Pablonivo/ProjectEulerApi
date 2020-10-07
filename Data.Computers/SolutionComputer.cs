@@ -95,5 +95,24 @@ namespace Data.Computers
             var first10DigitsAsString = sum.ToString().Substring(0, 10);
             return long.Parse(first10DigitsAsString);
         }
+
+        public static long GetSolutionOfProblem14()
+        {
+            var max = 1000000;
+            return CollatzSequenceHelper.GetStartingNumberBelowMaxWithLongestSequence(max);
+        }
+
+        public static long GetSolutionOfProblem15()
+        {
+            var n = 40;
+            var k = 20;
+            return NumberHelper.BinominalCoefficient(n, k);
+        }
+
+        public static long GetSolutionOfProblem16()
+        {
+            BigInteger n = BigInteger.Pow(2, 1000);
+            return NumberHelper.SumOfDigits(n);
+        }
     }
 }

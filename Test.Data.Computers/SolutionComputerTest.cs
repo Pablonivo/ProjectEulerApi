@@ -176,5 +176,44 @@ namespace Tests
             // Assert
             result.Should().Be(expectedResult);
         }
+
+        [TestMethod]
+        public void GetSolutionOfProblem14_WhenCalled_ReturnsExpectedResult()
+        {
+            // Arrange
+            var expectedResult = 837799;
+
+            // Act
+            var result = SolutionComputer.GetSolutionOfProblem14();
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void GetSolutionOfProblem15_WhenCalled_ReturnsExpectedResult()
+        {
+            // Arrange
+            var expectedResult = 137846528820;
+
+            // Act
+            var result = SolutionComputer.GetSolutionOfProblem15();
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void GetSolutionOfProblem16_WhenCalled_ReturnsExpectedResult()
+        {
+            // Arrange
+            var expectedResult = 1366;
+
+            // Act
+            var result = SolutionComputer.GetSolutionOfProblem16();
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
     }
 }

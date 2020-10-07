@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data.Computers;
 using Data.Computers.TestData;
@@ -73,6 +74,48 @@ namespace Test.Data.Computers
 
             // Act 
             var result = NumberHelper.GetPythagoreanTripletForWhichSumEquals(sum);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void Factorial_Of5_Returns120()
+        {
+            // Arrange
+            var n = 5;
+            var expectedResult = 120;
+
+            // Act
+            var result = NumberHelper.Factorial(n);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        public void BinominalCoefficient_Of4Over2_Returns6()
+        {
+            // Arrange
+            var n = 4;
+            var k = 2;
+            var expectedResult = 6;
+
+            // Act
+            var result = NumberHelper.BinominalCoefficient(n, k);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void SumOfDigits_Of32768_Returns26()
+        {
+            // Arrange
+            var n = 32768;
+            var expectedResult = 26;
+
+            // Act
+            var result = NumberHelper.SumOfDigits(n);
 
             // Assert
             result.Should().Be(expectedResult);

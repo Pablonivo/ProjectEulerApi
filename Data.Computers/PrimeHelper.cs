@@ -61,7 +61,7 @@ namespace Data.Computers
             return primeFactorList;
         }
 
-        public static Dictionary<int, int> GetPrimeFactorization(int number)
+        public static Dictionary<int, int> GetPrimeFactorization(long number)
         {
             var primeFactorization = new Dictionary<int, int>();
             int i = 2;

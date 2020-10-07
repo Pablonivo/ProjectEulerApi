@@ -81,5 +81,11 @@ namespace Data.Computers
             var grid = TestData.TestData.Get20By20GridProblem11();
             return NumberHelper.GetLargestProductOf4AdjacentNumberInGrid(grid);
         }
+
+        public static long GetSolutionOfProblem12()
+        {
+            var numberOfDivisors = 500;
+            return TriangleNumberHelper.GetFirstTriangleNumberWithAtLeastNDivisor(numberOfDivisors);
+        }
     }
 }

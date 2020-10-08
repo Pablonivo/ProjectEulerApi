@@ -215,5 +215,18 @@ namespace Tests
             // Assert
             result.Should().Be(expectedResult);
         }
+
+        [TestMethod]
+        public void GetSolutionOfProblem17_WhenCalled_ReturnsExpectedResult()
+        {
+            // Arrange
+            var expectedResult = 21124;
+
+            // Act
+            var result = SolutionComputer.GetSolutionOfProblem17();
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
     }
 }

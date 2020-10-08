@@ -114,5 +114,11 @@ namespace Data.Computers
             BigInteger n = BigInteger.Pow(2, 1000);
             return NumberHelper.SumOfDigits(n);
         }
+
+        public static long GetSolutionOfProblem17()
+        {
+            var numberFrom1To1000 = Enumerable.Range(1, 1000).ToList();
+            return NumberToWordHelper.SumOfLengthOfNumbersAsWordsWrittenOut(numberFrom1To1000);
+        }
     }
 }

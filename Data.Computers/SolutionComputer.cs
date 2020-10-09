@@ -126,5 +126,11 @@ namespace Data.Computers
             var numberTriangle = TestData.TestData.TriangleProblem18();
             return NumberHelper.MaximalPathOfNumberTriangle(numberTriangle);
         }
+
+        public static long GetSolutionOfProblem67()
+        {
+            var numberTriangle = TestData.TestData.TriangleProblem67();
+            return NumberHelper.MaximalPathOfNumberTriangle(numberTriangle);
+        }
     }
 }

@@ -70,7 +70,7 @@ namespace Test.Data.Computers
         }
 
         [TestMethod]
-        public void TriangleProblem18_WhenCalled_ReturnsExampleTriangle()
+        public void TriangleProblem18_WhenCalled_ReturnsExpectedTriangle()
         {
             // Arrange
             var numberOfRows = 15;
@@ -79,6 +79,22 @@ namespace Test.Data.Computers
 
             // Act
             var result = TestData.TriangleProblem18();
+
+            // Assert
+            result[numberOfRows - 1, 0].Should().Be(expectedNumberLeftBottom);
+            result[numberOfRows - 1, numberOfRows - 1].Should().Be(expectedNumberRightBottom);
+        }
+
+        [TestMethod]
+        public void TriangleProblem67_WhenCalled_ReturnsExpectedTriangle()
+        {
+            // Arrange
+            var numberOfRows = 100;
+            var expectedNumberLeftBottom = 23;
+            var expectedNumberRightBottom = 35;
+
+            // Act
+            var result = TestData.TriangleProblem67();
 
             // Assert
             result[numberOfRows - 1, 0].Should().Be(expectedNumberLeftBottom);

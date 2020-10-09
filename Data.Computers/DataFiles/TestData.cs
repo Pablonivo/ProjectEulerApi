@@ -96,5 +96,26 @@ namespace Data.Computers.TestData
 
             return triangleGrid;
         }
+
+        public static int[,] TriangleProblem67()
+        {
+            var numberOfDigitsPerNumber = 2;
+            var numberOfRows = 100;
+            var triangleGrid = new int[numberOfRows, numberOfRows];
+
+            var dataFromTextFile = GetDataFromTextFile("Data.Computers.DataFiles.TriangleProblem67.txt");
+            var stringOfTextFile = Regex.Replace(dataFromTextFile, @"\s+", "");
+
+            for (int i = 0; i < numberOfRows; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    triangleGrid[i, j] = int.Parse(stringOfTextFile.Substring(0, numberOfDigitsPerNumber));
+                    stringOfTextFile = stringOfTextFile.Substring(numberOfDigitsPerNumber);
+                }
+            }
+
+            return triangleGrid;
+        }
     }
 }

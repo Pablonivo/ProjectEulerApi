@@ -52,5 +52,37 @@ namespace Test.Data.Computers
                 integer.ToString().Length.Should().Be(expectedNumberOfDigitsPerInteger);
             }
         }
+
+        [TestMethod]
+        public void ExampleTriangleProblem18_WhenCalled_ReturnsExampleTriangle()
+        {
+            // Arrange
+            var numberOfRows = 4;
+            var expectedNumberLeftBottom = 8;
+            var expectedNumberRightBottom = 3;
+
+            // Act
+            var result = TestData.ExampleTriangleProblem18();
+
+            // Assert
+            result[numberOfRows - 1, 0].Should().Be(expectedNumberLeftBottom);
+            result[numberOfRows - 1, numberOfRows - 1].Should().Be(expectedNumberRightBottom);
+        }
+
+        [TestMethod]
+        public void TriangleProblem18_WhenCalled_ReturnsExampleTriangle()
+        {
+            // Arrange
+            var numberOfRows = 15;
+            var expectedNumberLeftBottom = 4;
+            var expectedNumberRightBottom = 23;
+
+            // Act
+            var result = TestData.TriangleProblem18();
+
+            // Assert
+            result[numberOfRows - 1, 0].Should().Be(expectedNumberLeftBottom);
+            result[numberOfRows - 1, numberOfRows - 1].Should().Be(expectedNumberRightBottom);
+        }
     }
 }

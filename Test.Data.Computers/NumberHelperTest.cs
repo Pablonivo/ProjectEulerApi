@@ -120,5 +120,19 @@ namespace Test.Data.Computers
             // Assert
             result.Should().Be(expectedResult);
         }
+
+        [TestMethod]
+        public void MaximalPathOfNumberTriangle_OfExampleTriangle_ReturnsCorrectResult()
+        {
+            // Arrange
+            var exampleTriangle = TestData.ExampleTriangleProblem18();
+            var expectedResult = 23;
+
+            // Act
+            var result = NumberHelper.MaximalPathOfNumberTriangle(exampleTriangle);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
     }
 }

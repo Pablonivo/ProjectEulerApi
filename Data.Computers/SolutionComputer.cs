@@ -120,5 +120,11 @@ namespace Data.Computers
             var numberFrom1To1000 = Enumerable.Range(1, 1000).ToList();
             return NumberToWordHelper.SumOfLengthOfNumbersAsWordsWrittenOut(numberFrom1To1000);
         }
+
+        public static long GetSolutionOfProblem18()
+        {
+            var numberTriangle = TestData.TestData.TriangleProblem18();
+            return NumberHelper.MaximalPathOfNumberTriangle(numberTriangle);
+        }
     }
 }

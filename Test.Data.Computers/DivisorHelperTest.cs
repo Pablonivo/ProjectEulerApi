@@ -1,4 +1,5 @@
-﻿using Data.Computers;
+﻿using System.Collections.Generic;
+using Data.Computers;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,6 +19,30 @@ namespace Test.Data.Computers
         public void GetNumberOfDivisors_ReturnsCorrectResult(long n, int numberOfDivisors)
         {
             DivisorHelper.GetNumberOfDivisors(n).Should().Be(numberOfDivisors);
+        }
+
+        [TestMethod]
+        public void GetListOfProperDivisors_Of220_ReturnsCorrectList()
+        {
+            // Arrange
+            var number = 220;
+            var properDivisorsOfNumber = new List<int> { 1, 2, 4, 5, 10, 11, 20, 22, 44, 55, 110 };
+
+            // Act
+            var result = DivisorHelper.GetListOfProperDivisors(number);
+
+            // Assert
+            result.Should().BeEquivalentTo(properDivisorsOfNumber);
+        }
+
+        [TestMethod]
+        public void IsAmicablePair_220And284_ReturnsTrue()
+        {
+            // Arrange & Act
+            var result = DivisorHelper.IsAmicablePair(220, 284);
+
+            // Assert
+            result.Should().BeTrue();
         }
     }
 }

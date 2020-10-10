@@ -40,7 +40,7 @@ namespace Data.Computers
             return i;
         }
 
-        public static List<long> GetPrimesFactors(long number)
+        public static List<long> GetPrimeFactors(long number)
         {
             var primeFactorList = new List<long>();
             long i = 2;

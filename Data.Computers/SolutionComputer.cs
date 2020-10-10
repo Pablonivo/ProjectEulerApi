@@ -26,7 +26,7 @@ namespace Data.Computers
         public static long GetSolutionOfProblem3()
         {
             var max = 600851475143;
-            return PrimeHelper.GetPrimesFactors(max).Max();
+            return PrimeHelper.GetPrimeFactors(max).Max();
         }
 
         public static long GetSolutionOfProblem4()
@@ -138,6 +138,12 @@ namespace Data.Computers
         {
             var factorial = NumberHelper.Factorial(100);
             return NumberHelper.SumOfDigits(factorial);
+        }
+
+        public static long GetSolutionOfProblem21()
+        {
+            var max = 10000;
+            return DivisorHelper.GetListOfAmicablePairsBelowMax(max).Sum();
         }
 
         public static long GetSolutionOfProblem67()

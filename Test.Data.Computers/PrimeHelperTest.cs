@@ -16,7 +16,7 @@ namespace Test.Data.Computers
             var expectedResult = new List<long> { 5, 7, 13, 29 };
 
             // Act
-            var result = PrimeHelper.GetPrimesFactors(number);
+            var result = PrimeHelper.GetPrimeFactors(number);
 
             // Assert
             result.Should().BeEquivalentTo(expectedResult);

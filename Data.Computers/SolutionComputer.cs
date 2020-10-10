@@ -127,6 +127,13 @@ namespace Data.Computers
             return NumberHelper.MaximalPathOfNumberTriangle(numberTriangle);
         }
 
+        public static long GetSolutionOfProblem19()
+        {
+            var startDate = new DateTime(1901, 1, 1);
+            var endDate = new DateTime(2000, 12, 31);
+            return DateHelper.NumberOfSundaysOnTheFirstOfTheMonth(startDate, endDate);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

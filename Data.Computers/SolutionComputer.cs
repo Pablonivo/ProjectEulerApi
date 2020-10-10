@@ -134,6 +134,12 @@ namespace Data.Computers
             return DateHelper.NumberOfSundaysOnTheFirstOfTheMonth(startDate, endDate);
         }
 
+        public static long GetSolutionOfProblem20()
+        {
+            var factorial = NumberHelper.Factorial(100);
+            return NumberHelper.SumOfDigits(factorial);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

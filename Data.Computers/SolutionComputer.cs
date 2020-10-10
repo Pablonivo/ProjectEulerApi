@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Numerics;
+using Data.Computers.DataFiles;
 
 namespace Data.Computers
 {
@@ -144,6 +145,11 @@ namespace Data.Computers
         {
             var max = 10000;
             return DivisorHelper.GetListOfAmicablePairsBelowMax(max).Sum();
+        }
+
+        public static long GetSolutionOfProblem22()
+        {
+            return TestDataHelper.GetNameScoresForProblem22();
         }
 
         public static long GetSolutionOfProblem67()

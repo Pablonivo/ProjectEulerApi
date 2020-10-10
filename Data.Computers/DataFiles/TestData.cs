@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Numerics;
 using System.Text.RegularExpressions;
 
@@ -116,6 +117,15 @@ namespace Data.Computers.TestData
             }
 
             return triangleGrid;
+        }
+
+        public static List<string> FirstNamesProblem22()
+        {
+            var dataFromTextFile = GetDataFromTextFile("Data.Computers.DataFiles.FirstNamesProblem22.txt");
+            var stringOfTextFile = Regex.Replace(dataFromTextFile, @"\s+", string.Empty)
+                .Replace("\"", string.Empty).Trim();
+
+            return stringOfTextFile.Split(",").ToList();
         }
     }
 }

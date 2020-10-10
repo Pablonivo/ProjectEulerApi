@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System.Linq;
+using System.Numerics;
 using Data.Computers.TestData;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -99,6 +100,23 @@ namespace Test.Data.Computers
             // Assert
             result[numberOfRows - 1, 0].Should().Be(expectedNumberLeftBottom);
             result[numberOfRows - 1, numberOfRows - 1].Should().Be(expectedNumberRightBottom);
+        }
+
+        [TestMethod]
+        public void FirstNamesProblem22_WhenCalled_ReturnsListWithNames()
+        {
+            // Arrange
+            var expectedNumberOfNames = 5163;
+            var firstName = "MARY";
+            var lastname = "ALONSO";
+
+            // Act
+            var result = TestData.FirstNamesProblem22();
+
+            // Assert
+            result.Count.Should().Be(expectedNumberOfNames);
+            result.First().Should().Be(firstName);
+            result.Last().Should().Be(lastname);
         }
     }
 }

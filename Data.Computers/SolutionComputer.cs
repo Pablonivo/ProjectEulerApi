@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Data.Computers.DataFiles;
@@ -155,6 +156,13 @@ namespace Data.Computers
         public static long GetSolutionOfProblem23()
         {
             return AbundantNumberHelper.GetSumOfIntegersWhichCannotBeWrittenAsSumOfTwoAbundantNumber();
+        }
+
+        public static long GetSolutionOfProblem24()
+        {
+            var wantedPosition = 1000000;
+            var listOfCharacters = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            return long.Parse(PermutationHelper.GetListOfAllPossiblePermutations(listOfCharacters)[wantedPosition - 1]);
         }
 
         public static long GetSolutionOfProblem67()

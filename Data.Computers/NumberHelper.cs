@@ -193,5 +193,10 @@ namespace Data.Computers
 
             return triangleGrid[0, 0];
         }
+
+        public static bool CanNumberBeWrittenAsSumOfTwoNumbersInList(int number, List<int> listOfNumbers)
+        {
+            return listOfNumbers.Any(aNumber => listOfNumbers.Contains(number - aNumber));
+        }
     }
 }

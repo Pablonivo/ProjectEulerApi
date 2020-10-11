@@ -152,6 +152,11 @@ namespace Data.Computers
             return TestDataHelper.GetNameScoresForProblem22();
         }
 
+        public static long GetSolutionOfProblem23()
+        {
+            return AbundantNumberHelper.GetSumOfIntegersWhichCannotBeWrittenAsSumOfTwoAbundantNumber();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

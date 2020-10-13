@@ -119,8 +119,8 @@ namespace Data.Computers
 
         public static long GetSolutionOfProblem17()
         {
-            var numberFrom1To1000 = Enumerable.Range(1, 1000).ToList();
-            return NumberToWordHelper.SumOfLengthOfNumbersAsWordsWrittenOut(numberFrom1To1000);
+            var numbersFrom1To1000 = Enumerable.Range(1, 1000).ToList();
+            return NumberToWordHelper.SumOfLengthOfNumbersAsWordsWrittenOut(numbersFrom1To1000);
         }
 
         public static long GetSolutionOfProblem18()
@@ -169,6 +169,12 @@ namespace Data.Computers
         {
             var requiredNumberOfDigits = 1000;
             return FibonacciHelper.GetIndexOfFirstFibonacciNumberWithAtLeastNDigits(requiredNumberOfDigits);
+        }
+
+        public static long GetSolutionOfProblem26()
+        {
+            var max = 1000;
+            return FractionHelper.GetLongestRecurringCycleFor1OverDBelowMax(max);
         }
 
         public static long GetSolutionOfProblem67()

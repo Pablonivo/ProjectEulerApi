@@ -229,5 +229,33 @@ namespace Data.Computers
 
             return listOfPowers.Distinct().ToList();
         }
+
+        public static List<long> GetIntegersWhichCanBeWrittenAsNthPowersOfTheirDigits(int nthPower)
+        {
+            var listOfDesiredIntegers = new List<long>();
+            var numbersToCheck = Enumerable.Range(2, (int)Math.Pow(10, nthPower + 1));
+
+            foreach (int number in numbersToCheck)
+            {
+                if (IsIntegerSumOfNthPowerOfDigits(number, nthPower))
+                {
+                    listOfDesiredIntegers.Add(number);
+                }
+            }
+
+            return listOfDesiredIntegers;
+        }
+
+        public static bool IsIntegerSumOfNthPowerOfDigits(int number, int power)
+        {
+            var sum = 0;
+
+            foreach (char digit in number.ToString())
+            {
+                sum += (int)Math.Pow(char.GetNumericValue(digit), power);
+            }
+
+            return sum == number;
+        }
     }
 }

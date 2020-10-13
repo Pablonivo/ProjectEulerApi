@@ -161,5 +161,33 @@ namespace Test.Data.Computers
             // Assert
             result.Should().HaveCount(15);
         }
+
+        [TestMethod]
+        public void IsIntegerSumOfNthPowerOfDigits_Of1634With4thPowers_ReturnsTrue()
+        {
+            // Arrange
+            var number = 1634;
+            var power = 4;
+
+            // Act
+            var result = NumberHelper.IsIntegerSumOfNthPowerOfDigits(number, power);
+
+            // Assert
+            result.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void GetIntegersWhichCanBeWrittenAsNthPowersOfTheirDigits_ForFourthPowers_ReturnsCorrectList()
+        {
+            // Arrange
+            var power = 4;
+            var expectedList = new List<long> { 1634, 8208, 9474 };
+
+            // Act
+            var result = NumberHelper.GetIntegersWhichCanBeWrittenAsNthPowersOfTheirDigits(power);
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedList);
+        }
     }
 }

@@ -196,6 +196,12 @@ namespace Data.Computers
             return NumberHelper.GetListOfDistinctPowers(maxOfIntegersUsed).Count();
         }
 
+        public static long GetSolutionOfProblem30()
+        {
+            var power = 5;
+            return NumberHelper.GetIntegersWhichCanBeWrittenAsNthPowersOfTheirDigits(power).Sum();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

@@ -134,5 +134,19 @@ namespace Test.Data.Computers
             // Assert
             result.Should().Be(expectedResult);
         }
+
+        [TestMethod]
+        public void GetSumOfDiagonalsNumberSpiral_For5Times5Spiral_ReturnsCorrectResult()
+        {
+            // Arrange
+            var sizeOfSpiralSides = 5;
+            var expectedResult = 101;
+
+            // Act
+            var result = NumberHelper.GetSumOfDiagonalsNumberSpiral(sizeOfSpiralSides);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
     }
 }

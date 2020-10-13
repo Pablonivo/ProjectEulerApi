@@ -184,6 +184,12 @@ namespace Data.Computers
             return a * b;
         }
 
+        public static long GetSolutionOfProblem28()
+        {
+            var sizeOfSpiralSides = 1001;
+            return NumberHelper.GetSumOfDiagonalsNumberSpiral(sizeOfSpiralSides);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

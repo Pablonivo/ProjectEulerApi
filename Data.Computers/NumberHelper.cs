@@ -194,9 +194,24 @@ namespace Data.Computers
             return triangleGrid[0, 0];
         }
 
-        public static bool CanNumberBeWrittenAsSumOfTwoNumbersInList(int number, List<int> listOfNumbers)
+        public static long GetSumOfDiagonalsNumberSpiral(int spiralSizeOfSides)
         {
-            return listOfNumbers.Any(aNumber => listOfNumbers.Contains(number - aNumber));
+            long sum = 1;
+            int increment = 2;
+            int currentPosition = 1;
+
+            while (currentPosition < spiralSizeOfSides * spiralSizeOfSides)
+            {
+                foreach(int i in Enumerable.Range(1, 4))
+                {
+                    currentPosition += increment;
+                    sum += currentPosition;
+                }
+
+                increment += 2;
+            }
+
+            return sum;
         }
     }
 }

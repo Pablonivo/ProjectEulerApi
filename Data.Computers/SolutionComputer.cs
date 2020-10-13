@@ -165,6 +165,12 @@ namespace Data.Computers
             return long.Parse(PermutationHelper.GetListOfAllPossiblePermutations(listOfCharacters)[wantedPosition - 1]);
         }
 
+        public static long GetSolutionOfProblem25()
+        {
+            var requiredNumberOfDigits = 1000;
+            return FibonacciHelper.GetIndexOfFirstFibonacciNumberWithAtLeastNDigits(requiredNumberOfDigits);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

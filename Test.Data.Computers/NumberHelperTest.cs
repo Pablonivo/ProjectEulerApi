@@ -148,5 +148,18 @@ namespace Test.Data.Computers
             // Assert
             result.Should().Be(expectedResult);
         }
+
+        [TestMethod]
+        public void GetListOfDistinctPowers_Max5_ReturnsCorrectList()
+        {
+            // Arrange
+            var maxOfUsedIntegers = 5;
+
+            // Act
+            var result = NumberHelper.GetListOfDistinctPowers(maxOfUsedIntegers);
+
+            // Assert
+            result.Should().HaveCount(15);
+        }
     }
 }

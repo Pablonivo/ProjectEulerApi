@@ -190,6 +190,12 @@ namespace Data.Computers
             return NumberHelper.GetSumOfDiagonalsNumberSpiral(sizeOfSpiralSides);
         }
 
+        public static long GetSolutionOfProblem29()
+        {
+            var maxOfIntegersUsed = 100;
+            return NumberHelper.GetListOfDistinctPowers(maxOfIntegersUsed).Count();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

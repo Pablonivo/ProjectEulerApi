@@ -213,5 +213,21 @@ namespace Data.Computers
 
             return sum;
         }
+
+        public static List<BigInteger> GetListOfDistinctPowers(int max)
+        {
+            var listOfPowers = new List<BigInteger>();
+            var allowedIntegers = Enumerable.Range(2, max - 1);
+
+            foreach (int a in allowedIntegers)
+            {
+                foreach (int b in allowedIntegers)
+                {
+                    listOfPowers.Add(BigInteger.Pow(a, b));
+                }
+            }
+
+            return listOfPowers.Distinct().ToList();
+        }
     }
 }

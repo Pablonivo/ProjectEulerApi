@@ -177,6 +177,13 @@ namespace Data.Computers
             return FractionHelper.GetLongestRecurringCycleFor1OverDBelowMax(max);
         }
 
+        public static long GetSolutionOfProblem27()
+        {
+            var maxModulus = 1000;
+            var (a, b) = QuadraticFormulaHelper.GetCoefficientsForQuadraticExpressionWhichProducesMaximumNumberOfPrimes(maxModulus);
+            return a * b;
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

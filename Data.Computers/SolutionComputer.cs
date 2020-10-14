@@ -209,6 +209,12 @@ namespace Data.Computers
             return NumberHelper.NumberOfWaysToWriteNumberAsSum(requiredSum, allowedNumbersInSum);
         }
 
+        public static long GetSolutionOfProblem32()
+        {
+            var listOfCharacters = new List<char> {'1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            return PandigitalHelper.GetListOfPandigitalProducts(listOfCharacters).Sum();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

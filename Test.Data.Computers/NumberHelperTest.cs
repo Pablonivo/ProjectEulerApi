@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Data.Computers;
 using Data.Computers.TestData;
@@ -188,6 +187,51 @@ namespace Test.Data.Computers
 
             // Assert
             result.Should().BeEquivalentTo(expectedList);
+        }
+
+        [TestMethod]
+        public void NumberOfWaysToWriteNumberAsSum_For6AndNumbers1And2_ReturnsCorrectResult()
+        {
+            // Arrange
+            var requiredSum = 6;
+            var numbersAllowedInSum = new List<int> { 1, 2 };
+            var expectedNumberOfWayToWriteNumberAsSum = 4;
+
+            // Act
+            var result = NumberHelper.NumberOfWaysToWriteNumberAsSum(requiredSum, numbersAllowedInSum);
+
+            // Assert
+            result.Should().Be(expectedNumberOfWayToWriteNumberAsSum);
+        }
+
+        [TestMethod]
+        public void NumberOfWaysToWriteNumberAsSum_For6AndNumbers1And2And5_ReturnsCorrectResult()
+        {
+            // Arrange
+            var requiredSum = 6;
+            var numbersAllowedInSum = new List<int> { 1, 2, 5 };
+            var expectedNumberOfWayToWriteNumberAsSum = 5;
+
+            // Act
+            var result = NumberHelper.NumberOfWaysToWriteNumberAsSum(requiredSum, numbersAllowedInSum);
+
+            // Assert
+            result.Should().Be(expectedNumberOfWayToWriteNumberAsSum);
+        }
+
+        [TestMethod]
+        public void NumberOfWaysToWriteNumberAsSum_For11AndNumbers1And2And5And10_ReturnsCorrectResult()
+        { 
+            // Arrange
+            var requiredSum = 11;
+            var numbersAllowedInSum = new List<int> { 1, 2, 5, 10 };
+            var expectedNumberOfWayToWriteNumberAsSum = 12;
+
+            // Act
+            var result = NumberHelper.NumberOfWaysToWriteNumberAsSum(requiredSum, numbersAllowedInSum);
+
+            // Assert
+            result.Should().Be(expectedNumberOfWayToWriteNumberAsSum);
         }
     }
 }

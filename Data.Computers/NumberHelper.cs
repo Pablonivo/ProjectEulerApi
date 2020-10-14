@@ -257,5 +257,37 @@ namespace Data.Computers
 
             return sum == number;
         }
+
+        public static int NumberOfWaysToWriteNumberAsSum(int requiredSum, List<int> numbersAllowedInSum)
+        {
+            var numberOfWaysToWriteNumberAsSum = 0;
+            var orderedListOfNumbersToUseFromHighToLow = numbersAllowedInSum.OrderByDescending(number => number);
+
+            switch (numbersAllowedInSum.Count)
+            {
+                case 0: 
+                    return 0;
+                case 1:
+                    if (requiredSum % orderedListOfNumbersToUseFromHighToLow.Single() == 0)
+                    {
+                        return 1;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                default:
+                    var highestNumberToUse = orderedListOfNumbersToUseFromHighToLow.First();
+                    var numberOfTimesHighestNumberInListFitsInNumber = requiredSum / highestNumberToUse;
+                    var numberToUseWithoutHighestNumber = orderedListOfNumbersToUseFromHighToLow.Where(number => number != highestNumberToUse).ToList();
+
+                    foreach(int i in Enumerable.Range(0, numberOfTimesHighestNumberInListFitsInNumber + 1))
+                    {
+                        numberOfWaysToWriteNumberAsSum += NumberOfWaysToWriteNumberAsSum(requiredSum - i * highestNumberToUse, numberToUseWithoutHighestNumber);
+                    }
+
+                    return numberOfWaysToWriteNumberAsSum;
+            }
+        }
     }
 }

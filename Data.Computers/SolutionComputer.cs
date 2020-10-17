@@ -160,9 +160,9 @@ namespace Data.Computers
 
         public static long GetSolutionOfProblem24()
         {
-            var wantedPosition = 1000000;
+            var desiredIndex = 1000000;
             var listOfCharacters = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            return long.Parse(PermutationHelper.GetListOfAllPossiblePermutations(listOfCharacters)[wantedPosition - 1]);
+            return long.Parse(PermutationHelper.GetNthLexiographicPermutation(desiredIndex, listOfCharacters));
         }
 
         public static long GetSolutionOfProblem25()

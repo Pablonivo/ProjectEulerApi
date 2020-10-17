@@ -1,36 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace Data.Computers
 {
     public static class PermutationHelper
     {
-        public static List<string> GetListOfAllPossiblePermutations(List<char> characters)
+        public static string GetNthLexiographicPermutation(BigInteger desiredIndex, List<char> orderedCharacters)
         {
-            var numberOfCharacters = characters.Count;
+            var numberOfCharacters = orderedCharacters.Count;
 
-            switch (numberOfCharacters)
+            if (numberOfCharacters == 1)
             {
-                case 1:
-                    return new List<string> { characters[0].ToString() };
-                case 2:
-                    return new List<string> { characters[0].ToString() + characters[1].ToString(), characters[1].ToString() + characters[0].ToString() };
-                default:
-                    // a + permututations(bc),
-                    // b + permutatations(ac),
-                    // c + permutations(ab)
-                    var permutationsOfCharacters = new List<string>();
+                if (desiredIndex != 1)
+                {
+                    throw new ArgumentOutOfRangeException("The list of characters has length 1, while the desired index was not equal to 1");
+                }
 
-                    characters.ForEach(character =>
-                    {
-                        var otherCharacters = characters.Where(othercharacter => othercharacter != character).ToList();
-                        var permutationsOtherCharacters = GetListOfAllPossiblePermutations(otherCharacters);
-
-                        permutationsOfCharacters.AddRange(permutationsOtherCharacters.Select(permutation => character.ToString() + permutation));
-                    });
-
-                    return permutationsOfCharacters;
+                return orderedCharacters.Single().ToString();
             }
+
+            BigInteger currentIndex = 0;
+            int count = 0;
+
+            while (currentIndex + NumberHelper.Factorial(numberOfCharacters - 1) < desiredIndex)
+            {
+                currentIndex += NumberHelper.Factorial(numberOfCharacters - 1);
+                count += 1;
+            }
+
+            var characterToUse = orderedCharacters[count];
+            var orderedDigitsWithoutDigitUsed = orderedCharacters.Where(character => character != characterToUse).ToList();
+
+            return characterToUse.ToString() + GetNthLexiographicPermutation(desiredIndex - currentIndex, orderedDigitsWithoutDigitUsed);
         }
     }
 }

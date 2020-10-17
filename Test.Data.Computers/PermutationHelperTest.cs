@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Numerics;
 using Data.Computers;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,17 +10,16 @@ namespace Test.Data.Computers
     public class PermutationHelperTest
     {
         [TestMethod]
-        public void GetListOfAllPossiblePermutations_WithNumbers123_ReturnsCorrectList()
+        public void GetNthLexiographicPermutation_WithNumbers0To2AndDesiredIndex4_ReturnsCorrectResult()
         {
             // Arrange
-            var characters = new List<char> { '1', '2', '3' };
+            var characters = new List<char> { '0', '1', '2' };
 
             // Act
-            var result = PermutationHelper.GetListOfAllPossiblePermutations(characters);
+            var result = PermutationHelper.GetNthLexiographicPermutation(new BigInteger(4), characters);
 
             // Assert
-            result.Should().HaveCount(6);
-            result.Should().Contain("231");
+            result.Should().Be("120");
         }
     }
 }

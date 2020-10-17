@@ -215,6 +215,15 @@ namespace Data.Computers
             return PandigitalHelper.GetListOfPandigitalProducts(listOfCharacters).Sum();
         }
 
+        public static long GetSolutionOfProblem33()
+        {
+            var maxOfFractionParts = 99;
+            var listOfFractions = FractionHelper.GetListOfFractionsThatCanBeSimplifiedIncorrectly(maxOfFractionParts);
+            var productOfNumerators = listOfFractions.Select(fraction => fraction.Item1).Aggregate(1, (a, b) => a * b);
+            var productOfDenominators = listOfFractions.Select(fraction => fraction.Item2).Aggregate(1, (a, b) => a * b);
+            return FractionHelper.ToLowestTerms(productOfNumerators, productOfDenominators).Item2;
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

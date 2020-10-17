@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Data.Computers
 {
     public static class PrimeHelper
     {
-        public static bool IsPrime(int number)
+        public static bool IsPrime(long number)
         {
             if (number <= 1)
             {
@@ -15,6 +16,25 @@ namespace Data.Computers
             for (int i = 2; i <= Math.Sqrt(number); i++)
             {
                 if (number % i == 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool IsCircularPrime(long number)
+        {
+            var numberToString = number.ToString();
+            var lengthOfNumber = numberToString.Length;
+
+            for(int i = 0; i < lengthOfNumber; i++)
+            {
+                numberToString = numberToString[1..lengthOfNumber] + numberToString.Substring(0, 1);
+                number = int.Parse(numberToString);
+
+                if (!IsPrime(number))
                 {
                     return false;
                 }
@@ -111,6 +131,11 @@ namespace Data.Computers
             }
 
             return listOfPrimes;
+        }
+
+        public static List<long> GetListOfCircularPrimesBelowMax(int max)
+        {
+            return GetListOfPrimesUpTo(max).Where(prime => IsCircularPrime(prime)).ToList();
         }
     }
 }

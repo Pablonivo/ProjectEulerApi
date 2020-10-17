@@ -63,6 +63,14 @@ namespace Test.Data.Computers
             PrimeHelper.GetNthPrime(number).Should().Be(expectedResult);
         }
 
+        [DataRow(197, true)]
+        [DataRow(19, false)]
+        [TestMethod]
+        public void IsCircularPrime_ReturnsCorrectResult(int number, bool expectedResult)
+        {
+            PrimeHelper.IsCircularPrime(number).Should().Be(expectedResult);
+        }
+
         [TestMethod]
         public void GetListOfPrimesUpTo_10_ReturnsExpectedListOfPrimes()
         {
@@ -72,6 +80,20 @@ namespace Test.Data.Computers
 
             // Act
             var result = PrimeHelper.GetListOfPrimesUpTo(max);
+
+            // Result
+            result.Should().BeEquivalentTo(expectedListOfPrimes);
+        }
+
+        [TestMethod]
+        public void GetListOfCircularPrimesBelowMax_WithMax100_ReturnsExpectedListOfCircularPrimes()
+        {
+            // Arrange
+            var max = 100;
+            var expectedListOfPrimes = new List<int> { 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97 };
+
+            // Act
+            var result = PrimeHelper.GetListOfCircularPrimesBelowMax(max);
 
             // Result
             result.Should().BeEquivalentTo(expectedListOfPrimes);

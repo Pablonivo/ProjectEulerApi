@@ -234,6 +234,12 @@ namespace Data.Computers
             return listOfNumbersThatCanBeWrittenAsSumOfFactorialsOfDigits.Sum();
         }
 
+        public static long GetSolutionOfProblem35()
+        {
+            var max = 1000000;
+            return PrimeHelper.GetListOfCircularPrimesBelowMax(max).Count();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

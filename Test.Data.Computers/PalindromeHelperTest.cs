@@ -19,6 +19,13 @@ namespace Test.Data.Computers
         }
 
         [TestMethod]
+        [DataRow(585, true)]
+        public void IsPalindromeInBase2_ReturnsCorrectResult(int number, bool expectedResult)
+        {
+            PalindromeHelper.IsPalindromeInBase2(number).Should().Be(expectedResult);
+        }
+
+        [TestMethod]
         [DataRow(100, 9009)]
         public void GetLargestPalindromeOfProductOfTwoNumbersBelowMax_ReturnsCorrectResult(int max, int expectedResult)
         {

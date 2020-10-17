@@ -69,7 +69,7 @@ namespace Data.Computers
         public static long GetSolutionOfProblem9()
         {
             var sum = 1000;
-            var (a, b, c) =  NumberHelper.GetPythagoreanTripletForWhichSumEquals(sum);
+            var (a, b, c) = NumberHelper.GetPythagoreanTripletForWhichSumEquals(sum);
             return a * b * c;
         }
 
@@ -204,14 +204,14 @@ namespace Data.Computers
 
         public static long GetSolutionOfProblem31()
         {
-            var allowedNumbersInSum = new List<int>{ 1, 2, 5, 10, 20, 50, 100, 200 };
+            var allowedNumbersInSum = new List<int> { 1, 2, 5, 10, 20, 50, 100, 200 };
             var requiredSum = 200;
             return NumberHelper.NumberOfWaysToWriteNumberAsSum(requiredSum, allowedNumbersInSum);
         }
 
         public static long GetSolutionOfProblem32()
         {
-            var listOfCharacters = new List<char> {'1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            var listOfCharacters = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             return PandigitalHelper.GetListOfPandigitalProducts(listOfCharacters).Sum();
         }
 
@@ -227,8 +227,8 @@ namespace Data.Computers
         public static long GetSolutionOfProblem34()
         {
             // An easy upper bound is 10 000 000, but the computation shows they are all below 50 000. 
-            var upperBound = 50000; 
-            var listOfNumbersThatCanBeWrittenAsSumOfFactorialsOfDigits = 
+            var upperBound = 50000;
+            var listOfNumbersThatCanBeWrittenAsSumOfFactorialsOfDigits =
                 Enumerable.Range(3, upperBound)
                 .Where(number => FactorialHelper.IsSumOfFactorialOfDigits(number));
             return listOfNumbersThatCanBeWrittenAsSumOfFactorialsOfDigits.Sum();
@@ -238,6 +238,14 @@ namespace Data.Computers
         {
             var max = 1000000;
             return PrimeHelper.GetListOfCircularPrimesBelowMax(max).Count();
+        }
+
+        public static long GetSolutionOfProblem36()
+        {
+            var max = 1000000;
+            return Enumerable.Range(0, max)
+                .Where(number => PalindromeHelper.IsPalindrome(number) && PalindromeHelper.IsPalindromeInBase2(number))
+                .ToList().Sum();
         }
 
         public static long GetSolutionOfProblem67()

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System;
 
 namespace Data.Computers
 {
@@ -6,17 +6,26 @@ namespace Data.Computers
     {
         public static bool IsPalindrome(int number)
         {
-            var numberAsString = number.ToString();
+            return IsPalindrome(number.ToString());
+        }
 
-            for (int i=0; i < numberAsString.Count()/2; i++)
+        public static bool IsPalindrome(string text)
+        {
+            for (int i = 0; i < text.Length / 2; i++)
             {
-                if (numberAsString[i] != numberAsString[^(1 + i)])
+                if (text[i] != text[^(1 + i)])
                 {
                     return false;
                 }
             }
 
             return true;
+        }
+
+        public static bool IsPalindromeInBase2(int number)
+        {
+            var numberInbase2 = Convert.ToString(number, 2);
+            return IsPalindrome(numberInbase2);
         }
 
         public static int GetLargestPalindromeOfProductOfTwoNumbersBelowMax(int max)

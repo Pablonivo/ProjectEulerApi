@@ -79,34 +79,6 @@ namespace Test.Data.Computers
         }
 
         [TestMethod]
-        public void Factorial_Of5_Returns120()
-        {
-            // Arrange
-            var n = 5;
-            var expectedResult = 120;
-
-            // Act
-            var result = NumberHelper.Factorial(n);
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        public void BinominalCoefficient_Of4Over2_Returns6()
-        {
-            // Arrange
-            var n = 4;
-            var k = 2;
-            var expectedResult = 6;
-
-            // Act
-            var result = NumberHelper.BinominalCoefficient(n, k);
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
         public void SumOfDigits_Of32768_Returns26()
         {
             // Arrange

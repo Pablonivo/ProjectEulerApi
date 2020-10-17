@@ -24,9 +24,9 @@ namespace Data.Computers
             BigInteger currentIndex = 0;
             int count = 0;
 
-            while (currentIndex + NumberHelper.Factorial(numberOfCharacters - 1) < desiredIndex)
+            while (currentIndex + FactorialHelper.Factorial(numberOfCharacters - 1) < desiredIndex)
             {
-                currentIndex += NumberHelper.Factorial(numberOfCharacters - 1);
+                currentIndex += FactorialHelper.Factorial(numberOfCharacters - 1);
                 count += 1;
             }
 

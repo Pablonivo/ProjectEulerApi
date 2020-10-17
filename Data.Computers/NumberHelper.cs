@@ -145,27 +145,6 @@ namespace Data.Computers
             return (0, 0, 0);
         }
 
-        public static long BinominalCoefficient(int n, int k)
-        {
-            if (n < k)
-            {
-                throw new ArgumentException("n should be greater or equal than k");
-            }
-            return (long)(Factorial(n) / (Factorial(k) * Factorial(n -k)));
-        }
-
-        public static BigInteger Factorial(int n)
-        {
-            if (n != 1 && n != 0)
-            {
-                return n * Factorial(n-1);
-            }
-            else
-            {
-                return 1;
-            }
-        }
-
         public static long SumOfDigits(BigInteger n)
         {
             var sum = 0;

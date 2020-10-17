@@ -108,7 +108,7 @@ namespace Data.Computers
         {
             var n = 40;
             var k = 20;
-            return NumberHelper.BinominalCoefficient(n, k);
+            return FactorialHelper.BinominalCoefficient(n, k);
         }
 
         public static long GetSolutionOfProblem16()
@@ -138,7 +138,7 @@ namespace Data.Computers
 
         public static long GetSolutionOfProblem20()
         {
-            var factorial = NumberHelper.Factorial(100);
+            var factorial = FactorialHelper.Factorial(100);
             return NumberHelper.SumOfDigits(factorial);
         }
 
@@ -222,6 +222,16 @@ namespace Data.Computers
             var productOfNumerators = listOfFractions.Select(fraction => fraction.Item1).Aggregate(1, (a, b) => a * b);
             var productOfDenominators = listOfFractions.Select(fraction => fraction.Item2).Aggregate(1, (a, b) => a * b);
             return FractionHelper.ToLowestTerms(productOfNumerators, productOfDenominators).Item2;
+        }
+
+        public static long GetSolutionOfProblem34()
+        {
+            // An easy upper bound is 10 000 000, but the computation shows they are all below 50 000. 
+            var upperBound = 50000; 
+            var listOfNumbersThatCanBeWrittenAsSumOfFactorialsOfDigits = 
+                Enumerable.Range(3, upperBound)
+                .Where(number => FactorialHelper.IsSumOfFactorialOfDigits(number));
+            return listOfNumbersThatCanBeWrittenAsSumOfFactorialsOfDigits.Sum();
         }
 
         public static long GetSolutionOfProblem67()

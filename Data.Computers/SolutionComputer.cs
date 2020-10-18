@@ -264,6 +264,13 @@ namespace Data.Computers
             return PythagoreanTripletHelper.GetPerimeterBelowMaxWithMostSolutions(maximalPerimeter);
         }
 
+        public static long GetSolutionOfProblem40()
+        {
+            var desiredDigits = new List<int> { 1, 10, 100, 1000, 10000, 100000, 1000000 };
+            var digits = desiredDigits.Select(desiredDigit => ChampernowneHelper.GetNthDigitOfChampernownesConstant(desiredDigit)).ToList();
+            return digits.Aggregate(1, (a, b) => a * b);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

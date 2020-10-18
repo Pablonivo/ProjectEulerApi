@@ -121,5 +121,25 @@ namespace Data.Computers
 
             return largestPandigitalFound;
         }
+
+        public static long GetLargestNPandigitalPrime()
+        {
+            var characterAllowedTouse = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            var listOf1ToNPandigitalPrimes = GetPandigitalPrimes(characterAllowedTouse);
+
+            while (listOf1ToNPandigitalPrimes.Count == 0)
+            {
+                characterAllowedTouse.RemoveAt(characterAllowedTouse.FindLastIndex(character => true));
+                listOf1ToNPandigitalPrimes = GetPandigitalPrimes(characterAllowedTouse);
+            }
+
+            return listOf1ToNPandigitalPrimes.Max();
+        }
+
+        private static List<long> GetPandigitalPrimes(List<char> characterAllowedTouse)
+        {
+            return GetPandigitalNumbers(characterAllowedTouse)
+                .Select(number => long.Parse(number)).Where(number => PrimeHelper.IsPrime(number)).ToList();
+        }
     }
 }

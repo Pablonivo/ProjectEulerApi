@@ -271,6 +271,11 @@ namespace Data.Computers
             return digits.Aggregate(1, (a, b) => a * b);
         }
 
+        public static long GetSolutionOfProblem41()
+        {
+            return PandigitalHelper.GetLargestNPandigitalPrime();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

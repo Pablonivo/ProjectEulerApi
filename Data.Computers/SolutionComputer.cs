@@ -253,6 +253,11 @@ namespace Data.Computers
             return PrimeHelper.GetAllTruncatablePrimes().Sum();
         }
 
+        public static long GetSolutionOfProblem38()
+        {
+            return PandigitalHelper.GetLargest1To9PandigitalConcatenatedProduct();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

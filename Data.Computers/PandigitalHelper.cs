@@ -62,5 +62,64 @@ namespace Data.Computers
 
             return listOfPandigitalProducts.Distinct().ToList();
         }
+
+        public static string ConcatenatedProduct(int integer, List<int> numbersToMultiplyWith)
+        {
+            string concatenatedProduct = string.Empty;
+
+            foreach (int numberToMultiplyWith in numbersToMultiplyWith)
+            {
+                concatenatedProduct += (integer * numberToMultiplyWith).ToString();
+            }
+
+            return concatenatedProduct;
+        }
+
+        public static bool Is1To9Pandigital(string number)
+        {
+            var requiredDigits = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
+            if (number.Length != 9)
+            {
+                return false;
+            }
+
+            foreach (char digit in requiredDigits)
+            {
+                if (!number.Contains(digit))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static long GetLargest1To9PandigitalConcatenatedProduct()
+        {
+            long largestPandigitalFound = 0;
+
+            for (int n = 2; n <= 9; n++)
+            {
+                int integer = 1;
+                var numbersToMultiplyWith = Enumerable.Range(1, n).ToList();
+                var concatenatedProduct = ConcatenatedProduct(integer, numbersToMultiplyWith);
+
+                while (concatenatedProduct.Length <= 9)
+                {
+                    var concatenatedProductAsLong = long.Parse(concatenatedProduct);
+
+                    if (Is1To9Pandigital(concatenatedProduct) && concatenatedProductAsLong > largestPandigitalFound)
+                    {
+                        largestPandigitalFound = concatenatedProductAsLong;
+                    }
+
+                    integer++;
+                    concatenatedProduct = ConcatenatedProduct(integer, numbersToMultiplyWith);
+                }
+            }
+
+            return largestPandigitalFound;
+        }
     }
 }

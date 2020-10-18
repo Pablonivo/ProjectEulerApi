@@ -118,5 +118,22 @@ namespace Test.Data.Computers
             result.First().Should().Be(firstName);
             result.Last().Should().Be(lastname);
         }
+
+        [TestMethod]
+        public void EnglishWordsProblem42_WhenCalled_ReturnsListWithWords()
+        {
+            // Arrange
+            var expectedNumberOfWords = 1786;
+            var firstWord = "A";
+            var lastWord = "YOUTH";
+
+            // Act
+            var result = TestData.EnglishWordsProblem42();
+
+            // Assert
+            result.Count.Should().Be(expectedNumberOfWords);
+            result.First().Should().Be(firstWord);
+            result.Last().Should().Be(lastWord);
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Data.Computers
+﻿using System.Collections.Generic;
+
+namespace Data.Computers
 {
     public static class TriangleNumberHelper
     {
@@ -19,6 +21,22 @@
             }
 
             return GetNthTriangleNumber(n);
+        }
+
+        public static List<long> GetListOfTriangleNumbersBelowMax(int max)
+        {
+            var triangleNumbersBelowMax = new List<long>();
+            var n = 1;
+            var nthTriangleNumber = GetNthTriangleNumber(n);
+
+            while (nthTriangleNumber < max)
+            {
+                triangleNumbersBelowMax.Add(nthTriangleNumber);
+                n++;
+                nthTriangleNumber = GetNthTriangleNumber(n);
+            }
+
+            return triangleNumbersBelowMax;
         }
     }
 }

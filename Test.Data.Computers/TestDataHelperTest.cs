@@ -15,7 +15,7 @@ namespace Test.Data.Computers
             var expectedValue = 53;
 
             // Act
-            var result = TestDataHelper.GetNameScore(name);
+            var result = TestDataHelper.GetWordScore(name);
 
             // Assert
             result.Should().Be(expectedValue);

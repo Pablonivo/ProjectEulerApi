@@ -1,4 +1,5 @@
-﻿using Data.Computers;
+﻿using System.Collections.Generic;
+using Data.Computers;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -35,6 +36,20 @@ namespace Test.Data.Computers
 
             // Assert
             result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void GetListOfTriangleNumbersBelowMax_WithMax56_ReturnsCorrectList()
+        {
+            // Arrange
+            var max = 56;
+            var expectedResult = new List<long> { 1, 3, 6, 10, 15, 21, 28, 36, 45, 55};
+
+            // Act
+            var result = TriangleNumberHelper.GetListOfTriangleNumbersBelowMax(max);
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedResult);
         }
     }
 }

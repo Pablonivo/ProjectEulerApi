@@ -127,5 +127,14 @@ namespace Data.Computers.TestData
 
             return stringOfTextFile.Split(",").ToList();
         }
+
+        public static List<string> EnglishWordsProblem42()
+        {
+            var dataFromTextFile = GetDataFromTextFile("Data.Computers.DataFiles.EnglishWordsProblem42.txt");
+            var stringOfTextFile = Regex.Replace(dataFromTextFile, @"\s+", string.Empty)
+                .Replace("\"", string.Empty).Trim();
+
+            return stringOfTextFile.Split(",").ToList();
+        }
     }
 }

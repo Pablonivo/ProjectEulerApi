@@ -12,22 +12,22 @@ namespace Data.Computers.DataFiles
 
             foreach(int i in Enumerable.Range(0, listOfNames.Count))
             {
-                totalScore += (i + 1) * GetNameScore(listOfNames[i]);
+                totalScore += (i + 1) * GetWordScore(listOfNames[i]);
             }
 
             return totalScore;
         }
 
-        public static int GetNameScore(string name)
+        public static int GetWordScore(string word)
         {
-            var nameScore = 0;
+            var wordScore = 0;
 
-            foreach (char letter in name)
+            foreach (char letter in word)
             {
-                nameScore += MapLetterToAlphabeticalValue(letter);
+                wordScore += MapLetterToAlphabeticalValue(letter);
             }
 
-            return nameScore;
+            return wordScore;
         }
 
         private static int MapLetterToAlphabeticalValue(char letter)

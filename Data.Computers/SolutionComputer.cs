@@ -276,6 +276,16 @@ namespace Data.Computers
             return PandigitalHelper.GetLargestNPandigitalPrime();
         }
 
+        public static long GetSolutionOfProblem42()
+        {
+            // A letter has a value of at most 26.
+            // We assume that all words are at most 100 letters long, so max = 26 * 100 = 2600;
+            var max = 2600;
+            var triangleNumbersBelowMax = TriangleNumberHelper.GetListOfTriangleNumbersBelowMax(max);
+            var wordList = TestData.TestData.EnglishWordsProblem42();
+            return wordList.Where(word => triangleNumbersBelowMax.Contains(TestDataHelper.GetWordScore(word))).Count();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

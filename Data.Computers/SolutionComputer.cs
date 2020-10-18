@@ -69,7 +69,7 @@ namespace Data.Computers
         public static long GetSolutionOfProblem9()
         {
             var sum = 1000;
-            var (a, b, c) = NumberHelper.GetPythagoreanTripletForWhichSumEquals(sum);
+            var (a, b, c) = PythagoreanTripletHelper.GetPythagoreanTripletForWhichSumEquals(sum);
             return a * b * c;
         }
 

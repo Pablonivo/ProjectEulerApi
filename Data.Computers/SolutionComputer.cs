@@ -69,7 +69,7 @@ namespace Data.Computers
         public static long GetSolutionOfProblem9()
         {
             var sum = 1000;
-            var (a, b, c) = PythagoreanTripletHelper.GetPythagoreanTripletForWhichSumEquals(sum);
+            var (a, b, c) = PythagoreanTripletHelper.GetPythagoreanTripletForWhichSumEquals(sum).Single();
             return a * b * c;
         }
 
@@ -256,6 +256,12 @@ namespace Data.Computers
         public static long GetSolutionOfProblem38()
         {
             return PandigitalHelper.GetLargest1To9PandigitalConcatenatedProduct();
+        }
+
+        public static long GetSolutionOfProblem39()
+        {
+            var maximalPerimeter = 1000;
+            return PythagoreanTripletHelper.GetPerimeterBelowMaxWithMostSolutions(maximalPerimeter);
         }
 
         public static long GetSolutionOfProblem67()

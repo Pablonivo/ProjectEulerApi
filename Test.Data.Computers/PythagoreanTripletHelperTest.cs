@@ -1,4 +1,6 @@
-﻿using Data.Computers;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Data.Computers;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -28,7 +30,23 @@ namespace Test.Data.Computers
             var result = PythagoreanTripletHelper.GetPythagoreanTripletForWhichSumEquals(sum);
 
             // Assert
-            result.Should().Be(expectedResult);
+            result.Should().HaveCount(1);
+            result.Single().Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void GetPythagoreanTripletForWhichSumEquals_WhenSumIs120_ReturnsCorrectThreeTriplet()
+        {
+            // Arrange
+            var sum = 120;
+            var expectedResult = new List<(int, int, int)> { (20, 48, 52), (24, 45, 51), (30, 40, 50) };
+
+            // Act 
+            var result = PythagoreanTripletHelper.GetPythagoreanTripletForWhichSumEquals(sum);
+
+            // Assert
+            result.Should().HaveCount(3);
+            result.Should().BeEquivalentTo(expectedResult);
         }
     }
 }

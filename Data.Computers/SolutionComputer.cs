@@ -248,6 +248,11 @@ namespace Data.Computers
                 .ToList().Sum();
         }
 
+        public static long GetSolutionOfProblem37()
+        {
+            return PrimeHelper.GetAllTruncatablePrimes().Sum();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

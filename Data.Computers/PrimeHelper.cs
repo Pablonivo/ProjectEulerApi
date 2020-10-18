@@ -29,7 +29,7 @@ namespace Data.Computers
             var numberToString = number.ToString();
             var lengthOfNumber = numberToString.Length;
 
-            for(int i = 0; i < lengthOfNumber; i++)
+            for (int i = 0; i < lengthOfNumber; i++)
             {
                 numberToString = numberToString[1..lengthOfNumber] + numberToString.Substring(0, 1);
                 number = int.Parse(numberToString);
@@ -41,6 +41,61 @@ namespace Data.Computers
             }
 
             return true;
+        }
+
+        public static bool IsTruncatablePrime(long number)
+        {
+            var numberToString = number.ToString();
+            var lengthOfNumber = numberToString.Length;
+
+            for (int i = 0; i <= lengthOfNumber - 1; i++)
+            {
+                var numberTruncatedFromTheLeft = int.Parse(numberToString.Substring(i));
+                var numberTruncatedFromTheRight = int.Parse(numberToString.Substring(0, lengthOfNumber - i));
+
+                if (!IsPrime(numberTruncatedFromTheLeft) || !IsPrime(numberTruncatedFromTheRight))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static List<long> GetAllTruncatablePrimes()
+        {
+            var listOfPossibleRightTruncatablePrimes = new List<long>();
+            var primesOf1Digit = new List<long> { 2, 3, 5, 7 };
+            var listOfPossibleRightTruncatablePrimesToAdd = GetPossibleRightTruncatablePrimesWithOneMoreDigit(primesOf1Digit).Distinct().ToList();
+
+            while (listOfPossibleRightTruncatablePrimesToAdd.Count() != 0)
+            {
+                listOfPossibleRightTruncatablePrimes.AddRange(listOfPossibleRightTruncatablePrimesToAdd);
+                listOfPossibleRightTruncatablePrimesToAdd = GetPossibleRightTruncatablePrimesWithOneMoreDigit(listOfPossibleRightTruncatablePrimesToAdd);
+            }
+
+            return listOfPossibleRightTruncatablePrimes.Where(prime => IsTruncatablePrime(prime)).ToList();
+        }
+
+        private static List<long> GetPossibleRightTruncatablePrimesWithOneMoreDigit(List<long> truncatablePrimes)
+        {
+            var truncatableDigits = new List<int> { 1, 3, 7, 9 };
+            var truncatablePrimesWithOneMoreDigit = new List<long>();
+
+            foreach (int prime in truncatablePrimes)
+            {
+                foreach (int digitToAdd in truncatableDigits)
+                {
+                    var numberWithDigitToTheRight = (long)prime * 10 + digitToAdd;
+
+                    if (IsPrime(numberWithDigitToTheRight))
+                    {
+                        truncatablePrimesWithOneMoreDigit.Add(numberWithDigitToTheRight);
+                    }
+                }
+            }
+
+            return truncatablePrimesWithOneMoreDigit;
         }
 
         public static int GetNthPrime(int number)

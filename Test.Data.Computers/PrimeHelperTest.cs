@@ -71,6 +71,14 @@ namespace Test.Data.Computers
             PrimeHelper.IsCircularPrime(number).Should().Be(expectedResult);
         }
 
+        [DataRow(3797, true)]
+        [DataRow(19, false)]
+        [TestMethod]
+        public void IsTruncatablePrime_ReturnsCorrectResult(int number, bool expectedResult)
+        {
+            PrimeHelper.IsTruncatablePrime(number).Should().Be(expectedResult);
+        }
+
         [TestMethod]
         public void GetListOfPrimesUpTo_10_ReturnsExpectedListOfPrimes()
         {
@@ -97,6 +105,19 @@ namespace Test.Data.Computers
 
             // Result
             result.Should().BeEquivalentTo(expectedListOfPrimes);
+        }
+
+        [TestMethod]
+        public void GetAllTruncatablePrimes_WhenCalled_ReturnsExpectedNumberOfPrimes()
+        {
+            // Arrange
+            var expectedNumberOfTruncatablePrimes = 11;
+
+            // Act
+            var result = PrimeHelper.GetAllTruncatablePrimes();
+
+            // Result
+            result.Should().HaveCount(expectedNumberOfTruncatablePrimes);
         }
     }
 }

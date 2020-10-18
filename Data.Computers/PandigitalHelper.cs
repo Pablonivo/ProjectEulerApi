@@ -124,7 +124,9 @@ namespace Data.Computers
 
         public static long GetLargestNPandigitalPrime()
         {
-            var characterAllowedTouse = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            // The sum of the digits of a pandigtal number with 8 or 9 digits is divisble by 9.
+            // Hence the number itself will be divisble by 9 (divisibility condition), so it will not be prime.
+            var characterAllowedTouse = new List<char> { '1', '2', '3', '4', '5', '6', '7' };
             var listOf1ToNPandigitalPrimes = GetPandigitalPrimes(characterAllowedTouse);
 
             while (listOf1ToNPandigitalPrimes.Count == 0)

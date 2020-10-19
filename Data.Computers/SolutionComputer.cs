@@ -286,6 +286,11 @@ namespace Data.Computers
             return wordList.Where(word => triangleNumbersBelowMax.Contains(TestDataHelper.GetWordScore(word))).Count();
         }
 
+        public static long GetSolutionOfProblem43()
+        {
+            return PandigitalHelper.Get0To9PandigitalNumbersWhichSatisfySubstringDivisibility().Sum();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

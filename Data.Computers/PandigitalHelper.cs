@@ -143,5 +143,25 @@ namespace Data.Computers
             return GetPandigitalNumbers(characterAllowedTouse)
                 .Select(number => long.Parse(number)).Where(number => PrimeHelper.IsPrime(number)).ToList();
         }
+
+        // d4d5d6 divisble by 5 => d6 ∈ {0, 5}.
+        // d6d7d8 divible by 11 + none of 0XX are allowed => d6 = 5.
+        // Hence we leave out 5 (d6) when generating all the pandigtal numbers.
+        public static List<long> Get0To9PandigitalNumbersWhichSatisfySubstringDivisibility()
+        { 
+            var listOfPandigitalNumbersThatSatisfyCondition = new List<long>();
+            var characterAllowedToUse = new List<char> { '0', '1', '2', '3', '4', '6', '7', '8', '9' };
+
+            var listOfPandigitalNumbers = GetPandigitalNumbers(characterAllowedToUse)
+                .Select(number => number.Substring(0, 5) + "5" + number.Substring(5))
+                .Where(number => int.Parse(number.Substring(1, 3)) % 2 == 0
+                && int.Parse(number.Substring(2, 3)) % 3 == 0
+                && int.Parse(number.Substring(4, 3)) % 7 == 0
+                && int.Parse(number.Substring(5, 3)) % 11 == 0
+                && int.Parse(number.Substring(6, 3)) % 13 == 0
+                && int.Parse(number.Substring(7, 3)) % 17 == 0);
+
+            return listOfPandigitalNumbers.Select(number => long.Parse(number)).ToList();
+        }
     }
 }

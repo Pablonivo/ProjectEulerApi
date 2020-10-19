@@ -27,7 +27,10 @@ namespace Data.Computers
 
         public static long GetSumOfIntegersWhichCannotBeWrittenAsSumOfTwoAbundantNumber()
         {
-            var UPPER_BOUND = 28123;
+            // By mathematical analysis it can be proven that numbers greater than 28123 can be written as a sum of abundant numbers.
+            // The actual highest number which cannot be written as such a sum is 20161.
+            // Hence is order to lower the computation time we use this as upper bound instead.
+            var UPPER_BOUND = 20161;
             var listOfAbundantNumbersBelowUpperBound = GetListOfAbundantNumberBelowMax(UPPER_BOUND);
             var numberOfAbundantNumbers = listOfAbundantNumbersBelowUpperBound.Count;
             var listOfSumsOfTwoAbundantNumbers = new List<int>();

@@ -164,33 +164,35 @@ namespace Data.Computers
             return primeFactorization;
         }
 
-        public static List<long> GetListOfPrimesUpTo(int max)
+        public static List<long> SieveOfEratosthenes(int max)
         {
-            var listOfPrimes = new List<long>();
+            var isPrimeList = new bool[max + 1].Select(boolean => true).ToList();
+            var primeList = new List<long>();
 
-            if (max >= 2)
-            {
-                listOfPrimes.Add(2);
-            }
-            else
-            {
-                return listOfPrimes;
-            }
-
-            for (int i = 3; i < max; i += 2)
-            {
-                if (IsPrime(i))
+            for (int i = 2; i <= Math.Sqrt(max); i++){
+                if (isPrimeList[i])
                 {
-                    listOfPrimes.Add(i);
+                    for (int j = i * i; j <= max; j += i)
+                    {
+                        isPrimeList[j] = false;
+                    }
                 }
             }
 
-            return listOfPrimes;
+            foreach(int i in Enumerable.Range(2, max - 2))
+            {
+                if (isPrimeList[i])
+                {
+                    primeList.Add(i);
+                }
+            }
+
+            return primeList;
         }
 
         public static List<long> GetListOfCircularPrimesBelowMax(int max)
         {
-            return GetListOfPrimesUpTo(max).Where(prime => IsCircularPrime(prime)).ToList();
+            return SieveOfEratosthenes(max).Where(prime => IsCircularPrime(prime)).ToList();
         }
     }
 }

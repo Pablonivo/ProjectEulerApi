@@ -76,7 +76,7 @@ namespace Data.Computers
         public static long GetSolutionOfProblem10()
         {
             var max = 2000000;
-            return PrimeHelper.GetListOfPrimesUpTo(max).Sum();
+            return PrimeHelper.SieveOfEratosthenes(max).Sum();
         }
 
         public static long GetSolutionOfProblem11()

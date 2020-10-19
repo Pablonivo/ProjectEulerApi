@@ -80,14 +80,14 @@ namespace Test.Data.Computers
         }
 
         [TestMethod]
-        public void GetListOfPrimesUpTo_10_ReturnsExpectedListOfPrimes()
+        public void SieveOfEratosthenes_10_ReturnsExpectedListOfPrimes()
         {
             // Arrange
             var max = 10;
             var expectedListOfPrimes = new List<int> { 2, 3, 5, 7 };
 
             // Act
-            var result = PrimeHelper.GetListOfPrimesUpTo(max);
+            var result = PrimeHelper.SieveOfEratosthenes(max);
 
             // Result
             result.Should().BeEquivalentTo(expectedListOfPrimes);

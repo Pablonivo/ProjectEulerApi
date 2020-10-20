@@ -296,6 +296,13 @@ namespace Data.Computers
             return PentagonNumberHelper.GetMinimalDistanceOfPentagonalNumbersForWhichSumAndDifferenceArePentagonal();
         }
 
+        public static long GetSolutionOfProblem45()
+        {
+            // The first number is 1, the second is 40755 (as given), so we are looking for the third.
+            var count = 3; 
+            return TriangleNumberHelper.GetFirstNTriangleNumbersWhichAreAlsoPentagonalAndHexogonal(count).Last();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

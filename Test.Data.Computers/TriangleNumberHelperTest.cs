@@ -51,5 +51,20 @@ namespace Test.Data.Computers
             // Assert
             result.Should().BeEquivalentTo(expectedResult);
         }
+
+        [TestMethod]
+        public void GetFirstNTriangleNumbersWhichAreAlsoPentagonalAndHexogonal_WithCount2_ReturnsCorrectList()
+        {
+            // Arrange
+            var count = 2;
+            var expectedList = new List<long> { 1, 40755 };
+
+            // Act
+            var result = TriangleNumberHelper.GetFirstNTriangleNumbersWhichAreAlsoPentagonalAndHexogonal(count);
+
+            // Assert
+            result.Should().HaveCount(2);
+            result.Should().BeEquivalentTo(expectedList);
+        }
     }
 }

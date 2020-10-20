@@ -12,13 +12,13 @@ namespace Test.Data.Computers
         {
             // Arrange
             var n = 10;
-            var expectedPentagonNumber = 145;
+            var expectedPentagonalNumber = 145;
 
             // Act
             var result = PentagonNumberHelper.GetNthPentagonalNumber(n);
 
             // Assert
-            result.Should().Be(expectedPentagonNumber);
+            result.Should().Be(expectedPentagonalNumber);
         }
 
         [DataRow(92, true)]

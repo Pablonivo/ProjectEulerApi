@@ -291,6 +291,11 @@ namespace Data.Computers
             return PandigitalHelper.Get0To9PandigitalNumbersWhichSatisfySubstringDivisibility().Sum();
         }
 
+        public static long GetSolutionOfProblem44()
+        {
+            return PentagonNumberHelper.GetMinimalDistanceOfPentagonalNumbersForWhichSumAndDifferenceArePentagonal();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

@@ -245,5 +245,10 @@ namespace Data.Computers
                     return numberOfWaysToWriteNumberAsSum;
             }
         }
+
+        public static bool IsSquare(long integer)
+        {
+            return Math.Sqrt(integer) % 1 == 0;
+        }
     }
 }

@@ -181,5 +181,15 @@ namespace Test.Data.Computers
             // Assert
             result.Should().Be(expectedNumberOfWayToWriteNumberAsSum);
         }
+
+        [DataRow(9, true)]
+        [DataRow(10, false)]
+        [DataRow(35, false)]
+        [DataRow(36, true)]
+        [TestMethod]
+        public void IsSquare_ReturnsCorrectResult(int number, bool expectedResult)
+        {
+            NumberHelper.IsSquare(number).Should().Be(expectedResult);
+        }
     }
 }

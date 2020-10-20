@@ -594,6 +594,19 @@ namespace Tests
         }
 
         [TestMethod]
+        public void GetSolutionOfProblem46_WhenCalled_ReturnsExpectedResult()
+        {
+            // Arrange
+            var expectedResult = 5777;
+
+            // Act
+            var result = SolutionComputer.GetSolutionOfProblem46();
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
         public void GetSolutionOfProblem67_WhenCalled_ReturnsExpectedResult()
         {
             // Arrange

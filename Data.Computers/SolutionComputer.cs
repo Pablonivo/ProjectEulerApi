@@ -303,6 +303,11 @@ namespace Data.Computers
             return TriangleNumberHelper.GetFirstNTriangleNumbersWhichAreAlsoPentagonalAndHexogonal(count).Last();
         }
 
+        public static long GetSolutionOfProblem46()
+        {
+            return PrimeHelper.GetFirstCounterExampleGoldbachsOtherConjecture();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

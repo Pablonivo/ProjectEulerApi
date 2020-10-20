@@ -194,5 +194,36 @@ namespace Data.Computers
         {
             return SieveOfEratosthenes(max).Where(prime => IsCircularPrime(prime)).ToList();
         }
+
+        public static long GetFirstCounterExampleGoldbachsOtherConjecture()
+        {
+            int n = 9;
+
+            while (IsPrime(n) || CanBeWrittenAsSumOfPrimeAndTwiceASquare(n))
+            {
+                n += 2;
+            }
+
+            return n;
+        }
+
+        public static bool CanBeWrittenAsSumOfPrimeAndTwiceASquare(long integer)
+        {
+            int i = 1;
+            var twiceASquare = 2 * i * i;
+
+            while(twiceASquare < integer)
+            {
+                if (IsPrime(integer - twiceASquare))
+                {
+                    return true;
+                }
+
+                i++;
+                twiceASquare = 2 * i * i;
+            }
+
+            return false;
+        }
     }
 }

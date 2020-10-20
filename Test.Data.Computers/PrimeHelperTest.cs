@@ -119,5 +119,17 @@ namespace Test.Data.Computers
             // Result
             result.Should().HaveCount(expectedNumberOfTruncatablePrimes);
         }
+
+        [DataRow(9, true)]
+        [DataRow(15, true)]
+        [DataRow(21, true)]
+        [DataRow(25, true)]
+        [DataRow(27, true)]
+        [DataRow(33, true)]
+        [TestMethod]
+        public void CanBeWrittenAsSumOfPrimeAndTwiceASquare_ReturnsCorrectResult(int number, bool expectedResult)
+        {
+            PrimeHelper.CanBeWrittenAsSumOfPrimeAndTwiceASquare(number).Should().Be(expectedResult);
+        }
     }
 }

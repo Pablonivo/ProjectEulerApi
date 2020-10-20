@@ -169,7 +169,8 @@ namespace Data.Computers
             var isPrimeList = new bool[max + 1].Select(boolean => true).ToList();
             var primeList = new List<long>();
 
-            for (int i = 2; i <= Math.Sqrt(max); i++){
+            for (int i = 2; i <= Math.Sqrt(max); i++)
+            {
                 if (isPrimeList[i])
                 {
                     for (int j = i * i; j <= max; j += i)
@@ -179,7 +180,7 @@ namespace Data.Computers
                 }
             }
 
-            foreach(int i in Enumerable.Range(2, max - 2))
+            foreach (int i in Enumerable.Range(2, max - 2))
             {
                 if (isPrimeList[i])
                 {
@@ -212,7 +213,7 @@ namespace Data.Computers
             int i = 1;
             var twiceASquare = 2 * i * i;
 
-            while(twiceASquare < integer)
+            while (twiceASquare < integer)
             {
                 if (IsPrime(integer - twiceASquare))
                 {
@@ -224,6 +225,44 @@ namespace Data.Computers
             }
 
             return false;
+        }
+
+        public static long GetFirstNumberOfConsecutiveNumbersToHaveMDistinctPrimeFactors(int consecutiveNumbers, int numberOfDesiredDistinctPrimeFactors)
+        {
+            // This limit is a bit arbitrary, and needs to be increased for more complex searches.
+            // However, it is required for the sieve (to speed up overall computation time).
+            var limit = 1000000;
+            var sievedNumbers = SieveWithNumberOfDistinctPrimeFactors(limit);
+
+            for (int i = 2; i < int.MaxValue; i++)
+            {
+                var range = Enumerable.Range(i, consecutiveNumbers);
+
+                if (range.All(numberInRange => sievedNumbers[numberInRange] == numberOfDesiredDistinctPrimeFactors))
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
+        public static List<int> SieveWithNumberOfDistinctPrimeFactors(int max)
+        {
+            var sievedList = new int[max + 1].Select(number => 0).ToList();
+
+            for (int i = 2; i <= Math.Sqrt(max); i++)
+            {
+                if (sievedList[i] == 0)
+                {
+                    for (int j = 2*i; j <= max; j += i)
+                    {
+                        sievedList[j] += 1;
+                    }
+                }
+            }
+
+            return sievedList;
         }
     }
 }

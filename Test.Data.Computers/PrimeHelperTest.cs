@@ -131,5 +131,13 @@ namespace Test.Data.Computers
         {
             PrimeHelper.CanBeWrittenAsSumOfPrimeAndTwiceASquare(number).Should().Be(expectedResult);
         }
+
+        [DataRow(2, 2, 14)]
+        [DataRow(3, 3, 644)]
+        [TestMethod]
+        public void GetFirstNumberOfConsecutiveNumbersToHaveMDistinctPrimeFactors_ReturnsCorrectResult(int count, int distintPrimeFactors, long expectedResult)
+        {
+            PrimeHelper.GetFirstNumberOfConsecutiveNumbersToHaveMDistinctPrimeFactors(count, distintPrimeFactors).Should().Be(expectedResult);
+        }
     }
 }

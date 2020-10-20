@@ -308,6 +308,13 @@ namespace Data.Computers
             return PrimeHelper.GetFirstCounterExampleGoldbachsOtherConjecture();
         }
 
+        public static long GetSolutionOfProblem47()
+        {
+            var consecutiveNumbers = 4;
+            var numberOfDistinctPrimeFactors = 4;
+            return PrimeHelper.GetFirstNumberOfConsecutiveNumbersToHaveMDistinctPrimeFactors(consecutiveNumbers, numberOfDistinctPrimeFactors);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

@@ -26,10 +26,11 @@ namespace Data.Computers
         public static (bool, long) IsPandigitalProduct(string pandigitalNumber)
         {
             var lengthOfNumber = pandigitalNumber.Length;
+            var upperBoundLengthMultiplicands = lengthOfNumber / 2 - 1;
 
-            for (int i = 0; i <= lengthOfNumber - 3; i++)
+            for (int i = 0; i <= upperBoundLengthMultiplicands; i++)
             {
-                for (int j = 0; i + j <= lengthOfNumber - 3; j++)
+                for (int j = 0; i + j <= upperBoundLengthMultiplicands; j++)
                 {
                     var multiplicand = long.Parse(pandigitalNumber.Substring(0, i + 1));
                     var multiplier = long.Parse(pandigitalNumber.Substring(i + 1, j + 1));

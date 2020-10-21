@@ -322,6 +322,13 @@ namespace Data.Computers
             return (long)NumberHelper.SumOfFirstNSelfPowersModuloM(n, desiredNumberOfDigits);
         }
 
+        public static long GetSolutionOfProblem49()
+        {
+            var arithmeticSequences = PrimeHelper.ArithmeticPrimePermutationsWith4Digits();
+            var sequenceWeAreLookingFor = arithmeticSequences[arithmeticSequences.Keys.ToList().Where(number => number != 1487).Single()];
+            return long.Parse(sequenceWeAreLookingFor[0].ToString() + sequenceWeAreLookingFor[1].ToString() + sequenceWeAreLookingFor[2].ToString());
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

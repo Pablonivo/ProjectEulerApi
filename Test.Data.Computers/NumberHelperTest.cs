@@ -208,5 +208,27 @@ namespace Test.Data.Computers
             // Assert
             result.Should().Be(expectedResult);
         }
+
+        [DataRow(1487, 4817, true)]
+        [DataRow(1177, 1117, false)]
+        [TestMethod]
+        public void AreNumbersPermutations(int number1, int number2, bool expectedResult)
+        {
+            NumberHelper.AreNumbersPermutations(number1, number2).Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void GetArithmeticSequenceFromList_ForAListWithSuchASequence_ReturnsCorrectList()
+        {
+            // Arrange
+            var numberList = new List<long> { 1487, 4817, 6666, 8147 };
+            var expectedResult = new List<long> { 1487, 4817, 8147 };
+
+            // Act
+            var result = NumberHelper.GetArithmeticSequenceFromList(numberList);
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedResult);
+        }
     }
 }

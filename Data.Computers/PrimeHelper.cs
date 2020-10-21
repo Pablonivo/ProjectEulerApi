@@ -264,5 +264,29 @@ namespace Data.Computers
 
             return sievedList;
         }
+
+        public static Dictionary<long, List<long>> ArithmeticPrimePermutationsWith4Digits()
+        {
+            var listOfArithmeticPrimePermutationsWith4Digits = new Dictionary<long, List<long>>();
+            var max = 9999;
+            var primeList = SieveOfEratosthenes(max).Where(prime => prime >= 1000).ToList();
+
+            foreach (long currentPrime in primeList)
+            {
+                var permutationsOfPrime = primeList.FindAll(prime => NumberHelper.AreNumbersPermutations(prime, currentPrime)).ToList();
+
+                if (permutationsOfPrime.Count >= 3)
+                {
+                    var arithmeticSequence = NumberHelper.GetArithmeticSequenceFromList(permutationsOfPrime);
+                    
+                    if (arithmeticSequence.Count > 0 && !listOfArithmeticPrimePermutationsWith4Digits.ContainsKey(arithmeticSequence[0]))
+                    {
+                        listOfArithmeticPrimePermutationsWith4Digits.Add(arithmeticSequence[0], arithmeticSequence);
+                    }
+                }
+            }
+
+            return listOfArithmeticPrimePermutationsWith4Digits;
+        }
     }
 }

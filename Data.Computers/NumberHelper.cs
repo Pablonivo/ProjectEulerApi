@@ -135,7 +135,7 @@ namespace Data.Computers
             return sum;
         }
 
-        public static long MaximalPathOfNumberTriangle(int [ , ] triangleGrid)
+        public static long MaximalPathOfNumberTriangle(int[,] triangleGrid)
         {
             var numberOfRows = (int)Math.Sqrt(triangleGrid.Length);
 
@@ -158,7 +158,7 @@ namespace Data.Computers
 
             while (currentPosition < spiralSizeOfSides * spiralSizeOfSides)
             {
-                foreach(int i in Enumerable.Range(1, 4))
+                foreach (int i in Enumerable.Range(1, 4))
                 {
                     currentPosition += increment;
                     sum += currentPosition;
@@ -221,7 +221,7 @@ namespace Data.Computers
 
             switch (numbersAllowedInSum.Count)
             {
-                case 0: 
+                case 0:
                     return 0;
                 case 1:
                     if (requiredSum % orderedListOfNumbersToUseFromHighToLow.Single() == 0)
@@ -237,7 +237,7 @@ namespace Data.Computers
                     var numberOfTimesHighestNumberInListFitsInNumber = requiredSum / highestNumberToUse;
                     var numberToUseWithoutHighestNumber = orderedListOfNumbersToUseFromHighToLow.Where(number => number != highestNumberToUse).ToList();
 
-                    foreach(int i in Enumerable.Range(0, numberOfTimesHighestNumberInListFitsInNumber + 1))
+                    foreach (int i in Enumerable.Range(0, numberOfTimesHighestNumberInListFitsInNumber + 1))
                     {
                         numberOfWaysToWriteNumberAsSum += NumberOfWaysToWriteNumberAsSum(requiredSum - i * highestNumberToUse, numberToUseWithoutHighestNumber);
                     }
@@ -262,6 +262,57 @@ namespace Data.Computers
             }
 
             return sum % modulus;
+        }
+
+        public static bool AreNumbersPermutations(long number1, long number2)
+        {
+            var number1AsString = number1.ToString();
+            var number2AsString = number2.ToString();
+            var lengthNumber1 = number1AsString.Length;
+
+            if (lengthNumber1 != number2AsString.Length)
+            {
+                return false;
+            }
+
+            foreach (int i in Enumerable.Range(1, lengthNumber1))
+            {
+                if (number2AsString.Contains(number1AsString[0]))
+                {
+                    number2AsString = number2AsString.Remove(number2AsString.IndexOf(number1AsString[0]), 1);
+                    number1AsString = number1AsString.Remove(0, 1);
+                }
+
+                else
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static List<long> GetArithmeticSequenceFromList(List<long> numberList)
+        {
+            var arithmeticSequence = new List<long>();
+
+            foreach (long firstNumber in numberList)
+            {
+                var numbersWithoutFirst = numberList.Where(number => number != firstNumber);
+
+                foreach (long secondNumber in numbersWithoutFirst)
+                {
+                    var difference = secondNumber - firstNumber;
+                    var thirdNumber = secondNumber + difference;
+                    
+                    if (numberList.Contains(thirdNumber))
+                    {
+                        return new List<long>{ firstNumber, secondNumber, thirdNumber};
+                    }
+                }
+            }
+
+            return arithmeticSequence;
         }
     }
 }

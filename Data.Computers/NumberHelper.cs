@@ -250,5 +250,18 @@ namespace Data.Computers
         {
             return Math.Sqrt(integer) % 1 == 0;
         }
+
+        public static BigInteger SumOfFirstNSelfPowersModuloM(int max, int desiredNumberOfDigits)
+        {
+            BigInteger sum = 0;
+            var modulus = (long)Math.Pow(10, desiredNumberOfDigits);
+
+            foreach (int i in Enumerable.Range(1, max))
+            {
+                sum += BigInteger.Pow(i, i) % modulus;
+            }
+
+            return sum % modulus;
+        }
     }
 }

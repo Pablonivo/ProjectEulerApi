@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Data.Computers;
 using Data.Computers.TestData;
 using FluentAssertions;
@@ -190,6 +192,21 @@ namespace Test.Data.Computers
         public void IsSquare_ReturnsCorrectResult(int number, bool expectedResult)
         {
             NumberHelper.IsSquare(number).Should().Be(expectedResult);
+        }
+
+        [TestMethod]
+        public void SumOfFirstNSelfPowers_For10_ReturnsCorrectResult()
+        {
+            // Arrange
+            var n = 10;
+            BigInteger expectedResult = 10405071317;
+            var numberOfDesiredDigits = 11;
+
+            // Act
+            var result = NumberHelper.SumOfFirstNSelfPowersModuloM(n, numberOfDesiredDigits);
+
+            // Assert
+            result.Should().Be(expectedResult);
         }
     }
 }

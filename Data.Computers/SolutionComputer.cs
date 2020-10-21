@@ -315,6 +315,13 @@ namespace Data.Computers
             return PrimeHelper.GetFirstNumberOfConsecutiveNumbersToHaveMDistinctPrimeFactors(consecutiveNumbers, numberOfDistinctPrimeFactors);
         }
 
+        public static long GetSolutionOfProblem48()
+        {
+            var n = 1000;
+            var desiredNumberOfDigits = 10;
+            return (long)NumberHelper.SumOfFirstNSelfPowersModuloM(n, desiredNumberOfDigits);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

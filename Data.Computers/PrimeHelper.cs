@@ -293,22 +293,26 @@ namespace Data.Computers
         {
             long sumWithMostConsecutivePrimes = 2;
             var numberOfMostConsecutivePrimes = 1;
-
             var primeList = SieveOfEratosthenes(max);
-            var numberOfPrimesToLookAt = primeList.Count / 2;
+
+            // We assume that the highest prime used in the sum cannot be larger than 66% of the highest primes below the max. 
+            // This is a rather crude estimation (and it's safer to just consider all the primes).
+            // However considering all primes would make this run slower, and we would need to make sure the indices do not exceed the prime count.
+            var numberOfPrimesToLookAt = primeList.Count / 3; 
 
             for (int i = 0; i <= numberOfPrimesToLookAt; i++)
             {
-                long currentSumOfConsecutivePrimes = primeList[i];
-                int currentNumberOfPrimesUsed = 1;
-                int j = i + 1;
+                var rangeOfIndices = Enumerable.Range(i, numberOfMostConsecutivePrimes).ToList();
+                long currentSumOfConsecutivePrimes = rangeOfIndices.Select(index => primeList[index]).Sum();
+                int currentNumberOfPrimesUsed = numberOfMostConsecutivePrimes;
+                int j = i + numberOfMostConsecutivePrimes;
 
-                while (currentSumOfConsecutivePrimes + primeList[j] < max)
+                while (j < numberOfPrimesToLookAt && currentSumOfConsecutivePrimes + primeList[j] < max)
                 {
                     currentSumOfConsecutivePrimes += primeList[j];
                     currentNumberOfPrimesUsed++;
 
-                    if (IsPrime(currentSumOfConsecutivePrimes) && currentNumberOfPrimesUsed > numberOfMostConsecutivePrimes)
+                    if (IsPrime(currentSumOfConsecutivePrimes))
                     {
                         sumWithMostConsecutivePrimes = currentSumOfConsecutivePrimes;
                         numberOfMostConsecutivePrimes = currentNumberOfPrimesUsed;

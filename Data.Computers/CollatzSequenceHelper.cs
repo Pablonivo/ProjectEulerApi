@@ -30,12 +30,22 @@ namespace Data.Computers
         {
             if (n % 2 == 0)
             {
-                return n / 2;
+                return NextCollatzNumberForEvenNumber(n);
             }
             else
             {
-                return 3 * n + 1;
+                return NextCollatzNumberForOddNumber(n);
             }
+        }
+
+        private static long NextCollatzNumberForEvenNumber(long n)
+        {
+            return n / 2;
+        }
+
+        private static long NextCollatzNumberForOddNumber(long n)
+        {
+            return 3 * n + 1;
         }
 
         public static long GetStartingNumberBelowMaxWithLongestSequence(int max)
@@ -58,8 +68,17 @@ namespace Data.Computers
                         break;
                     }
 
-                    nextNumber = NextCollaztNumber(nextNumber);
-                    lengthOfCurrentSequence++;
+                    if (nextNumber % 2 == 0)
+                    {
+                        nextNumber = NextCollatzNumberForEvenNumber(nextNumber);
+                        lengthOfCurrentSequence++;
+                    }
+
+                    else
+                    {
+                        nextNumber = NextCollatzNumberForOddNumber(nextNumber);
+                        lengthOfCurrentSequence += 2;
+                    }
                 }
 
                 lengthOfSequence.Add(i, lengthOfCurrentSequence);

@@ -139,5 +139,13 @@ namespace Test.Data.Computers
         {
             PrimeHelper.GetFirstNumberOfConsecutiveNumbersToHaveMDistinctPrimeFactors(count, distintPrimeFactors).Should().Be(expectedResult);
         }
+
+        [DataRow(100, 41)]
+        [DataRow(1000, 953)]
+        [TestMethod]
+        public void PrimeBelowMaxWhichCanBeWrittenAsSumOfMostConsectivePrimes_ReturnsCorrectResult(int max, int expectedPrime)
+        {
+            PrimeHelper.PrimeBelowMaxWhichCanBeWrittenAsSumOfMostConsectivePrimes(max).Should().Be(expectedPrime);
+        }
     }
 }

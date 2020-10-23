@@ -288,5 +288,37 @@ namespace Data.Computers
 
             return listOfArithmeticPrimePermutationsWith4Digits;
         }
+
+        public static long PrimeBelowMaxWhichCanBeWrittenAsSumOfMostConsectivePrimes(int max)
+        {
+            long sumWithMostConsecutivePrimes = 2;
+            var numberOfMostConsecutivePrimes = 1;
+
+            var primeList = SieveOfEratosthenes(max);
+            var numberOfPrimesToLookAt = primeList.Count / 2;
+
+            for (int i = 0; i <= numberOfPrimesToLookAt; i++)
+            {
+                long currentSumOfConsecutivePrimes = 0;
+                int currentNumberOfPrimesUsed = 0;
+                int j = i;
+
+                while (currentSumOfConsecutivePrimes + primeList[j] < max)
+                {
+                    currentSumOfConsecutivePrimes += primeList[j];
+                    currentNumberOfPrimesUsed++;
+
+                    if (IsPrime(currentSumOfConsecutivePrimes) && currentNumberOfPrimesUsed > numberOfMostConsecutivePrimes)
+                    {
+                        sumWithMostConsecutivePrimes = currentSumOfConsecutivePrimes;
+                        numberOfMostConsecutivePrimes = currentNumberOfPrimesUsed;
+                    }
+
+                    j++;
+                }
+            }
+
+            return sumWithMostConsecutivePrimes;
+        }
     }
 }

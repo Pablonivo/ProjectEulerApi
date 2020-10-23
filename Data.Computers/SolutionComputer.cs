@@ -329,6 +329,12 @@ namespace Data.Computers
             return long.Parse(sequenceWeAreLookingFor[0].ToString() + sequenceWeAreLookingFor[1].ToString() + sequenceWeAreLookingFor[2].ToString());
         }
 
+        public static long GetSolutionOfProblem50()
+        {
+            var max = 1000000;
+            return PrimeHelper.PrimeBelowMaxWhichCanBeWrittenAsSumOfMostConsectivePrimes(max);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

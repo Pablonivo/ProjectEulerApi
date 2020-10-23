@@ -1,4 +1,7 @@
-﻿namespace Data.Computers
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace Data.Computers
 {
     public static class CollatzSequenceHelper
     {
@@ -12,7 +15,7 @@
                 {
                     n /= 2;
                     lengthOfSequence++;
-                } 
+                }
                 else
                 {
                     n = (3 * n + 1) / 2;
@@ -23,21 +26,47 @@
             return lengthOfSequence;
         }
 
-        public static int GetStartingNumberBelowMaxWithLongestSequence(int max)
+        private static long NextCollaztNumber(long n)
         {
-            var startingNumberWithLongestChain = 0;
-            var lengthOfLongestChain = 0;
+            if (n % 2 == 0)
+            {
+                return n / 2;
+            }
+            else
+            {
+                return 3 * n + 1;
+            }
+        }
 
-            for (int i = (max - 1) / 2; i < max; i++){
-                var lengthOfCurrentSequence = GetLengthOfCollatzSequenceForStartingNumber(i);
-                if (lengthOfCurrentSequence > lengthOfLongestChain)
+        public static long GetStartingNumberBelowMaxWithLongestSequence(int max)
+        {
+            var lengthOfSequence = new Dictionary<long, long>
+            {
+                [1] = 1
+            };
+
+            for (int i = 2; i < max; i++)
+            {
+                long lengthOfCurrentSequence = 1;
+                var nextNumber = NextCollaztNumber(i);
+
+                while (nextNumber != 1)
                 {
-                    lengthOfLongestChain = lengthOfCurrentSequence;
-                    startingNumberWithLongestChain = i;
+                    if (lengthOfSequence.ContainsKey(nextNumber))
+                    {
+                        lengthOfCurrentSequence += lengthOfSequence[nextNumber];
+                        break;
+                    }
+
+                    nextNumber = NextCollaztNumber(nextNumber);
+                    lengthOfCurrentSequence++;
                 }
+
+                lengthOfSequence.Add(i, lengthOfCurrentSequence);
             }
 
-            return startingNumberWithLongestChain;
+            var lengthOfLongestSequenceBelowMax = lengthOfSequence.Where(keyValue => keyValue.Key < max).Select(keyValue => keyValue.Value).Max();
+            return lengthOfSequence.First(keyValue => keyValue.Value == lengthOfLongestSequenceBelowMax).Key;
         }
     }
 }

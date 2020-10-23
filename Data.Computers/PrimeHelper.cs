@@ -299,9 +299,9 @@ namespace Data.Computers
 
             for (int i = 0; i <= numberOfPrimesToLookAt; i++)
             {
-                long currentSumOfConsecutivePrimes = 0;
-                int currentNumberOfPrimesUsed = 0;
-                int j = i;
+                long currentSumOfConsecutivePrimes = primeList[i];
+                int currentNumberOfPrimesUsed = 1;
+                int j = i + 1;
 
                 while (currentSumOfConsecutivePrimes + primeList[j] < max)
                 {

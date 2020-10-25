@@ -335,6 +335,12 @@ namespace Data.Computers
             return PrimeHelper.PrimeBelowMaxWhichCanBeWrittenAsSumOfMostConsectivePrimes(max);
         }
 
+        public static long GetSolutionOfProblem51()
+        {
+            var desiredSizeOfFamily = 8;
+            return PrimeHelper.FirstPrimeWhichHasDesiredSizeOfFamilyByReplacingSomeDigitsBySameNumber(desiredSizeOfFamily);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

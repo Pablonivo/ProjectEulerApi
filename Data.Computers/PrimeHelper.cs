@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Data.Computers
 {
@@ -323,6 +324,77 @@ namespace Data.Computers
             }
 
             return sumWithMostConsecutivePrimes;
+        }
+
+        public static List<long> PrimesInFamilyByReplacingDigitsBySameNumber(long prime, List<int> digitsToReplace)
+        {
+            var primesInFamily = new List<long>();
+            var numbersFrom0To9 = Enumerable.Range(0, 10).ToList();
+            var primeAsString = prime.ToString();
+
+            foreach (int number in numbersFrom0To9)
+            {
+                var stringBuilder = new StringBuilder(primeAsString);
+                
+                foreach (int digitToReplace in digitsToReplace)
+                {
+                    stringBuilder.Remove(digitToReplace - 1, 1);
+                    stringBuilder.Insert(digitToReplace - 1, number.ToString());
+                }
+
+                var potentialPrime = long.Parse(stringBuilder.ToString());
+                if (potentialPrime.ToString().Length == primeAsString.Length && IsPrime(potentialPrime))
+                {
+                    primesInFamily.Add(potentialPrime);
+                }
+            }
+
+            return primesInFamily;
+        }
+
+        public static int MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber(long prime)
+        {
+            var maximumSize = 0;
+
+            // We do not consider prime which consist of only 1 digit.
+            if (prime < 10)
+            {
+                return maximumSize;
+            }
+
+            var primeLength = prime.ToString().Length;
+            var indicesOfDigits = Enumerable.Range(1, primeLength - 1).ToList();
+            var subsetsOfIndicesTotry = SubsetHelper.AllNonEmptySubsets(indicesOfDigits);
+
+            foreach (List<int> subset in subsetsOfIndicesTotry)
+            {
+                var primesInFamily = PrimesInFamilyByReplacingDigitsBySameNumber(prime, subset);
+                var numberOfPrimesInFamily = primesInFamily.Count;
+
+                if (numberOfPrimesInFamily > maximumSize && primesInFamily.Contains(prime))
+                {
+                    maximumSize = numberOfPrimesInFamily;
+                }
+            }
+
+            return maximumSize;
+        }
+
+        public static long FirstPrimeWhichHasDesiredSizeOfFamilyByReplacingSomeDigitsBySameNumber(int desiredSizeOfFamily)
+        {
+            // This is a bit arbitrary, but the solution for a familiy size of 8 is below 130000.
+            var upperBoundPrimes = 130000;
+            var primes = SieveOfEratosthenes(upperBoundPrimes);
+
+            foreach (long prime in primes)
+            {
+                if (MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber(prime) == desiredSizeOfFamily)
+                {
+                    return prime;
+                }
+            }
+
+            return 0;
         }
     }
 }

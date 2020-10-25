@@ -147,5 +147,57 @@ namespace Test.Data.Computers
         {
             PrimeHelper.PrimeBelowMaxWhichCanBeWrittenAsSumOfMostConsectivePrimes(max).Should().Be(expectedPrime);
         }
+
+        [TestMethod]
+        public void PrimesInFamilyByReplacingDigitsBySameNumber_ForFirstDigitOf13_ReturnsCorrectList()
+        {
+            // Arrange
+            var number = 13;
+            var digitsToReplace = new List<int> { 1 };
+            var expectedPrimesInFamily = new List<long> { 13, 23, 43, 53, 73, 83 };
+
+            // Act
+            var result = PrimeHelper.PrimesInFamilyByReplacingDigitsBySameNumber(number, digitsToReplace);
+
+            // Result
+            result.Should().BeEquivalentTo(expectedPrimesInFamily);
+        }
+
+        [TestMethod]
+        public void PrimesInFamilyByReplacingDigitsBySameNumber_For3thAnd4thDigitsOf56003_ReturnsCorrectList()
+        {
+            // Arrange
+            var number = 56003;
+            var digitsToReplace = new List<int> { 3, 4 };
+            var expectedPrimesInFamily = new List<long> { 56003, 56113, 56333, 56443, 56663, 56773, 56993 };
+
+            // Act
+            var result = PrimeHelper.PrimesInFamilyByReplacingDigitsBySameNumber(number, digitsToReplace);
+
+            // Result
+            result.Should().BeEquivalentTo(expectedPrimesInFamily);
+        }
+
+        [TestMethod]
+        public void MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber_Of56003_Returns7()
+        {
+            // Arrange
+            var number = 56003;
+            var expectedMaximumSizeOfFamily = 7;
+
+            // Act
+            var result = PrimeHelper.MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber(number);
+
+            // Result
+            result.Should().Be(expectedMaximumSizeOfFamily);
+        }
+
+        [DataRow(6, 13)]
+        [DataRow(7, 56003)]
+        [TestMethod]
+        public void FirstPrimeWhichHasDesiredSizeOfFamilyByReplacingSomeDigitsBySameNumber_ReturnsCorrectResult(int desiredSizeOfFamily, long expectedPrime)
+        {
+            PrimeHelper.FirstPrimeWhichHasDesiredSizeOfFamilyByReplacingSomeDigitsBySameNumber(desiredSizeOfFamily).Should().Be(expectedPrime);
+        }
     }
 }

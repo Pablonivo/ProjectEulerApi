@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Numerics;
 
 namespace Data.Computers
@@ -17,13 +18,13 @@ namespace Data.Computers
             }
         }
 
-        public static long BinominalCoefficient(int n, int k)
+        public static BigInteger BinominalCoefficient(int n, int k)
         {
             if (n < k)
             {
                 throw new ArgumentException("n should be greater or equal than k");
             }
-            return (long)(Factorial(n) / (Factorial(k) * Factorial(n - k)));
+            return (Factorial(n) / (Factorial(k) * Factorial(n - k)));
         }
 
         public static bool IsSumOfFactorialOfDigits(long number)
@@ -38,6 +39,24 @@ namespace Data.Computers
             }
 
             return sum == number;
+        }
+
+        public static int NumberOfCombinatoricSelectionsExceedingOneMillion(int max)
+        {
+            var numberOfCombinatoricSelectionsExceedingOneMillion = 0;
+
+            foreach (int n in Enumerable.Range(1, max))
+            {
+                foreach (int r in Enumerable.Range(1, n))
+                {
+                    if (BinominalCoefficient(n, r) >= 1000000)
+                    {
+                        numberOfCombinatoricSelectionsExceedingOneMillion++;
+                    }
+                }
+            }
+
+            return numberOfCombinatoricSelectionsExceedingOneMillion;
         }
     }
 }

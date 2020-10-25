@@ -108,7 +108,7 @@ namespace Data.Computers
         {
             var n = 40;
             var k = 20;
-            return FactorialHelper.BinominalCoefficient(n, k);
+            return (long)FactorialHelper.BinominalCoefficient(n, k);
         }
 
         public static long GetSolutionOfProblem16()
@@ -344,6 +344,12 @@ namespace Data.Computers
         public static long GetSolutionOfProblem52()
         {
             return NumberHelper.SmallestNumberSuchThat2345And6TimesTheNumberArePermutationsOfOriginalNumber();
+        }
+
+        public static long GetSolutionOfProblem53()
+        {
+            var max = 100;
+            return FactorialHelper.NumberOfCombinatoricSelectionsExceedingOneMillion(max);
         }
 
         public static long GetSolutionOfProblem67()

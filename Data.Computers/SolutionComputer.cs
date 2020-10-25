@@ -341,6 +341,11 @@ namespace Data.Computers
             return PrimeHelper.FirstPrimeWhichHasDesiredSizeOfFamilyByReplacingSomeDigitsBySameNumber(desiredSizeOfFamily);
         }
 
+        public static long GetSolutionOfProblem52()
+        {
+            return NumberHelper.SmallestNumberSuchThat2345And6TimesTheNumberArePermutationsOfOriginalNumber();
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

@@ -314,5 +314,22 @@ namespace Data.Computers
 
             return arithmeticSequence;
         }
+
+        public static int SmallestNumberSuchThat2345And6TimesTheNumberArePermutationsOfOriginalNumber()
+        {
+            foreach (int i in Enumerable.Range(2, int.MaxValue - 2))
+            {
+                if (AreNumbersPermutations(i, 2 * i) &&
+                    AreNumbersPermutations(i, 3 * i) &&
+                    AreNumbersPermutations(i, 4 * i) &&
+                    AreNumbersPermutations(i, 5 * i) &&
+                    AreNumbersPermutations(i, 6 * i))
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
     }
 }

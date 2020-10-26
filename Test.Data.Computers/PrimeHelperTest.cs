@@ -178,20 +178,6 @@ namespace Test.Data.Computers
             result.Should().BeEquivalentTo(expectedPrimesInFamily);
         }
 
-        [TestMethod]
-        public void MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber_Of56003_Returns7()
-        {
-            // Arrange
-            var number = 56003;
-            var expectedMaximumSizeOfFamily = 7;
-
-            // Act
-            var result = PrimeHelper.MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber(number);
-
-            // Result
-            result.Should().Be(expectedMaximumSizeOfFamily);
-        }
-
         [DataRow(6, 13)]
         [DataRow(7, 56003)]
         [TestMethod]

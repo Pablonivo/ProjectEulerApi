@@ -256,7 +256,7 @@ namespace Data.Computers
             {
                 if (sievedList[i] == 0)
                 {
-                    for (int j = 2*i; j <= max; j += i)
+                    for (int j = 2 * i; j <= max; j += i)
                     {
                         sievedList[j] += 1;
                     }
@@ -279,7 +279,7 @@ namespace Data.Computers
                 if (permutationsOfPrime.Count >= 3)
                 {
                     var arithmeticSequence = NumberHelper.GetArithmeticSequenceFromList(permutationsOfPrime);
-                    
+
                     if (arithmeticSequence.Count > 0 && !listOfArithmeticPrimePermutationsWith4Digits.ContainsKey(arithmeticSequence[0]))
                     {
                         listOfArithmeticPrimePermutationsWith4Digits.Add(arithmeticSequence[0], arithmeticSequence);
@@ -299,7 +299,7 @@ namespace Data.Computers
             // We assume that the highest prime used in the sum cannot be larger than 66% of the highest primes below the max. 
             // This is a rather crude estimation (and it's safer to just consider all the primes).
             // However considering all primes would make this run slower, and we would need to make sure the indices do not exceed the prime count.
-            var numberOfPrimesToLookAt = primeList.Count / 3; 
+            var numberOfPrimesToLookAt = primeList.Count / 3;
 
             for (int i = 0; i <= numberOfPrimesToLookAt; i++)
             {
@@ -335,7 +335,7 @@ namespace Data.Computers
             foreach (int number in numbersFrom0To9)
             {
                 var stringBuilder = new StringBuilder(primeAsString);
-                
+
                 foreach (int digitToReplace in digitsToReplace)
                 {
                     stringBuilder.Remove(digitToReplace - 1, 1);
@@ -352,7 +352,7 @@ namespace Data.Computers
             return primesInFamily;
         }
 
-        public static int MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber(long prime)
+        public static int MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber(long prime, List<List<int>> subsetsOfIndicesToTry)
         {
             var maximumSize = 0;
 
@@ -362,12 +362,7 @@ namespace Data.Computers
                 return maximumSize;
             }
 
-            var primeLength = prime.ToString().Length;
-            // The last digit cannot be replaced, because a prime larger than 2 never ends with an even number.
-            var indicesOfDigits = Enumerable.Range(1, primeLength - 1).ToList();
-            var subsetsOfIndicesTotry = SubsetHelper.AllNonEmptySubsets(indicesOfDigits);
-
-            foreach (List<int> subset in subsetsOfIndicesTotry)
+            foreach (List<int> subset in subsetsOfIndicesToTry)
             {
                 var primesInFamily = PrimesInFamilyByReplacingDigitsBySameNumber(prime, subset);
                 var numberOfPrimesInFamily = primesInFamily.Count;
@@ -387,17 +382,40 @@ namespace Data.Computers
             // Initially this upper bound was higher, but to speed up computation time the bound is lowered.
             var upperBoundPrimes = 130000;
             var primes = SieveOfEratosthenes(upperBoundPrimes);
+            var maxPrimeLengthWeAreLookingFor = upperBoundPrimes.ToString().Length;
+
+            var subsetsOfIndicesToTry = new Dictionary<int, List<List<int>>>
+            {
+                { 1, SubsetHelper.AllNonEmptySubsets(Enumerable.Range(1, 1).ToList()) }
+            };
+
+            foreach (int i in Enumerable.Range(2, maxPrimeLengthWeAreLookingFor - 1))
+            {
+                subsetsOfIndicesToTry.Add(i, SubsetHelper.AllNonEmptySubsets(Enumerable.Range(1, i - 1).ToList()));
+            }
 
             if (desiredSizeOfFamily >= 8)
             {
                 // We know that the smallest family having seven primes has 56003 as lowest prime.
                 // Hence when looking for a family of size 8 we do not have to check for primes below 56003.
                 primes = primes.Where(prime => prime > 56003).ToList();
+
+                // The number of digits to replace at the same time cannot be 1 or 2 modulo 3 for a family with size >= 8.
+                // For if it would be 1 modulo 3, then there would be 4 digit replacements for which the sum is 0 modulo 3 (0, 3, 6 and 9).
+                // And there would be 3 digit replacements for which the sum is 1 modulo 3 (1, 4, 7), and 3 for 2 modulo 3 (2, 5, 8).
+                // Hence a set of 8 different replacements would contain at least one of each of those groups.
+                // Thus there would be a replacement for which the sum of the digits is 0 modulo 3
+                // This implies one of the 8 numbers in the familiy is actually not a prime, which is a contradiction.
+                // The same is true when the number of digits to replace is 2 modulo 3, so we should replace digits in multiples of 3.
+                foreach (int i in Enumerable.Range(1, maxPrimeLengthWeAreLookingFor))
+                {
+                    subsetsOfIndicesToTry[i] = subsetsOfIndicesToTry[i].Where(list => list.Count % 3 == 0).ToList();
+                }
             }
 
             foreach (long prime in primes)
             {
-                if (MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber(prime) == desiredSizeOfFamily)
+                if (MaximumSizeOfFamilyByReplacingSomeDigitsBySameNumber(prime, subsetsOfIndicesToTry[prime.ToString().Length]) == desiredSizeOfFamily)
                 {
                     return prime;
                 }

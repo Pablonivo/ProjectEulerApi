@@ -363,6 +363,7 @@ namespace Data.Computers
             }
 
             var primeLength = prime.ToString().Length;
+            // The last digit cannot be replaced, because a prime larger than 2 never ends with an even number.
             var indicesOfDigits = Enumerable.Range(1, primeLength - 1).ToList();
             var subsetsOfIndicesTotry = SubsetHelper.AllNonEmptySubsets(indicesOfDigits);
 
@@ -383,8 +384,16 @@ namespace Data.Computers
         public static long FirstPrimeWhichHasDesiredSizeOfFamilyByReplacingSomeDigitsBySameNumber(int desiredSizeOfFamily)
         {
             // This is a bit arbitrary, but the solution for a familiy size of 8 is below 130000.
+            // Initially this upper bound was higher, but to speed up computation time the bound is lowered.
             var upperBoundPrimes = 130000;
             var primes = SieveOfEratosthenes(upperBoundPrimes);
+
+            if (desiredSizeOfFamily >= 8)
+            {
+                // We know that the smallest family having seven primes has 56003 as lowest prime.
+                // Hence when looking for a family of size 8 we do not have to check for primes below 56003.
+                primes = primes.Where(prime => prime > 56003).ToList();
+            }
 
             foreach (long prime in primes)
             {

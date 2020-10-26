@@ -352,6 +352,12 @@ namespace Data.Computers
             return FactorialHelper.NumberOfCombinatoricSelectionsExceedingOneMillion(max);
         }
 
+        public static long GetSolutionOfProblem56()
+        {
+            var max = 99;
+            return NumberHelper.MaximalDigitSum(max);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

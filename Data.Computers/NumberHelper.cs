@@ -331,5 +331,25 @@ namespace Data.Computers
 
             return 0;
         }
+
+        public static long MaximalDigitSum(int max)
+        {
+            long maximalDigitalSum = 0;
+
+            foreach (int a in Enumerable.Range(1, max))
+            {
+                foreach (int b in Enumerable.Range(1, max))
+                {
+                    var digitalSum = SumOfDigits(BigInteger.Pow(a, b));
+                    
+                    if (digitalSum > maximalDigitalSum)
+                    {
+                        maximalDigitalSum = digitalSum;
+                    }
+                }
+            }
+
+            return maximalDigitalSum;
+        }
     }
 }

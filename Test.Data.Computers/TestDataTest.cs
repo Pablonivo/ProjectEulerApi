@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using Data.Computers.TestData;
 using FluentAssertions;
@@ -134,6 +135,38 @@ namespace Test.Data.Computers
             result.Count.Should().Be(expectedNumberOfWords);
             result.First().Should().Be(firstWord);
             result.Last().Should().Be(lastWord);
+        }
+
+        [TestMethod]
+        public void PokerHandsProblem54_WhenCalled_ReturnsListOfPokerHands()
+        {
+            // Arrange
+            var expectedNumberOfPokerHands = 1000;
+            var lastHandOfSecondPlayer = new List<string> { "7C", "8C", "5C", "QD", "6C" };
+
+            // Act
+            var result = TestData.PokerHandsProblem54();
+
+            // Assert
+            result.Item1.Should().HaveCount(expectedNumberOfPokerHands);
+            result.Item2.Should().HaveCount(expectedNumberOfPokerHands);
+            result.Item2.Last().Should().BeEquivalentTo(lastHandOfSecondPlayer);
+        }
+
+        [TestMethod]
+        public void ExamplePokerHandsProblem54_WhenCalled_ReturnsListOfPokerHands()
+        {
+            // Arrange
+            var expectedNumberOfPokerHands = 5;
+            var lastHandOfSecondPlayer = new List<string> { "3C", "3D", "3S", "9S", "9D" };
+
+            // Act
+            var result = TestData.ExamplePokerHandsProblem54();
+
+            // Assert
+            result.Item1.Should().HaveCount(expectedNumberOfPokerHands);
+            result.Item2.Should().HaveCount(expectedNumberOfPokerHands);
+            result.Item2.Last().Should().BeEquivalentTo(lastHandOfSecondPlayer);
         }
     }
 }

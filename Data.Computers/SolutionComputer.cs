@@ -352,6 +352,19 @@ namespace Data.Computers
             return FactorialHelper.NumberOfCombinatoricSelectionsExceedingOneMillion(max);
         }
 
+        public static long GetSolutionOfProblem54()
+        {
+            var pokerHands = TestData.TestData.PokerHandsProblem54();
+            var winnerList = new List<int>();
+
+            foreach (int i in Enumerable.Range(0, pokerHands.Item1.Count))
+            {
+                winnerList.Add(PokerHelper.ComputeWinner(pokerHands.Item1[i], pokerHands.Item2[i]));
+            }
+
+            return winnerList.Where(winner => winner == 1).Count();
+        }
+
         public static long GetSolutionOfProblem56()
         {
             var max = 99;

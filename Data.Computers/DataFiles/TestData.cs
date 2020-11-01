@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -36,6 +37,7 @@ namespace Data.Computers.TestData
             {
                 dataGrid[i / 40, (i % 40) / 2] = int.Parse(stringOfGrid.Substring(i, 2));
             }
+
             return dataGrid;
         }
 
@@ -56,12 +58,12 @@ namespace Data.Computers.TestData
             return listOfNumbers;
         }
 
-        public static int[ , ] ExampleTriangleProblem18()
+        public static int[,] ExampleTriangleProblem18()
         {
             var numberOfDigitsPerNumber = 1;
             var numberOfRows = 4;
             var triangleGrid = new int[numberOfRows, numberOfRows];
-            
+
             var dataFromTextFile = GetDataFromTextFile("Data.Computers.DataFiles.ExampleTriangleProblem18.txt");
             var stringOfTextFile = Regex.Replace(dataFromTextFile, @"\s+", "");
 
@@ -135,6 +137,52 @@ namespace Data.Computers.TestData
                 .Replace("\"", string.Empty).Trim();
 
             return stringOfTextFile.Split(",").ToList();
+        }
+
+        public static (List<List<string>>, List<List<string>>) PokerHandsProblem54()
+        {
+            return PokerHandsProblem54("Data.Computers.DataFiles.1000PokerHandsProblem54.txt");
+        }
+
+        public static (List<List<string>>, List<List<string>>) ExamplePokerHandsProblem54()
+        {
+            return PokerHandsProblem54("Data.Computers.DataFiles.ExamplePokerHandsProblem54.txt");
+        }
+
+        private static (List<List<string>>, List<List<string>>) PokerHandsProblem54(string textFilePokerHands)
+        {
+            var numberOfCardsPerHand = 5;
+
+            var handsOfFirstPlayer = new List<List<string>>();
+            var handsOfSecondPlayer = new List<List<string>>();
+
+            var dataFromTextFile = GetDataFromTextFile(textFilePokerHands);
+            var numberOfPokerHands = Regex.Matches(dataFromTextFile, "\r\n").Count + 1;
+            var stringOfTextFile = Regex.Replace(dataFromTextFile, @"\s+", string.Empty)
+                .Replace("\"", string.Empty).Trim();
+
+            foreach (int numberOfPokerHand in Enumerable.Range(1, numberOfPokerHands))
+            {
+                var pokerHandFirstPlayer = new List<string>();
+                var pokerHandSecondPlayer = new List<string>();
+
+                foreach (int numberOfCards in Enumerable.Range(1, numberOfCardsPerHand))
+                {
+                    pokerHandFirstPlayer.Add(stringOfTextFile.Substring(0, 2));
+                    stringOfTextFile = stringOfTextFile.Substring(2);
+                }
+
+                foreach (int numberOfCards in Enumerable.Range(1, numberOfCardsPerHand))
+                {
+                    pokerHandSecondPlayer.Add(stringOfTextFile.Substring(0, 2));
+                    stringOfTextFile = stringOfTextFile.Substring(2);
+                }
+
+                handsOfFirstPlayer.Add(pokerHandFirstPlayer);
+                handsOfSecondPlayer.Add(pokerHandSecondPlayer);
+            }
+
+            return (handsOfFirstPlayer, handsOfSecondPlayer);
         }
     }
 }

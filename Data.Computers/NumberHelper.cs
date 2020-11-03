@@ -351,5 +351,33 @@ namespace Data.Computers
 
             return maximalDigitalSum;
         }
+
+        public static BigInteger Reverse(BigInteger number)
+        {
+            BigInteger reversedNumber = 0;
+
+            while (number != 0)
+            {
+                var lastDigitOfNumber = number % 10;
+                reversedNumber = 10 * reversedNumber + lastDigitOfNumber;
+                number /= 10;
+            }
+
+            return reversedNumber;
+        }
+
+        public static bool IsALynchrelNumberInMaxNumberOfSteps(BigInteger number, int maximumNumberOfSteps)
+        {
+            foreach (int _ in Enumerable.Range(1, maximumNumberOfSteps))
+            {
+                number += Reverse(number);
+                if (PalindromeHelper.IsPalindrome(number))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

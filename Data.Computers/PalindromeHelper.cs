@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Numerics;
 
 namespace Data.Computers
 {
     public static class PalindromeHelper
     {
-        public static bool IsPalindrome(int number)
+        public static bool IsPalindrome(BigInteger number)
         {
             return IsPalindrome(number.ToString());
         }

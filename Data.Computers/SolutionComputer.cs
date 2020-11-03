@@ -365,6 +365,17 @@ namespace Data.Computers
             return winnerList.Where(winner => winner == 1).Count();
         }
 
+        public static long GetSolutionOfProblem55()
+        {
+            var maxNumberOfSteps = 50;
+            var max = 10000;
+            var numbersToCheck = Enumerable.Range(1, max - 1);
+
+            // Note that we assume that numbers below 10000 which are not Lynchrel can be find in maxNumberOfSteps, but this is not neccearily true.
+            var numberOfLynchrelNumbersInRange = numbersToCheck.Where(number => NumberHelper.IsALynchrelNumberInMaxNumberOfSteps(number, maxNumberOfSteps));
+            return numberOfLynchrelNumbersInRange.Count();
+        }
+
         public static long GetSolutionOfProblem56()
         {
             var max = 99;

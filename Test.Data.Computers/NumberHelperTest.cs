@@ -230,5 +230,26 @@ namespace Test.Data.Computers
             // Assert
             result.Should().BeEquivalentTo(expectedResult);
         }
+
+        [DataRow(6, 6)]
+        [DataRow(47, 74)]
+        [DataRow(349, 943)]
+        [DataRow(1292, 2921)]
+        [DataRow(4213, 3124)]
+        [TestMethod]
+        public void Reverse_ReturnsCorrectResult(int number, int expectedResult)
+        {
+            NumberHelper.Reverse(number).Should().Be(expectedResult);
+        }
+
+        [DataRow(196, 50, true)]
+        [DataRow(47, 1, false)]
+        [DataRow(349, 3, false)]
+        [DataRow(10677, 53, false)]
+        [TestMethod]
+        public void IsALynchrelNumberInMaxNumberOfSteps_ReturnsCorrectResult(int number, int maxNumberOfSteps, bool expectedResult)
+        {
+            NumberHelper.IsALynchrelNumberInMaxNumberOfSteps(number, maxNumberOfSteps).Should().Be(expectedResult);
+        }
     }
 }

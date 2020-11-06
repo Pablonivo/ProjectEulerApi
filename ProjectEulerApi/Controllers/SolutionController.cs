@@ -68,6 +68,7 @@ namespace ProjectEulerApi.Controllers
                 54 => SolutionComputer.GetSolutionOfProblem54(),
                 55 => SolutionComputer.GetSolutionOfProblem55(),
                 56 => SolutionComputer.GetSolutionOfProblem56(),
+                57 => SolutionComputer.GetSolutionOfProblem57(),
                 67 => SolutionComputer.GetSolutionOfProblem67(),
                 _ => 0,
             };

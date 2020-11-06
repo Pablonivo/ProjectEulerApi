@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Data.Computers.DataFiles;
+using Test.Data.Computers;
 
 namespace Data.Computers
 {
@@ -380,6 +381,13 @@ namespace Data.Computers
         {
             var max = 99;
             return NumberHelper.MaximalDigitSum(max);
+        }
+
+        public static long GetSolutionOfProblem57()
+        {
+            var max = 1000;
+            var listOfFractions = InfiniteContinuedFractionHelper.FirstNIterationOfSquareRootOfTwo(max);
+            return listOfFractions.Where(fraction => fraction.Numerator.ToString().Length > fraction.Denominator.ToString().Length).ToList().Count;
         }
 
         public static long GetSolutionOfProblem67()

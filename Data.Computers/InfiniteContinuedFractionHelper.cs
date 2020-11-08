@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Data.Entities;
 
 namespace Test.Data.Computers
@@ -8,19 +9,32 @@ namespace Test.Data.Computers
     {
         public static List<Fraction> FirstNIterationOfSquareRootOfTwo(int n)
         {
-            var iterations = new List<Fraction>();
+            var startingNumerator = 3;
+            var startingDenominator = 2;
+            var iterations = new List<Fraction> { new Fraction(startingNumerator, startingDenominator) };
 
-            var integer = 1;
-            Fraction fractionalPart = 2;
-            iterations.Add(integer + 1 / fractionalPart);
-
-            if (n != 1)
+            if (n <= 1)
             {
-                foreach (int i in Enumerable.Range(1, n - 1))
-                {
-                    fractionalPart = 2 + 1 / fractionalPart;
-                    iterations.Add(integer + 1 / fractionalPart);
-                }
+                return iterations;
+            }
+
+            Dictionary<int, BigInteger> numerators = new Dictionary<int, BigInteger>
+            {
+                { 1, startingNumerator }
+            };
+            Dictionary<int, BigInteger> denominator = new Dictionary<int, BigInteger>
+            {
+                { 1, startingDenominator }
+            };
+
+            foreach (int i in Enumerable.Range(2, n))
+            {
+                var numeratorOfCurrentIteration = numerators[i - 1] + 2 * denominator[i - 1];
+                var denominatorOfCurrentIteration = numerators[i - 1] + denominator[i - 1];
+
+                numerators.Add(i, numeratorOfCurrentIteration);
+                denominator.Add(i, denominatorOfCurrentIteration);
+                iterations.Add(new Fraction(numeratorOfCurrentIteration, denominatorOfCurrentIteration));
             }
 
             return iterations;

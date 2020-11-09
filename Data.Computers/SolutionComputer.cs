@@ -390,6 +390,13 @@ namespace Data.Computers
             return listOfFractions.Where(fraction => fraction.Numerator.ToString().Length > fraction.Denominator.ToString().Length).ToList().Count;
         }
 
+        public static long GetSolutionOfProblem65()
+        {
+            var n = 100;
+            var listOfFractions = InfiniteContinuedFractionHelper.FirstNIterationOfE(n);
+            return NumberHelper.SumOfDigits(listOfFractions.Last().Numerator);
+        }
+
         public static long GetSolutionOfProblem67()
         {
             var numberTriangle = TestData.TestData.TriangleProblem67();

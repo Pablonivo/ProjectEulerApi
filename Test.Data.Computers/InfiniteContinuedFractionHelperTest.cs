@@ -40,5 +40,45 @@ namespace Test.Data.Computers
                 result[7].Denominator.Should().Be(985);
             }
         }
+
+        [TestMethod]
+        public void FirstNIterationOfE_ForNEqualTo10_ReturnsCorrectResult()
+        {
+            var n = 10;
+            var result = InfiniteContinuedFractionHelper.FirstNIterationOfE(n);
+
+            using (new AssertionScope())
+            {
+                result[0].Numerator.Should().Be(2);
+                result[0].Denominator.Should().Be(1);
+
+                result[1].Numerator.Should().Be(3);
+                result[1].Denominator.Should().Be(1);
+
+                result[2].Numerator.Should().Be(8);
+                result[2].Denominator.Should().Be(3);
+
+                result[3].Numerator.Should().Be(11);
+                result[3].Denominator.Should().Be(4);
+
+                result[4].Numerator.Should().Be(19);
+                result[4].Denominator.Should().Be(7);
+
+                result[5].Numerator.Should().Be(87);
+                result[5].Denominator.Should().Be(32);
+
+                result[6].Numerator.Should().Be(106);
+                result[6].Denominator.Should().Be(39);
+
+                result[7].Numerator.Should().Be(193);
+                result[7].Denominator.Should().Be(71);
+
+                result[8].Numerator.Should().Be(1264);
+                result[8].Denominator.Should().Be(465);
+
+                result[9].Numerator.Should().Be(1457);
+                result[9].Denominator.Should().Be(536);
+            }
+        }
     }
 }

@@ -23,20 +23,6 @@ namespace Test.Data.Computers
         }
 
         [TestMethod]
-        public void IsPandigitalProduct_For391867254_ReturnsTrueAnd7254()
-        {
-            // Arrange
-            var pandigitalNumber = "391867254";
-            var expectedResult = (true, 7254); // 39 * 196 = 7254
-
-            // Act
-            var result = PandigitalHelper.IsPandigitalProduct(pandigitalNumber);
-
-            // ASsert
-            result.Should().BeEquivalentTo(expectedResult);
-        }
-
-        [TestMethod]
         public void ConcatenatedProduct_Of192AndNumbers1To3_ReturnsCorrectString()
         {
             // Arrange

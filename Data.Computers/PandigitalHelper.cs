@@ -23,43 +23,43 @@ namespace Data.Computers
             return pandigitalNumbers;
         }
 
-        public static (bool, long) IsPandigitalProduct(string pandigitalNumber)
+        // The number of digits of the multiplicant, multiplier and product together must sum to 9.
+        // Let N(d) be the number of digits of d.
+        // Then N(multiplicant) + N(multiplier) + N(product) = 9.
+        // Moreover, N(multiplicant) + N(multiplier) <= N(product).
+        // Hence N(product) must be at least 5, but it also cannot be more than 5.
+        // Thus there are only 2 cases to check (modulo commutativity).
+        // Case 1: N(multiplicant) = 1 and N(multiplier) = 4.
+        // Case 2: N(multiplicant) = 2 and N(multiplier) = 3.
+        public static List<long> GetListOfPandigitalProductForWhichMultiplicantMultiplierProductIdenitityConsistsOf9Digits()
         {
-            var lengthOfNumber = pandigitalNumber.Length;
-            var upperBoundLengthMultiplicands = lengthOfNumber / 2 - 1;
+            var listOfPandigitalProducts = new List<long>();
 
-            for (int i = 0; i <= upperBoundLengthMultiplicands; i++)
+            for (int multiplicant = 2; multiplicant <= 9; multiplicant++)
             {
-                for (int j = 0; i + j <= upperBoundLengthMultiplicands; j++)
+                for (int multiplier = 1234; multiplier <= 9876; multiplier++)
                 {
-                    var multiplicand = long.Parse(pandigitalNumber.Substring(0, i + 1));
-                    var multiplier = long.Parse(pandigitalNumber.Substring(i + 1, j + 1));
-                    var product = long.Parse(pandigitalNumber.Substring(i + j + 2, lengthOfNumber - i - j - 2));
+                    var product = multiplicant * multiplier;
 
-                    if (multiplicand * multiplier == product)
+                    if (Is1To9Pandigital(multiplicant.ToString() + multiplier.ToString() + product.ToString()))
                     {
-                        return (true, product);
+                        listOfPandigitalProducts.Add(product);
                     }
                 }
             }
 
-            return (false, 0);
-        }
-
-        public static List<long> GetListOfPandigitalProducts(List<char> characterAllowedTouse)
-        {
-            var listOfPandigitalProducts = new List<long>();
-            var listOfPandigitalNumbers = GetPandigitalNumbers(characterAllowedTouse);
-
-            listOfPandigitalNumbers.ForEach(pandigitalNumber =>
+            for (int multiplicant = 12; multiplicant <= 98; multiplicant++)
             {
-                (bool isPandigitalProduct, long product) = IsPandigitalProduct(pandigitalNumber);
-
-                if (isPandigitalProduct)
+                for (int multiplier = 123; multiplier <= 987; multiplier++)
                 {
-                    listOfPandigitalProducts.Add(product);
+                    var product = multiplicant * multiplier;
+
+                    if (Is1To9Pandigital(multiplicant.ToString() + multiplier.ToString() + product.ToString()))
+                    {
+                        listOfPandigitalProducts.Add(product);
+                    }
                 }
-            });
+            }
 
             return listOfPandigitalProducts.Distinct().ToList();
         }

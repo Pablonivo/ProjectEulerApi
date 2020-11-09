@@ -212,8 +212,7 @@ namespace Data.Computers
 
         public static long GetSolutionOfProblem32()
         {
-            var listOfCharacters = new List<char> { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            return PandigitalHelper.GetListOfPandigitalProducts(listOfCharacters).Sum();
+            return PandigitalHelper.GetListOfPandigitalProductForWhichMultiplicantMultiplierProductIdenitityConsistsOf9Digits().Sum();
         }
 
         public static long GetSolutionOfProblem33()

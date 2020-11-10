@@ -149,27 +149,44 @@ namespace Data.Computers
         // d4d5d6 divisble by 5 => d6 ∈ {0, 5}.
         // d6d7d8 divible by 11 + none of 0XX are allowed => d6 = 5.
         // Hence we leave out 5 (d6) when generating all the pandigtal numbers.
+        // d8d9d10 must be divisble by 17, so we loop through all these possibilities first,
+        // and use the left over characters for the remaining digits.
         public static List<long> Get0To9PandigitalNumbersWhichSatisfySubstringDivisibility()
-        { 
+        {
             var listOfPandigitalNumbersThatSatisfyCondition = new List<long>();
             var characterAllowedToUse = new List<char> { '0', '1', '2', '3', '4', '6', '7', '8', '9' };
             var characterAllowedForFourthDigit = new List<char> { '0', '2', '4', '6', '8' };
 
             var listOfPandigitalNumbers = new List<string>();
 
-            foreach(char fourthDigit in characterAllowedForFourthDigit)
+            foreach (char fourthDigit in characterAllowedForFourthDigit)
             {
-                var currentCharsToUse = characterAllowedToUse.Where(character => character != fourthDigit).ToList();
+                for (int lastThreeDigits = 17; lastThreeDigits < 1000; lastThreeDigits += 17)
+                {
+                    string lastThreeDigitsString;
 
-                listOfPandigitalNumbers.AddRange(GetPandigitalNumbers(currentCharsToUse)
-                .Select(number => number.Substring(0, 3) + fourthDigit.ToString() + number.Substring(3, 1) + "5" + number.Substring(4))
-                .Where(number => int.Parse(number.Substring(7, 3)) % 17 == 0
-                && int.Parse(number.Substring(6, 3)) % 13 == 0
-                && int.Parse(number.Substring(5, 3)) % 11 == 0
-                && int.Parse(number.Substring(4, 3)) % 7 == 0
-                && int.Parse(number.Substring(2, 3)) % 3 == 0
-                && int.Parse(number.Substring(1, 3)) % 2 == 0));
-            }   
+                    if (lastThreeDigits < 100)
+                    {
+                        lastThreeDigitsString = '0'.ToString() + lastThreeDigits.ToString();
+                    }
+                    else
+                    {
+                        lastThreeDigitsString = lastThreeDigits.ToString();
+                    }
+
+                    if (!lastThreeDigitsString.Contains(fourthDigit) && lastThreeDigitsString.Distinct().Count() == lastThreeDigitsString.Length)
+                    {
+                        var currentCharsToUse = characterAllowedToUse.Where(character => character != fourthDigit && !lastThreeDigitsString.Contains(character)).ToList();
+                        listOfPandigitalNumbers.AddRange(GetPandigitalNumbers(currentCharsToUse)
+                        .Select(number => number.Substring(0, 3) + fourthDigit.ToString() + number.Substring(3, 1) + "5" + number.Substring(4, 1) + lastThreeDigitsString)
+                        .Where(number => int.Parse(number.Substring(6, 3)) % 13 == 0
+                        && int.Parse(number.Substring(5, 3)) % 11 == 0
+                        && int.Parse(number.Substring(4, 3)) % 7 == 0
+                        && int.Parse(number.Substring(2, 3)) % 3 == 0
+                        && int.Parse(number.Substring(1, 3)) % 2 == 0));
+                    }
+                }
+            }
 
             return listOfPandigitalNumbers.Select(number => long.Parse(number)).ToList();
         }

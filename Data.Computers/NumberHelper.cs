@@ -158,7 +158,7 @@ namespace Data.Computers
 
             while (currentPosition < spiralSizeOfSides * spiralSizeOfSides)
             {
-                foreach (int i in Enumerable.Range(1, 4))
+                for (int i = 0; i <= 3; i++)
                 {
                     currentPosition += increment;
                     sum += currentPosition;

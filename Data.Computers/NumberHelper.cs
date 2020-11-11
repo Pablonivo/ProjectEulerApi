@@ -170,6 +170,38 @@ namespace Data.Computers
             return sum;
         }
 
+        public static long GetLengthOfNumberSpiralForWhichPercentageOfPrimesOnDiagonalsIsLowerThanLimit(int desiredUpperBoundPercentagePrimes)
+        {
+            var numberOfDiagonalNumbers = 5;
+            var numberOfPrimesOnDiagonals = 3;
+            var percentageOfPrimesOnDiagonalIsBelowLimit = numberOfPrimesOnDiagonals * 100 <= numberOfDiagonalNumbers * desiredUpperBoundPercentagePrimes;
+
+            int increment = 2;
+            int currentPosition = 9;
+
+            while (!percentageOfPrimesOnDiagonalIsBelowLimit)
+            {
+                increment += 2;
+
+                foreach (int i in Enumerable.Range(1, 4))
+                {
+                    currentPosition += increment;
+
+                    numberOfDiagonalNumbers++;
+
+                    // The odd squares lie on the bottom right diagonal, so these cannot be prime.
+                    if (i != 4 && PrimeHelper.IsPrime(currentPosition))
+                    {
+                        numberOfPrimesOnDiagonals++;
+                    }
+                }
+
+                percentageOfPrimesOnDiagonalIsBelowLimit = numberOfPrimesOnDiagonals * 100 <= numberOfDiagonalNumbers * desiredUpperBoundPercentagePrimes;
+            }
+
+            return increment + 1;
+        }
+
         public static List<BigInteger> GetListOfDistinctPowers(int max)
         {
             var listOfPowers = new List<BigInteger>();

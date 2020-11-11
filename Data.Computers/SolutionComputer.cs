@@ -389,6 +389,12 @@ namespace Data.Computers
             return listOfFractions.Where(fraction => fraction.Numerator.ToString().Length > fraction.Denominator.ToString().Length).ToList().Count;
         }
 
+        public static long GetSolutionOfProblem58()
+        {
+            var desiredUpperBoundPercentagePrimes = 10;
+            return NumberHelper.GetLengthOfNumberSpiralForWhichPercentageOfPrimesOnDiagonalsIsLowerThanLimit(desiredUpperBoundPercentagePrimes);
+        }
+
         public static long GetSolutionOfProblem65()
         {
             var n = 100;

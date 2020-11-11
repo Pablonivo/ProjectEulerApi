@@ -99,6 +99,20 @@ namespace Test.Data.Computers
         }
 
         [TestMethod]
+        public void GetLengthOfNumberSpiralForWhichPercentageOfPrimesOnDiagonalsIsLowerThanLimit_For63Percent_ReturnsCorrectResult()
+        {
+            // Arrange
+            var desiredUpperBoundPercentagePrimes = 56;
+            var expectedResult = 5;
+
+            // Act
+            var result = NumberHelper.GetLengthOfNumberSpiralForWhichPercentageOfPrimesOnDiagonalsIsLowerThanLimit(desiredUpperBoundPercentagePrimes);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
         public void GetListOfDistinctPowers_Max5_ReturnsCorrectList()
         {
             // Arrange

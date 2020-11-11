@@ -391,7 +391,23 @@ namespace Data.Computers
 
             foreach (int i in Enumerable.Range(2, maxPrimeLengthWeAreLookingFor - 1))
             {
+                // Replacing the last digit of a prime could(!) only make it prime if we replace it by 2,3,7 or 9 could(!).
+                // We are however never searching for families of size at most 4, hence we do consider the last digit.
                 subsetsOfIndicesToTry.Add(i, SubsetHelper.AllNonEmptySubsets(Enumerable.Range(1, i - 1).ToList()));
+            }
+
+            // To speed up computation time:
+            if (desiredSizeOfFamily == 7)
+            {
+                var digitsToReplace = new List<char> { '0', '1', '2', '3'};
+
+                primes = primes.Where(prime =>
+                    prime.ToString().Any(character => prime.ToString().Count(x => x == character) == 2 && digitsToReplace.Contains(character))).ToList();
+
+                foreach (int i in Enumerable.Range(1, maxPrimeLengthWeAreLookingFor))
+                {
+                    subsetsOfIndicesToTry[i] = subsetsOfIndicesToTry[i].Where(list => list.Count == 2).ToList();
+                }
             }
 
             if (desiredSizeOfFamily >= 8)
@@ -407,6 +423,15 @@ namespace Data.Computers
                 // Thus there would be a replacement for which the sum of the digits is 0 modulo 3
                 // This implies one of the 8 numbers in the familiy is actually not a prime, which is a contradiction.
                 // The same is true when the number of digits to replace is 2 modulo 3, so we should replace digits in multiples of 3.
+                // In particular we only have to look at primes which have a certain digit occurence with a multiple of 3.
+                // Moreover, we only need to look at prime which have multiple 0's, 1's or 2's, because we any family of size >= 8 has such a prime as smallest one.
+                var digitsToReplace = new List<char> { '0', '1', '2' };
+
+                primes = primes.Where(prime =>
+                    prime.ToString().Any(
+                        character => prime.ToString().Count(x => x == character) % 3 == 0
+                        && digitsToReplace.Contains(character))).ToList();
+
                 foreach (int i in Enumerable.Range(1, maxPrimeLengthWeAreLookingFor))
                 {
                     subsetsOfIndicesToTry[i] = subsetsOfIndicesToTry[i].Where(list => list.Count % 3 == 0).ToList();

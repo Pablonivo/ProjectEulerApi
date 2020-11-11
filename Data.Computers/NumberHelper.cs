@@ -186,7 +186,6 @@ namespace Data.Computers
                 for (int i = 0; i < 3; i++)
                 {
                     currentPosition += increment;
-                    numberOfDiagonalNumbers++;
 
                     if (PrimeHelper.IsPrime(currentPosition))
                     {
@@ -195,7 +194,7 @@ namespace Data.Computers
                 }
 
                 currentPosition += increment;
-                numberOfDiagonalNumbers++;
+                numberOfDiagonalNumbers += 4;
             }
 
             return increment + 1;

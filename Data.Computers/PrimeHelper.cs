@@ -19,7 +19,7 @@ namespace Data.Computers
                 return false;
             }
 
-            for (int i = 5; i*i <= number; i += 6)
+            for (int i = 5; i * i <= number; i += 6)
             {
                 if (number % i == 0 || number % (i + 2) == 0)
                 {
@@ -404,7 +404,7 @@ namespace Data.Computers
             // To speed up computation time:
             if (desiredSizeOfFamily == 7)
             {
-                var digitsToReplace = new List<char> { '0', '1', '2', '3'};
+                var digitsToReplace = new List<char> { '0', '1', '2', '3' };
 
                 primes = primes.Where(prime =>
                     prime.ToString().Any(character => prime.ToString().Count(x => x == character) == 2 && digitsToReplace.Contains(character))).ToList();

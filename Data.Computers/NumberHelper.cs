@@ -409,5 +409,32 @@ namespace Data.Computers
 
             return true;
         }
+
+        public static List<BigInteger> AllNDigitPositiveIntegersWhichAreNthPowers()
+        {
+            var listOfIntegersWhichAreNthPowers = new List<BigInteger>();
+            int exponential = 1;
+
+            while (true)
+            {
+                for (int i = 1; i <= 9; i++)
+                {
+                    var nthPower = BigInteger.Pow(i, exponential);
+                    var numberOfDigitsOfNthPower = nthPower.ToString().Length;
+                    
+                    if (numberOfDigitsOfNthPower == exponential)
+                    {
+                        listOfIntegersWhichAreNthPowers.Add(nthPower);
+                    }
+
+                    if (i == 9 && numberOfDigitsOfNthPower < exponential)
+                    {
+                        return listOfIntegersWhichAreNthPowers.Distinct().ToList();
+                    }
+                }
+
+                exponential++;
+            }
+        }
     }
 }

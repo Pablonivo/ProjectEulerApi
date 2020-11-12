@@ -453,5 +453,20 @@ namespace Data.Computers
 
             return 0;
         }
+
+        public static long LastTenDigitsOfMassiveNonMersennePrimeProblem97()
+        {
+            var requiredNumberOfDigits = 10;
+            var quotient = (long)Math.Pow(10, requiredNumberOfDigits);
+            long product = 1;
+
+            for (long i = 1; i <= 7830457; i++)
+            {
+                product *= 2;
+                product %= quotient;
+            }
+
+            return (28433 * product + 1) % quotient;
+        }
     }
 }

@@ -71,6 +71,20 @@ namespace Test.Data.Computers
         }
 
         [TestMethod]
+        public void SumOfSquaresOfDigits_Of145_Returns42()
+        {
+            // Arrange
+            var n = 145;
+            var expectedResult = 42;
+
+            // Act
+            var result = NumberHelper.SumOfSquaresOfDigits(n);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
         public void MaximalPathOfNumberTriangle_OfExampleTriangle_ReturnsCorrectResult()
         {
             // Arrange

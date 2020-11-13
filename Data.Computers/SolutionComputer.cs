@@ -413,6 +413,13 @@ namespace Data.Computers
             return NumberHelper.MaximalPathOfNumberTriangle(numberTriangle);
         }
 
+        public static long GetSolutionOfProblem92()
+        {
+            //var limit = 100;
+            var limit = 10000000;
+            return NumberHelper.NumberOfStartingNumbersForWhichSquareDigitChainEndsAt89(limit);
+        }
+
         public static long GetSolutionOfProblem97()
         {
             return PrimeHelper.LastTenDigitsOfMassiveNonMersennePrimeProblem97();

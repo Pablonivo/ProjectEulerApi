@@ -124,15 +124,26 @@ namespace Data.Computers
 
         public static long SumOfDigits(BigInteger n)
         {
-            var sum = 0;
+            return ListOfDigits(n).Sum();
+        }
+
+        public static long SumOfSquaresOfDigits(BigInteger n)
+        {
+            return ListOfDigits(n).Select(digit => digit * digit).Sum();
+        }
+
+        private static List<int> ListOfDigits(BigInteger n)
+        {
+            var listOfDigits = new List<int>();
             var bigIntAsString = n.ToString();
 
             for (int i = 0; i < bigIntAsString.Length; i++)
             {
-                sum += (int)char.GetNumericValue(bigIntAsString[i]);
+                var digit = (int)char.GetNumericValue(bigIntAsString[i]);
+                listOfDigits.Add(digit);
             }
 
-            return sum;
+            return listOfDigits;
         }
 
         public static long MaximalPathOfNumberTriangle(int[,] triangleGrid)
@@ -435,6 +446,39 @@ namespace Data.Computers
 
                 exponential++;
             }
+        }
+
+        public static long NumberOfStartingNumbersForWhichSquareDigitChainEndsAt89(int limit)
+        {
+            var startingNumberList = new int[limit + 1];
+            startingNumberList[1] = 1;
+            startingNumberList[89] = 89;
+
+            foreach (int i in Enumerable.Range(1, limit))
+            {
+                if (startingNumberList[i] != 1 && startingNumberList[i] != 89)
+                {
+                    var listOfNumbersInCurrentSequence = new List<int> { i };
+                    var nextNumber = i;
+
+                    while (true)
+                    {
+                        nextNumber = (int)SumOfSquaresOfDigits(nextNumber);
+                        listOfNumbersInCurrentSequence.Add(nextNumber);
+
+                        if (startingNumberList[nextNumber] == 1 || startingNumberList[nextNumber] == 89)
+                        {
+                            foreach(int j in listOfNumbersInCurrentSequence)
+                            {
+                                startingNumberList[j] = startingNumberList[nextNumber];
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return startingNumberList.Where(value => value == 89).Count();
         }
     }
 }

@@ -454,9 +454,10 @@ namespace Data.Computers
             }
         }
 
-        public static long NumberOfStartingNumbersForWhichSquareDigitChainEndsAt89(int limit)
+        public static BigInteger NumberOfStartingNumbersForWhichSquareDigitChainEndsAt89(int limit)
         {
-            var maxNumberToCheck = 9 * 9 * NumberOfDigits(limit);
+            var numberOfDigits = NumberOfDigits(limit);
+            var maxNumberToCheck = 9 * 9 * numberOfDigits;
             var startingNumberList = new int[maxNumberToCheck + 1];
 
             startingNumberList[1] = 1;
@@ -486,8 +487,19 @@ namespace Data.Computers
                 }
             }
 
-            var numbersForWhichChainEndsAt89 = Enumerable.Range(1, limit).Where(number => startingNumberList[SumOfSquaresOfDigits(number)] == 89);
-            return numbersForWhichChainEndsAt89.Count();
+            BigInteger numberOfTimesSequenceEndsAt89 = 0;
+            var listOfCharacters = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            var listOfPermutations = PermutationHelper.ListOfNumbersWithIncreasingDigits(numberOfDigits, listOfCharacters);
+
+            foreach (string permutation in listOfPermutations)
+            {
+                if (startingNumberList[SumOfSquaresOfDigits(long.Parse(permutation))] == 89)
+                {
+                    numberOfTimesSequenceEndsAt89 += PermutationHelper.NumberOfPermutations(permutation);
+                }
+            }
+
+            return numberOfTimesSequenceEndsAt89;
         }
     }
 }

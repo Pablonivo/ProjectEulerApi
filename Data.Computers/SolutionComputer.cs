@@ -415,8 +415,8 @@ namespace Data.Computers
 
         public static long GetSolutionOfProblem92()
         {
-            var limit = 10000000;
-            return NumberHelper.NumberOfStartingNumbersForWhichSquareDigitChainEndsAt89(limit);
+            var limit = 10000000 - 1;
+            return (long)NumberHelper.NumberOfStartingNumbersForWhichSquareDigitChainEndsAt89(limit);
         }
 
         public static long GetSolutionOfProblem97()

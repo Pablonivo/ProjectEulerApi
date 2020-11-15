@@ -132,15 +132,21 @@ namespace Data.Computers
             return ListOfDigits(n).Select(digit => digit * digit).Sum();
         }
 
+        public static int NumberOfDigits(BigInteger n)
+        {
+            return ListOfDigits(n).Count;
+        }
+
         private static List<int> ListOfDigits(BigInteger n)
         {
-            var listOfDigits = new List<int>();
-            var bigIntAsString = n.ToString();
+            // This is added just for the case n = 0.
+            var listOfDigits = new List<int> { (int)(n % 10) };
+            n /= 10;
 
-            for (int i = 0; i < bigIntAsString.Length; i++)
+            while (n != 0)
             {
-                var digit = (int)char.GetNumericValue(bigIntAsString[i]);
-                listOfDigits.Add(digit);
+                listOfDigits.Add((int)(n % 10));
+                n /= 10;
             }
 
             return listOfDigits;
@@ -450,11 +456,13 @@ namespace Data.Computers
 
         public static long NumberOfStartingNumbersForWhichSquareDigitChainEndsAt89(int limit)
         {
-            var startingNumberList = new int[limit + 1];
+            var maxNumberToCheck = 9 * 9 * NumberOfDigits(limit);
+            var startingNumberList = new int[maxNumberToCheck + 1];
+
             startingNumberList[1] = 1;
             startingNumberList[89] = 89;
 
-            foreach (int i in Enumerable.Range(1, limit))
+            foreach (int i in Enumerable.Range(1, maxNumberToCheck))
             {
                 if (startingNumberList[i] != 1 && startingNumberList[i] != 89)
                 {
@@ -478,7 +486,8 @@ namespace Data.Computers
                 }
             }
 
-            return startingNumberList.Where(value => value == 89).Count();
+            var numbersForWhichChainEndsAt89 = Enumerable.Range(1, limit).Where(number => startingNumberList[SumOfSquaresOfDigits(number)] == 89);
+            return numbersForWhichChainEndsAt89.Count();
         }
     }
 }

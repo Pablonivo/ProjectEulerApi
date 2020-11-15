@@ -85,6 +85,20 @@ namespace Test.Data.Computers
         }
 
         [TestMethod]
+        public void NumberOfDigits_Of145_Returns3()
+        {
+            // Arrange
+            var n = 145;
+            var expectedResult = 3;
+
+            // Act
+            var result = NumberHelper.NumberOfDigits(n);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
+
+        [TestMethod]
         public void MaximalPathOfNumberTriangle_OfExampleTriangle_ReturnsCorrectResult()
         {
             // Arrange

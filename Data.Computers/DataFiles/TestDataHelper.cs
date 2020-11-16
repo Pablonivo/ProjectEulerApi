@@ -8,6 +8,8 @@ namespace Data.Computers.DataFiles
 {
     public static class TestDataHelper
     {
+        private const string ExpectedWordInTextForProblem59 = "Euler";
+
         public static long GetNameScoresForProblem22()
         {
             long totalScore = 0;
@@ -37,7 +39,6 @@ namespace Data.Computers.DataFiles
         public static List<byte> DecryptTextProblem59(List<byte> asciiValues)
         {
             var byteArraySolution = new List<byte>();
-            var highestWordCountOfEnglishTheFound = 0;
 
             for (char firstLetterKey = 'a'; firstLetterKey <= 'z'; firstLetterKey++)
             {
@@ -56,12 +57,11 @@ namespace Data.Computers.DataFiles
 
                         var decyptedByteArray = decryptedList.ToArray();
                         var decryptedText = Encoding.ASCII.GetString(decyptedByteArray);
-                        var countOfTheInDecryptedText = Regex.Matches(decryptedText, "the").Count;
+                        var countOfTheInDecryptedText = Regex.Matches(decryptedText, ExpectedWordInTextForProblem59).Count;
 
-                        if (countOfTheInDecryptedText > highestWordCountOfEnglishTheFound)
+                        if (countOfTheInDecryptedText > 0)
                         {
-                            highestWordCountOfEnglishTheFound = countOfTheInDecryptedText;
-                            byteArraySolution = decyptedByteArray.ToList();
+                            return decyptedByteArray.ToList();
                         }
                     }
                 }

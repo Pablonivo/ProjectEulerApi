@@ -395,6 +395,12 @@ namespace Data.Computers
             return NumberHelper.GetLengthOfNumberSpiralForWhichPercentageOfPrimesOnDiagonalsIsLowerThanLimit(desiredUpperBoundPercentagePrimes);
         }
 
+        public static long GetSolutionOfProblem59()
+        {
+            var decrypteddText = TestDataHelper.DecryptTextProblem59(TestData.TestData.CipherTextProblem59());
+            return decrypteddText.Select(byteValue => (int)byteValue).Sum();
+        }
+
         public static long GetSolutionOfProblem63()
         {
             return NumberHelper.AllNDigitPositiveIntegersWhichAreNthPowers().Count;

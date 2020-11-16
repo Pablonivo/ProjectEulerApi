@@ -168,5 +168,22 @@ namespace Test.Data.Computers
             result.Item2.Should().HaveCount(expectedNumberOfPokerHands);
             result.Item2.Last().Should().BeEquivalentTo(lastHandOfSecondPlayer);
         }
+
+        [TestMethod]
+        public void CipherTextProblem59_WhenCalled_ReturnsListOfAsciValues()
+        {
+            // Arrange
+            var expectedNumberOfAsciValues = 1455;
+            var expectedFirstValue = (byte)36;
+            var expectedLastValue = (byte)94;
+
+            // Act
+            var result = TestData.CipherTextProblem59();
+
+            // Assert
+            result.Should().HaveCount(expectedNumberOfAsciValues);
+            result.First().Should().Be(expectedFirstValue);
+            result.Last().Should().Be(expectedLastValue);
+        }
     }
 }

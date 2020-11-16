@@ -184,5 +184,14 @@ namespace Data.Computers.TestData
 
             return (handsOfFirstPlayer, handsOfSecondPlayer);
         }
+
+        public static List<byte> CipherTextProblem59()
+        {
+            var dataFromTextFile = GetDataFromTextFile("Data.Computers.DataFiles.CipherTextProblem59.txt");
+            var stringOfTextFile = Regex.Replace(dataFromTextFile, @"\s+", string.Empty)
+                .Replace("\"", string.Empty).Trim();
+
+            return stringOfTextFile.Split(",").Select(asciiValue => (byte)int.Parse(asciiValue)).ToList();
+        }
     }
 }

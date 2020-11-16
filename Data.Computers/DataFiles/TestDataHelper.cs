@@ -14,7 +14,7 @@ namespace Data.Computers.DataFiles
             var listOfNames = TestData.TestData.FirstNamesProblem22();
             listOfNames.Sort();
 
-            foreach(int i in Enumerable.Range(0, listOfNames.Count))
+            foreach (int i in Enumerable.Range(0, listOfNames.Count))
             {
                 totalScore += (i + 1) * GetWordScore(listOfNames[i]);
             }
@@ -36,36 +36,22 @@ namespace Data.Computers.DataFiles
 
         public static List<byte> DecryptTextProblem59(List<byte> asciiValues)
         {
-            // Lower case characters have an ASCII value between 97 ('a') and 122 ('z').
             var byteArraySolution = new List<byte>();
             var highestWordCountOfEnglishTheFound = 0;
-            var lowerBoundAsciiValueForLettersKey = 97;
-            var numberOfLowerCaseLetters = 26;
 
-            foreach (int firstLetterKey in Enumerable.Range(lowerBoundAsciiValueForLettersKey, numberOfLowerCaseLetters))
+            for (char firstLetterKey = 'a'; firstLetterKey <= 'z'; firstLetterKey++)
             {
-                foreach (int secondLetterKey in Enumerable.Range(lowerBoundAsciiValueForLettersKey, numberOfLowerCaseLetters))
+                for (char secondLetterKey = 'a'; secondLetterKey <= 'z'; secondLetterKey++)
                 {
-                    foreach (int thirdLetterKey in Enumerable.Range(lowerBoundAsciiValueForLettersKey, numberOfLowerCaseLetters))
+                    for (char thirdLetterKey = 'a'; thirdLetterKey <= 'z'; thirdLetterKey++)
                     {
                         var decryptedList = new List<byte>();
 
                         foreach (int index in Enumerable.Range(0, asciiValues.Count))
                         {
-                            if (index % 3 == 0)
-                            {
-                                decryptedList.Add((byte)(firstLetterKey ^ asciiValues[index]));
-                            }
-
-                            if (index % 3 == 1)
-                            {
-                                decryptedList.Add((byte)(secondLetterKey ^ asciiValues[index]));
-                            }
-
-                            if (index % 3 == 2)
-                            {
-                                decryptedList.Add((byte)(thirdLetterKey ^ asciiValues[index]));
-                            }
+                            decryptedList.Add((byte)(asciiValues[index] ^ (
+                                index % 3 == 0 ? firstLetterKey :
+                                    index % 3 == 1 ? secondLetterKey : thirdLetterKey)));
                         }
 
                         var decyptedByteArray = decryptedList.ToArray();

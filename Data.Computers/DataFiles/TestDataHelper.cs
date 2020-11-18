@@ -120,31 +120,18 @@ namespace Data.Computers.DataFiles
         {
             var lengthOfMatrix = (int)Math.Sqrt(matrix.Length);
             var highestIndex = lengthOfMatrix - 1;
-            var currentSumOfIndices = 2 * highestIndex;
 
-            for (int sumOfindices = 1; sumOfindices <= currentSumOfIndices; sumOfindices++)
+            for (int i = 1; i <= highestIndex; i++)
             {
-                for (int i = 0; i <= sumOfindices; i++)
+                matrix[0, i] += matrix[0, i - 1];
+                matrix[i, 0] += matrix[i - 1, 0];
+            }
+
+            for (int i = 1; i <= highestIndex; i++)
+            {
+                for (int j = 1; j <= highestIndex; j++)
                 {
-                    var j = sumOfindices - i;
-
-                    if (i <= highestIndex && j <= highestIndex)
-                    {
-                        if (i == 0)
-                        {
-                            matrix[i, j] += matrix[i, j - 1];
-                        }
-
-                        if (j == 0)
-                        {
-                            matrix[i, j] += matrix[i - 1, j];
-                        }
-
-                        if (i != 0 && j != 0)
-                        {
-                            matrix[i, j] += Math.Min(matrix[i, j - 1], matrix[i - 1, j]);
-                        }
-                    }
+                    matrix[i, j] += Math.Min(matrix[i, j - 1], matrix[i - 1, j]);
                 }
             }
 

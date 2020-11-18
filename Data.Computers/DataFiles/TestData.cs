@@ -193,5 +193,22 @@ namespace Data.Computers.TestData
 
             return stringOfTextFile.Split(",").Select(asciiValue => (byte)int.Parse(asciiValue)).ToList();
         }
+
+        public static List<string> KeylogsProblem79()
+        {
+            var listOfKeylogs = new List<string>();
+            var sizeOfKeylogs = 3;
+            var numberOfKeyLogs = 50;
+            var dataFromTextFile = GetDataFromTextFile("Data.Computers.DataFiles.KeylogProblem79.txt");
+            var stringOfTextFile = Regex.Replace(dataFromTextFile, @"\s+", string.Empty)
+                .Replace("\"", string.Empty).Trim();
+
+            for (int i = 0; i < numberOfKeyLogs; i++)
+            {
+                listOfKeylogs.Add(stringOfTextFile.Substring(sizeOfKeylogs * i, sizeOfKeylogs));
+            }
+
+            return listOfKeylogs;
+        }
     }
 }

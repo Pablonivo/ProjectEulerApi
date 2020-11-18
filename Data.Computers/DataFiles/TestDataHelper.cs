@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -68,6 +67,52 @@ namespace Data.Computers.DataFiles
             }
 
             return byteArraySolution;
+        }
+
+        public static string GetPasswordProblem79(List<string> keylogs)
+        {
+            var charactersToTheRight = new Dictionary<char, List<char>>();
+
+            foreach (string keylog in keylogs)
+            {
+                var keylogSize = keylog.Length;
+
+                for (int index = 0; index < keylogSize - 1; index++)
+                {
+                    for (int indexOfNumberToTheRight = index + 1; indexOfNumberToTheRight < keylog.Length; indexOfNumberToTheRight++)
+                    {
+                        if (!charactersToTheRight.ContainsKey(keylog[index]))
+                        {
+                            charactersToTheRight.Add(keylog[index], new List<char> { keylog[indexOfNumberToTheRight] });
+                        }
+
+                        else
+                        {
+                            if (!charactersToTheRight[keylog[index]].Contains(keylog[indexOfNumberToTheRight]))
+                            {
+                                charactersToTheRight[keylog[index]].Add(keylog[indexOfNumberToTheRight]);
+                            }
+                        }
+                    }
+
+                    if (!charactersToTheRight.ContainsKey(keylog[keylogSize - 1]))
+                    {
+                        charactersToTheRight.Add(keylog[keylogSize - 1], new List<char> { });
+                    }
+                }
+            }
+
+            string password = string.Empty;
+            var sizeOfPassword = charactersToTheRight.Keys.Count;
+            for (int i = 0; i < sizeOfPassword; i++)
+            {
+                var sizeOfHighestCountOfValuesToTheRight = charactersToTheRight.Values.Select(listOfChar => listOfChar.Count).Max();
+                var keyOfMostLeftCharacter = charactersToTheRight.Keys.First(key => charactersToTheRight[key].Count == sizeOfHighestCountOfValuesToTheRight);
+                password += keyOfMostLeftCharacter.ToString();
+                charactersToTheRight.Remove(keyOfMostLeftCharacter);
+            }
+
+            return password;
         }
 
         private static int MapLetterToAlphabeticalValue(char letter)

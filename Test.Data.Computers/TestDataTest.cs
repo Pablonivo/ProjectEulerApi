@@ -185,5 +185,22 @@ namespace Test.Data.Computers
             result.First().Should().Be(expectedFirstValue);
             result.Last().Should().Be(expectedLastValue);
         }
+
+        [TestMethod]
+        public void KeyLogProblem79_WhenCalled_ReturnsListOfAttempts()
+        {
+            // Arrange
+            var expectedNumberOfAttempts = 50;
+            var expectedFirstAttempt = "319";
+            var expectedLastAttempt = "716";
+
+            // Act
+            var result = TestData.KeylogsProblem79();
+
+            // Assert
+            result.Should().HaveCount(expectedNumberOfAttempts);
+            result.First().Should().Be(expectedFirstAttempt);
+            result.Last().Should().Be(expectedLastAttempt);
+        }
     }
 }

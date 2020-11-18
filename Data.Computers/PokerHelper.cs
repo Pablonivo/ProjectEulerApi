@@ -58,14 +58,6 @@ namespace Data.Computers
                 var valueThreeOfAKindFirstPlayer = cardsFirstPlayer.GroupBy(card => ValueOfCard(card)).Where(group => group.Count() == 3).Single().Key;
                 var valueThreeOfAKindSecondPlayer = cardsSecondPlayer.GroupBy(card => ValueOfCard(card)).Where(group => group.Count() == 3).Single().Key;
 
-                //var valuePairFirstPlayer = cardsFirstPlayer.GroupBy(card => ValueOfCard(card)).Where(group => group.Count() == 2).Single().Key;
-                //var valuePairSecondPlayer = cardsSecondPlayer.GroupBy(card => ValueOfCard(card)).Where(group => group.Count() == 2).Single().Key;
-
-                //if (valueThreeOfAKindFirstPlayer == valueThreeOfAKindSecondPlayer)
-                //{
-                //    return valuePairFirstPlayer > valuePairSecondPlayer ? 1 : 2;
-                //}
-
                 if (valueThreeOfAKindFirstPlayer != valueThreeOfAKindSecondPlayer)
                 {
                     return valueThreeOfAKindFirstPlayer > valueThreeOfAKindSecondPlayer ? 1 : 2;

@@ -419,6 +419,12 @@ namespace Data.Computers
             return NumberHelper.MaximalPathOfNumberTriangle(numberTriangle);
         }
 
+        public static long GetSolutionOfProblem79()
+        {
+            var keylogs = TestData.TestData.KeylogsProblem79();
+            return long.Parse(TestDataHelper.GetPasswordProblem79(keylogs));
+        }
+
         public static long GetSolutionOfProblem92()
         {
             var limit = 10000000 - 1;

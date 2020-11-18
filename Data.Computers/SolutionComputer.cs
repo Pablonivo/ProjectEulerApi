@@ -419,6 +419,12 @@ namespace Data.Computers
             return NumberHelper.MaximalPathOfNumberTriangle(numberTriangle);
         }
 
+        public static long GetSolutionOfProblem69()
+        {
+            var max = 1000000;
+            return PrimeHelper.HighestProductOfFirstPrimesBelowMax(max);
+        }
+
         public static long GetSolutionOfProblem79()
         {
             var keylogs = TestData.TestData.KeylogsProblem79();

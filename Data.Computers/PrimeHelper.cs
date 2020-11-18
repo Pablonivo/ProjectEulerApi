@@ -271,6 +271,22 @@ namespace Data.Computers
             return sievedList;
         }
 
+        public static long HighestProductOfFirstPrimesBelowMax(int max)
+        {
+            var product = 1;
+            var n = 1;
+            var nextPrime = GetNthPrime(n);
+
+            while (product * nextPrime < max)
+            {
+                product *= nextPrime;
+                n++;
+                nextPrime = GetNthPrime(n);
+            }
+
+            return product;
+        }
+
         public static Dictionary<long, List<long>> ArithmeticPrimePermutationsWith4Digits()
         {
             var listOfArithmeticPrimePermutationsWith4Digits = new Dictionary<long, List<long>>();

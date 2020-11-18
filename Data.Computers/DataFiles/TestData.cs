@@ -210,5 +210,34 @@ namespace Data.Computers.TestData
 
             return listOfKeylogs;
         }
+
+        public static int[,] ExampleMatrixProblem81()
+        {
+            var lengthOfMatrix = 5;
+            return MatrixProblem81("Data.Computers.DataFiles.ExampleMatrixProblem81.txt", lengthOfMatrix);
+        }
+
+        public static int[,] MatrixProblem81()
+        {
+            var lengthOfMatrix = 80;
+            return MatrixProblem81("Data.Computers.DataFiles.MatrixProblem81.txt", lengthOfMatrix);
+        }
+
+        private static int[,] MatrixProblem81(string textFileMatrix, int lengthOfMatrix)
+        {
+            var matrix = new int[lengthOfMatrix, lengthOfMatrix];
+            var dataFromTextFile = GetDataFromTextFile(textFileMatrix);
+            var valuesOfMatrix = dataFromTextFile.Split(new[] { ",", "\n" }, StringSplitOptions.None);
+
+            for (int i = 0; i < lengthOfMatrix; i++)
+            {
+                for (int j = 0; j < lengthOfMatrix; j++)
+                {
+                    matrix[i, j] = int.Parse(valuesOfMatrix[lengthOfMatrix * i + j]);
+                }
+            }
+
+            return matrix;
+        }
     }
 }

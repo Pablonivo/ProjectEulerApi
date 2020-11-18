@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -113,6 +114,41 @@ namespace Data.Computers.DataFiles
             }
 
             return password;
+        }
+
+        public static long MinimalPathMatrixOnlyMovingRightAndDown(int[,] matrix)
+        {
+            var lengthOfMatrix = (int)Math.Sqrt(matrix.Length);
+            var highestIndex = lengthOfMatrix - 1;
+            var currentSumOfIndices = 2 * highestIndex;
+
+            for (int sumOfindices = 1; sumOfindices <= currentSumOfIndices; sumOfindices++)
+            {
+                for (int i = 0; i <= sumOfindices; i++)
+                {
+                    var j = sumOfindices - i;
+
+                    if (i <= highestIndex && j <= highestIndex)
+                    {
+                        if (i == 0)
+                        {
+                            matrix[i, j] += matrix[i, j - 1];
+                        }
+
+                        if (j == 0)
+                        {
+                            matrix[i, j] += matrix[i - 1, j];
+                        }
+
+                        if (i != 0 && j != 0)
+                        {
+                            matrix[i, j] += Math.Min(matrix[i, j - 1], matrix[i - 1, j]);
+                        }
+                    }
+                }
+            }
+
+            return matrix[highestIndex, highestIndex];
         }
 
         private static int MapLetterToAlphabeticalValue(char letter)

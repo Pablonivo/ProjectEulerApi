@@ -202,5 +202,37 @@ namespace Test.Data.Computers
             result.First().Should().Be(expectedFirstAttempt);
             result.Last().Should().Be(expectedLastAttempt);
         }
+
+        [TestMethod]
+        public void ExampleMatrixProblem81_WhenCalled_ReturnsExpectedMatrix()
+        {
+            // Arrange
+            var lengthOfMatrix = 5;
+            var expectedNumberLeftTop = 131;
+            var expectedNumberRightBottom = 331;
+
+            // Act
+            var result = TestData.ExampleMatrixProblem81();
+
+            // Assert
+            result[0, 0].Should().Be(expectedNumberLeftTop);
+            result[lengthOfMatrix - 1, lengthOfMatrix - 1].Should().Be(expectedNumberRightBottom);
+        }
+
+        [TestMethod]
+        public void MatrixProblem81_WhenCalled_ReturnsExpectedMatrix()
+        {
+            // Arrange
+            var lengthOfMatrix = 80;
+            var expectedNumberLeftTop = 4445;
+            var expectedNumberRightBottom = 7981;
+
+            // Act
+            var result = TestData.MatrixProblem81();
+
+            // Assert
+            result[0, 0].Should().Be(expectedNumberLeftTop);
+            result[lengthOfMatrix - 1, lengthOfMatrix - 1].Should().Be(expectedNumberRightBottom);
+        }
     }
 }

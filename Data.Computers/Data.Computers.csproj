@@ -9,10 +9,12 @@
     <None Remove="DataFiles\100NumbersWith50DigitsProblem13.txt" />
     <None Remove="DataFiles\CipherTextProblem59.txt" />
     <None Remove="DataFiles\EnglishWordsProblem42.txt" />
+    <None Remove="DataFiles\ExampleMatrixProblem81.txt" />
     <None Remove="DataFiles\ExamplePokerHandsProblem54.txt" />
     <None Remove="DataFiles\ExampleTriangleProblem18.txt" />
     <None Remove="DataFiles\FirstNamesProblem22.txt" />
     <None Remove="DataFiles\KeylogProblem79.txt" />
+    <None Remove="DataFiles\MatrixProblem81.txt" />
     <None Remove="DataFiles\TriangleProblem18.txt" />
     <None Remove="DataFiles\TriangleProblem67.txt" />
   </ItemGroup>
@@ -36,6 +38,9 @@
     <EmbeddedResource Include="DataFiles\EnglishWordsProblem42.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="DataFiles\ExampleMatrixProblem81.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="DataFiles\ExamplePokerHandsProblem54.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -46,6 +51,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="DataFiles\KeylogProblem79.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataFiles\MatrixProblem81.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="DataFiles\TriangleProblem18.txt">

@@ -431,6 +431,12 @@ namespace Data.Computers
             return long.Parse(TestDataHelper.GetPasswordProblem79(keylogs));
         }
 
+        public static long GetSolutionOfProblem81()
+        {
+            var matrix = TestData.TestData.MatrixProblem81();
+            return TestDataHelper.MinimalPathMatrixOnlyMovingRightAndDown(matrix);
+        }
+
         public static long GetSolutionOfProblem92()
         {
             var limit = 10000000 - 1;

@@ -36,5 +36,19 @@ namespace Test.Data.Computers
             // Assert
             Encoding.ASCII.GetString(result.ToArray()).Should().Contain(expectedWordInText);
         }
+
+        [TestMethod]
+        public void MinimalPathMatrixOnlyMovingRightAndDown_OfExampleMatrix_ReturnsCorrectResult()
+        {
+            // Arrange
+            var exampleMatrix = TestData.ExampleMatrixProblem81();
+            var expectedResult = 2427;
+
+            // Act
+            var result = TestDataHelper.MinimalPathMatrixOnlyMovingRightAndDown(exampleMatrix);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
     }
 }

@@ -401,6 +401,12 @@ namespace Data.Computers
             return decrypteddText.Select(byteValue => (int)byteValue).Sum();
         }
 
+        public static long GetSolutionOfProblem62()
+        {
+            var desiredNumberOfCubicPermutations = 5;
+            return NumberHelper.SmallestCubeWhichHasNCubicPermutations(desiredNumberOfCubicPermutations);
+        }
+
         public static long GetSolutionOfProblem63()
         {
             return NumberHelper.AllNDigitPositiveIntegersWhichAreNthPowers().Count;

@@ -311,7 +311,7 @@ namespace Data.Computers
             return sum % modulus;
         }
 
-        public static bool AreNumbersPermutations(long number1, long number2)
+        public static bool AreNumbersPermutations(BigInteger number1, BigInteger number2)
         {
             var number1AsString = number1.ToString();
             var number2AsString = number2.ToString();
@@ -500,6 +500,38 @@ namespace Data.Computers
             }
 
             return numberOfTimesSequenceEndsAt89;
+        }
+
+        public static long SmallestCubeWhichHasNCubicPermutations(int desiredNumberOfCubicPermutations)
+        {
+            var numberOfDigitsOfCurrentCubes = 1;
+            BigInteger index = 1;
+
+            while (true)
+            {
+                var listOfCubesWithSameDigits = new List<BigInteger>();
+                BigInteger currentCube = index * index * index;
+
+                while (currentCube.ToString().Length == numberOfDigitsOfCurrentCubes)
+                {
+                    listOfCubesWithSameDigits.Add(currentCube);
+                    index++;
+                    currentCube = index * index * index;
+                }
+
+                foreach (BigInteger cube in listOfCubesWithSameDigits)
+                {
+                    var permutationsOfCube = listOfCubesWithSameDigits.Where(otherCube => AreNumbersPermutations(cube, otherCube));
+                    
+                    if (permutationsOfCube.Count() == desiredNumberOfCubicPermutations)
+                    {
+                        return (long)cube;
+                    }
+                }
+
+                index++;
+                numberOfDigitsOfCurrentCubes++;
+            }
         }
     }
 }

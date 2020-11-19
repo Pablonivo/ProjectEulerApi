@@ -293,5 +293,19 @@ namespace Test.Data.Computers
         {
             NumberHelper.IsALynchrelNumberInMaxNumberOfSteps(number, maxNumberOfSteps).Should().Be(expectedResult);
         }
+
+        [TestMethod]
+        public void SmallestCubeWhichHasNCubicPermutations_For3_ReturnsCorrectResult()
+        {
+            // Arrange
+            var number = 3;
+            var expectedResult = 41063625;
+
+            // Act
+            var result = NumberHelper.SmallestCubeWhichHasNCubicPermutations(number);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
     }
 }

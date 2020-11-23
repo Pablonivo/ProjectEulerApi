@@ -404,7 +404,7 @@ namespace Data.Computers
         public static long GetSolutionOfProblem62()
         {
             var desiredNumberOfCubicPermutations = 5;
-            return NumberHelper.SmallestCubeWhichHasNCubicPermutations(desiredNumberOfCubicPermutations);
+            return (long)NumberHelper.SmallestCubeWhichHasNCubicPermutations(desiredNumberOfCubicPermutations);
         }
 
         public static long GetSolutionOfProblem63()

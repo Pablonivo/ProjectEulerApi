@@ -351,10 +351,10 @@ namespace Data.Computers
                 {
                     var difference = secondNumber - firstNumber;
                     var thirdNumber = secondNumber + difference;
-                    
+
                     if (numberList.Contains(thirdNumber))
                     {
-                        return new List<long>{ firstNumber, secondNumber, thirdNumber};
+                        return new List<long> { firstNumber, secondNumber, thirdNumber };
                     }
                 }
             }
@@ -388,7 +388,7 @@ namespace Data.Computers
                 foreach (int b in Enumerable.Range(1, max))
                 {
                     var digitalSum = SumOfDigits(BigInteger.Pow(a, b));
-                    
+
                     if (digitalSum > maximalDigitalSum)
                     {
                         maximalDigitalSum = digitalSum;
@@ -438,7 +438,7 @@ namespace Data.Computers
                 {
                     var nthPower = BigInteger.Pow(i, exponential);
                     var numberOfDigitsOfNthPower = nthPower.ToString().Length;
-                    
+
                     if (numberOfDigitsOfNthPower == exponential)
                     {
                         listOfIntegersWhichAreNthPowers.Add(nthPower);
@@ -477,7 +477,7 @@ namespace Data.Computers
 
                         if (startingNumberList[nextNumber] == 1 || startingNumberList[nextNumber] == 89)
                         {
-                            foreach(int j in listOfNumbersInCurrentSequence)
+                            foreach (int j in listOfNumbersInCurrentSequence)
                             {
                                 startingNumberList[j] = startingNumberList[nextNumber];
                             }
@@ -502,13 +502,15 @@ namespace Data.Computers
             return numberOfTimesSequenceEndsAt89;
         }
 
-        public static long SmallestCubeWhichHasNCubicPermutations(int desiredNumberOfCubicPermutations)
+        public static BigInteger SmallestCubeWhichHasNCubicPermutations(int desiredNumberOfCubicPermutations)
         {
-            var numberOfDigitsOfCurrentCubes = 1;
+            var numberOfDigitsOfCurrentCubes = 0;
             BigInteger index = 1;
 
             while (true)
             {
+                numberOfDigitsOfCurrentCubes++;
+
                 var listOfCubesWithSameDigits = new List<BigInteger>();
                 BigInteger currentCube = index * index * index;
 
@@ -519,18 +521,28 @@ namespace Data.Computers
                     currentCube = index * index * index;
                 }
 
+                var dictionary = new Dictionary<string, (int, BigInteger)>();
+
                 foreach (BigInteger cube in listOfCubesWithSameDigits)
                 {
-                    var permutationsOfCube = listOfCubesWithSameDigits.Where(otherCube => AreNumbersPermutations(cube, otherCube));
-                    
-                    if (permutationsOfCube.Count() == desiredNumberOfCubicPermutations)
+                    var cubeString = cube.ToString().ToArray();
+                    Array.Sort(cubeString);
+                    var sortedCubeString = new string(cubeString);
+
+                    if (!dictionary.ContainsKey(sortedCubeString))
                     {
-                        return (long)cube;
+                        dictionary.Add(sortedCubeString, (1, cube));
+                    }
+                    else
+                    {
+                        dictionary[sortedCubeString] = (dictionary[sortedCubeString].Item1 + 1, dictionary[sortedCubeString].Item2);
+                    }
+
+                    if (dictionary[sortedCubeString].Item1 == desiredNumberOfCubicPermutations)
+                    {
+                        return dictionary[sortedCubeString].Item2;
                     }
                 }
-
-                index++;
-                numberOfDigitsOfCurrentCubes++;
             }
         }
     }

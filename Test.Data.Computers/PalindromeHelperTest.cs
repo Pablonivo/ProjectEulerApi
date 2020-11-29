@@ -24,12 +24,5 @@ namespace Test.Data.Computers
         {
             PalindromeHelper.IsPalindromeInBase2(number).Should().Be(expectedResult);
         }
-
-        [TestMethod]
-        [DataRow(100, 9009)]
-        public void GetLargestPalindromeOfProductOfTwoNumbersBelowMax_ReturnsCorrectResult(int max, int expectedResult)
-        {
-            PalindromeHelper.GetLargestPalindromeOfProductOfTwoNumbersBelowMax(max).Should().Be(expectedResult);
-        }
     }
 }

@@ -56,7 +56,7 @@ namespace Data.Computers
 
             for (int i = 0; i <= lengthOfNumber - 1; i++)
             {
-                var numberTruncatedFromTheLeft = int.Parse(numberToString.Substring(i));
+                var numberTruncatedFromTheLeft = int.Parse(numberToString[i..]);
                 var numberTruncatedFromTheRight = int.Parse(numberToString.Substring(0, lengthOfNumber - i));
 
                 if (!IsPrime(numberTruncatedFromTheLeft) || !IsPrime(numberTruncatedFromTheRight))
@@ -123,23 +123,21 @@ namespace Data.Computers
 
         public static List<long> GetPrimeFactors(long number)
         {
-            var primeFactorList = new List<long>();
-            long i = 2;
-
+            var primeFactors = new List<long>();
+            long potentialPrimeDivisorOfNumber = 2;
             while (number != 1)
             {
-                if (number % i == 0)
+                if (number % potentialPrimeDivisorOfNumber == 0)
                 {
-                    number /= i;
-                    primeFactorList.Add(i);
+                    number /= potentialPrimeDivisorOfNumber;
+                    primeFactors.Add(potentialPrimeDivisorOfNumber);
                 }
                 else
                 {
-                    i++;
+                    potentialPrimeDivisorOfNumber++;
                 }
             }
-
-            return primeFactorList;
+            return primeFactors;
         }
 
         public static Dictionary<int, int> GetPrimeFactorization(long number)

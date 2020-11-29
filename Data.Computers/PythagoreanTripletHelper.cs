@@ -13,7 +13,6 @@ namespace Data.Computers
         public static List<(int, int, int)> GetPythagoreanTripletForWhichSumEquals(int sum)
         {
             var listOfSolutions = new List<(int, int, int)>();
-
             for (int a = 1; a < sum / 3; a++)
             {
                 for (int b = a + 1; b < 2 * sum / 3; b++)
@@ -26,7 +25,6 @@ namespace Data.Computers
                     }
                 }
             }
-
             return listOfSolutions;
         }
 

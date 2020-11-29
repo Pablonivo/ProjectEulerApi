@@ -72,7 +72,7 @@ namespace Data.Computers.TestData
                 for (int j = 0; j <= i; j++)
                 {
                     triangleGrid[i, j] = int.Parse(stringOfTextFile.Substring(0, numberOfDigitsPerNumber));
-                    stringOfTextFile = stringOfTextFile.Substring(numberOfDigitsPerNumber);
+                    stringOfTextFile = stringOfTextFile[numberOfDigitsPerNumber..];
                 }
             }
 
@@ -93,7 +93,7 @@ namespace Data.Computers.TestData
                 for (int j = 0; j <= i; j++)
                 {
                     triangleGrid[i, j] = int.Parse(stringOfTextFile.Substring(0, numberOfDigitsPerNumber));
-                    stringOfTextFile = stringOfTextFile.Substring(numberOfDigitsPerNumber);
+                    stringOfTextFile = stringOfTextFile[numberOfDigitsPerNumber..];
                 }
             }
 
@@ -114,7 +114,7 @@ namespace Data.Computers.TestData
                 for (int j = 0; j <= i; j++)
                 {
                     triangleGrid[i, j] = int.Parse(stringOfTextFile.Substring(0, numberOfDigitsPerNumber));
-                    stringOfTextFile = stringOfTextFile.Substring(numberOfDigitsPerNumber);
+                    stringOfTextFile = stringOfTextFile[numberOfDigitsPerNumber..];
                 }
             }
 
@@ -169,13 +169,13 @@ namespace Data.Computers.TestData
                 foreach (int numberOfCards in Enumerable.Range(1, numberOfCardsPerHand))
                 {
                     pokerHandFirstPlayer.Add(stringOfTextFile.Substring(0, 2));
-                    stringOfTextFile = stringOfTextFile.Substring(2);
+                    stringOfTextFile = stringOfTextFile[2..];
                 }
 
                 foreach (int numberOfCards in Enumerable.Range(1, numberOfCardsPerHand))
                 {
                     pokerHandSecondPlayer.Add(stringOfTextFile.Substring(0, 2));
-                    stringOfTextFile = stringOfTextFile.Substring(2);
+                    stringOfTextFile = stringOfTextFile[2..];
                 }
 
                 handsOfFirstPlayer.Add(pokerHandFirstPlayer);

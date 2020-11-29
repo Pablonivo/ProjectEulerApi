@@ -1,4 +1,5 @@
 ﻿using Data.Computers;
+using Data.Computers.Solutions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ProjectEulerApi.Controllers
@@ -12,17 +13,17 @@ namespace ProjectEulerApi.Controllers
         {
             return solutionId switch
             {
-                1 => SolutionComputer.GetSolutionOfProblem1(),
-                2 => SolutionComputer.GetSolutionOfProblem2(),
-                3 => SolutionComputer.GetSolutionOfProblem3(),
-                4 => SolutionComputer.GetSolutionOfProblem4(),
-                5 => SolutionComputer.GetSolutionOfProblem5(),
-                6 => SolutionComputer.GetSolutionOfProblem6(),
-                7 => SolutionComputer.GetSolutionOfProblem7(),
-                8 => SolutionComputer.GetSolutionOfProblem8(),
-                9 => SolutionComputer.GetSolutionOfProblem9(),
-                10 => SolutionComputer.GetSolutionOfProblem10(),
-                11 => SolutionComputer.GetSolutionOfProblem11(),
+                1 => new Problem0001().ComputeSolution(),
+                2 => new Problem0002().ComputeSolution(),
+                3 => new Problem0003().ComputeSolution(),
+                4 => new Problem0004().ComputeSolution(),
+                5 => new Problem0005().ComputeSolution(),
+                6 => new Problem0006().ComputeSolution(),
+                7 => new Problem0007().ComputeSolution(),
+                8 => new Problem0008().ComputeSolution(),
+                9 => new Problem0009().ComputeSolution(),
+                10 => new Problem0010().ComputeSolution(),
+                11 => new Problem0011().ComputeSolution(),
                 12 => SolutionComputer.GetSolutionOfProblem12(),
                 13 => SolutionComputer.GetSolutionOfProblem13(),
                 14 => SolutionComputer.GetSolutionOfProblem14(),

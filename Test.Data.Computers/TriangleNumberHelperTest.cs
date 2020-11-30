@@ -25,20 +25,6 @@ namespace Test.Data.Computers
         }
 
         [TestMethod]
-        public void GetFirstTriangleNumberWithAtLeastNDivisor_AtLeast5Divisors_Returns28()
-        {
-            // Arrange
-            var numberOfDivisors = 5;
-            var expectedResult = 28;
-
-            // Act
-            var result = TriangleNumberHelper.GetFirstTriangleNumberWithAtLeastNDivisor(numberOfDivisors);
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
         public void GetListOfTriangleNumbersBelowMax_WithMax56_ReturnsCorrectList()
         {
             // Arrange

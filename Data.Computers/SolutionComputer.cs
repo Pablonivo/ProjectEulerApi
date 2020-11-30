@@ -9,38 +9,6 @@ namespace Data.Computers
 {
     public static class SolutionComputer
     {
-        public static long GetSolutionOfProblem12()
-        {
-            var numberOfDivisors = 500;
-            return TriangleNumberHelper.GetFirstTriangleNumberWithAtLeastNDivisor(numberOfDivisors);
-        }
-
-        public static long GetSolutionOfProblem13()
-        {
-            var sum = TestData.TestData.Get100NumbersWith50DigitsProblem13().Aggregate(BigInteger.Add);
-            var first10DigitsAsString = sum.ToString().Substring(0, 10);
-            return long.Parse(first10DigitsAsString);
-        }
-
-        public static long GetSolutionOfProblem14()
-        {
-            var max = 1000000;
-            return CollatzSequenceHelper.GetStartingNumberBelowMaxWithLongestSequence(max);
-        }
-
-        public static long GetSolutionOfProblem15()
-        {
-            var n = 40;
-            var k = 20;
-            return (long)FactorialHelper.BinominalCoefficient(n, k);
-        }
-
-        public static long GetSolutionOfProblem16()
-        {
-            BigInteger n = BigInteger.Pow(2, 1000);
-            return NumberHelper.SumOfDigits(n);
-        }
-
         public static long GetSolutionOfProblem17()
         {
             var numbersFrom1To1000 = Enumerable.Range(1, 1000).ToList();

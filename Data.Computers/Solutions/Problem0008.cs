@@ -28,7 +28,7 @@
                 long currentProduct = 1;
                 for (int j = i; j < i + numberOfAdjacentDigits; j++)
                 {
-                    currentProduct *= (long)char.GetNumericValue(stringOfNumbers[j]);
+                    currentProduct *= ToLongDigit(stringOfNumbers[j]);
                 }
                 if (currentProduct > largestProductFound)
                 {
@@ -36,6 +36,11 @@
                 }
             }
             return largestProductFound;
+        }
+
+        private static long ToLongDigit(char character)
+        {
+            return (long)char.GetNumericValue(character);
         }
     }
 }

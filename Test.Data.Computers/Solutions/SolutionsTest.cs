@@ -60,7 +60,7 @@ namespace Test.Data.Computers.Solutions
         {
             new Problem0009().ComputeSolution().Should().Be(31875000);
         }
-        
+
         [TestMethod]
         public void ComputeSolution_ForProblem0010_ReturnsSolution()
         {
@@ -71,6 +71,36 @@ namespace Test.Data.Computers.Solutions
         public void ComputeSolution_ForProblem0011_ReturnsSolution()
         {
             new Problem0011().ComputeSolution().Should().Be(70600674);
+        }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0012_ReturnsSolution()
+        {
+            new Problem0012().ComputeSolution().Should().Be(76576500);
+        }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0013_ReturnsSolution()
+        {
+            new Problem0013().ComputeSolution().Should().Be(5537376230);
+        }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0014_ReturnsSolution()
+        {
+            new Problem0014().ComputeSolution().Should().Be(837799);
+        }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0015_ReturnsSolution()
+        {
+            new Problem0015().ComputeSolution().Should().Be(137846528820);
+        }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0016_ReturnsSolution()
+        {
+            new Problem0016().ComputeSolution().Should().Be(1366);
         }
     }
 }

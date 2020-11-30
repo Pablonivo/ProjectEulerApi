@@ -7,17 +7,6 @@ namespace Data.Computers
 {
     public static class SolutionComputer
     {
-        public static long GetSolutionOfProblem21()
-        {
-            var max = 10000;
-            return DivisorHelper.GetListOfAmicablePairsBelowMax(max).Sum();
-        }
-
-        public static long GetSolutionOfProblem22()
-        {
-            return TestDataHelper.GetNameScoresForProblem22();
-        }
-
         public static long GetSolutionOfProblem23()
         {
             return AbundantNumberHelper.GetSumOfIntegersWhichCannotBeWrittenAsSumOfTwoAbundantNumber();

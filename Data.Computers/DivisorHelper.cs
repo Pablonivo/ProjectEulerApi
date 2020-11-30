@@ -43,31 +43,5 @@ namespace Data.Computers
 
             return listOfProperDivisors;
         }
-
-        private static int GetSumOfProperDivisors(int n)
-        {
-            return GetListOfProperDivisors(n).Sum();
-        }
-
-        public static bool IsAmicablePair(int a, int b)
-        {
-            return a != b && GetSumOfProperDivisors(a) == b && GetSumOfProperDivisors(b) == a;
-        }
-
-        public static List<int> GetListOfAmicablePairsBelowMax(int max)
-        {
-            var listOfAmicablePairs = new List<int>();
-
-            foreach (int potentialAmicableNumber in Enumerable.Range(1, max - 1))
-            {
-                var sumOfProperDivisors = GetSumOfProperDivisors(potentialAmicableNumber);
-                if (IsAmicablePair(potentialAmicableNumber, sumOfProperDivisors))
-                {
-                    listOfAmicablePairs.Add(sumOfProperDivisors);
-                }
-            }
-
-            return listOfAmicablePairs;
-        }
     }
 }

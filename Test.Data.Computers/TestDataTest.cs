@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Data.Computers.TestData;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test.Data.Computers
@@ -108,16 +109,19 @@ namespace Test.Data.Computers
         {
             // Arrange
             var expectedNumberOfNames = 5163;
-            var firstName = "MARY";
-            var lastname = "ALONSO";
+            var firstName = "AARON";
+            var lastname = "ZULMA";
 
             // Act
             var result = TestData.FirstNamesProblem22();
 
             // Assert
-            result.Count.Should().Be(expectedNumberOfNames);
-            result.First().Should().Be(firstName);
-            result.Last().Should().Be(lastname);
+            using (new AssertionScope())
+            {
+                result.Count.Should().Be(expectedNumberOfNames);
+                result.First().Should().Be(firstName);
+                result.Last().Should().Be(lastname);
+            }
         }
 
         [TestMethod]

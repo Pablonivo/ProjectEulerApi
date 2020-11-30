@@ -34,15 +34,5 @@ namespace Test.Data.Computers
             // Assert
             result.Should().BeEquivalentTo(properDivisorsOfNumber);
         }
-
-        [TestMethod]
-        public void IsAmicablePair_220And284_ReturnsTrue()
-        {
-            // Arrange & Act
-            var result = DivisorHelper.IsAmicablePair(220, 284);
-
-            // Assert
-            result.Should().BeTrue();
-        }
     }
 }

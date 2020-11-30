@@ -126,8 +126,9 @@ namespace Data.Computers.TestData
             var dataFromTextFile = GetDataFromTextFile("Data.Computers.DataFiles.FirstNamesProblem22.txt");
             var stringOfTextFile = Regex.Replace(dataFromTextFile, @"\s+", string.Empty)
                 .Replace("\"", string.Empty).Trim();
-
-            return stringOfTextFile.Split(",").ToList();
+            var listOfNames = stringOfTextFile.Split(",").ToList();
+            listOfNames.Sort();
+            return listOfNames;
         }
 
         public static List<string> EnglishWordsProblem42()

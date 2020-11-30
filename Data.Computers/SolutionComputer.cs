@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using Data.Computers.DataFiles;
 using Test.Data.Computers;
 
@@ -9,31 +7,6 @@ namespace Data.Computers
 {
     public static class SolutionComputer
     {
-        public static long GetSolutionOfProblem17()
-        {
-            var numbersFrom1To1000 = Enumerable.Range(1, 1000).ToList();
-            return NumberToWordHelper.SumOfLengthOfNumbersAsWordsWrittenOut(numbersFrom1To1000);
-        }
-
-        public static long GetSolutionOfProblem18()
-        {
-            var numberTriangle = TestData.TestData.TriangleProblem18();
-            return NumberHelper.MaximalPathOfNumberTriangle(numberTriangle);
-        }
-
-        public static long GetSolutionOfProblem19()
-        {
-            var startDate = new DateTime(1901, 1, 1);
-            var endDate = new DateTime(2000, 12, 31);
-            return DateHelper.NumberOfSundaysOnTheFirstOfTheMonth(startDate, endDate);
-        }
-
-        public static long GetSolutionOfProblem20()
-        {
-            var factorial = FactorialHelper.Factorial(100);
-            return NumberHelper.SumOfDigits(factorial);
-        }
-
         public static long GetSolutionOfProblem21()
         {
             var max = 10000;
@@ -308,12 +281,6 @@ namespace Data.Computers
             var n = 100;
             var listOfFractions = InfiniteContinuedFractionHelper.FirstNIterationOfE(n);
             return NumberHelper.SumOfDigits(listOfFractions.Last().Numerator);
-        }
-
-        public static long GetSolutionOfProblem67()
-        {
-            var numberTriangle = TestData.TestData.TriangleProblem67();
-            return NumberHelper.MaximalPathOfNumberTriangle(numberTriangle);
         }
 
         public static long GetSolutionOfProblem69()

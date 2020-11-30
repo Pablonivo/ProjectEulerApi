@@ -37,21 +37,6 @@ namespace Data.Computers
             return listOfDigits;
         }
 
-        public static long MaximalPathOfNumberTriangle(int[,] triangleGrid)
-        {
-            var numberOfRows = (int)Math.Sqrt(triangleGrid.Length);
-
-            for (int i = numberOfRows - 2; i >= 0; i--)
-            {
-                for (int j = 0; j <= i; j++)
-                {
-                    triangleGrid[i, j] += Math.Max(triangleGrid[i + 1, j], triangleGrid[i + 1, j + 1]);
-                }
-            }
-
-            return triangleGrid[0, 0];
-        }
-
         public static long GetSumOfDiagonalsNumberSpiral(int spiralSizeOfSides)
         {
             long sum = 1;

@@ -8,58 +8,6 @@ namespace Tests
     public class SolutionComputerTest
     {
         [TestMethod]
-        public void GetSolutionOfProblem17_WhenCalled_ReturnsExpectedResult()
-        {
-            // Arrange
-            var expectedResult = 21124;
-
-            // Act
-            var result = SolutionComputer.GetSolutionOfProblem17();
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
-        public void GetSolutionOfProblem18_WhenCalled_ReturnsExpectedResult()
-        {
-            // Arrange
-            var expectedResult = 1074;
-
-            // Act
-            var result = SolutionComputer.GetSolutionOfProblem18();
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
-        public void GetSolutionOfProblem19_WhenCalled_ReturnsExpectedResult()
-        {
-            // Arrange
-            var expectedResult = 171;
-
-            // Act
-            var result = SolutionComputer.GetSolutionOfProblem19();
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
-        public void GetSolutionOfProblem20_WhenCalled_ReturnsExpectedResult()
-        {
-            // Arrange
-            var expectedResult = 648;
-
-            // Act
-            var result = SolutionComputer.GetSolutionOfProblem20();
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
         public void GetSolutionOfProblem21_WhenCalled_ReturnsExpectedResult()
         {
             // Arrange
@@ -600,19 +548,6 @@ namespace Tests
 
             // Act
             var result = SolutionComputer.GetSolutionOfProblem65();
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
-        public void GetSolutionOfProblem67_WhenCalled_ReturnsExpectedResult()
-        {
-            // Arrange
-            var expectedResult = 7273;
-
-            // Act
-            var result = SolutionComputer.GetSolutionOfProblem67();
 
             // Assert
             result.Should().Be(expectedResult);

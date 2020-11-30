@@ -12,14 +12,11 @@ namespace Test.Data.Computers.Solutions
         [TestMethod]
         public void ComputeSolutionProblem14_WithUpperBound10_Returns9()
         {
-            // Arrange
             var upperBound = 10;
             var expectedResult = 9;
 
-            // Act
             var result = new Problem0014(upperBound).ComputeSolution();
 
-            // Assert
             result.Should().Be(expectedResult);
         }
     }

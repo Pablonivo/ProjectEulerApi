@@ -102,5 +102,35 @@ namespace Test.Data.Computers.Solutions
         {
             new Problem0016().ComputeSolution().Should().Be(1366);
         }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0017_ReturnsSolution()
+        {
+            new Problem0017().ComputeSolution().Should().Be(21124);
+        }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0018_ReturnsSolution()
+        {
+            new Problem0018().ComputeSolution().Should().Be(1074);
+        }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0019_ReturnsSolution()
+        {
+            new Problem0019().ComputeSolution().Should().Be(171);
+        }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0020_ReturnsSolution()
+        {
+            new Problem0020().ComputeSolution().Should().Be(648);
+        }
+
+        [TestMethod]
+        public void ComputeSolution_ForProblem0067_ReturnsSolution()
+        {
+            new Problem0067().ComputeSolution().Should().Be(7273);
+        }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Numerics;
 using Data.Computers;
-using Data.Computers.TestData;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -47,20 +46,6 @@ namespace Test.Data.Computers
 
             // Act
             var result = NumberHelper.NumberOfDigits(n);
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
-        public void MaximalPathOfNumberTriangle_OfExampleTriangle_ReturnsCorrectResult()
-        {
-            // Arrange
-            var exampleTriangle = TestData.ExampleTriangleProblem18();
-            var expectedResult = 23;
-
-            // Act
-            var result = NumberHelper.MaximalPathOfNumberTriangle(exampleTriangle);
 
             // Assert
             result.Should().Be(expectedResult);

@@ -7,13 +7,6 @@ namespace Data.Computers
 {
     public static class SolutionComputer
     {
-        public static long GetSolutionOfProblem24()
-        {
-            var desiredIndex = 1000000;
-            var listOfCharacters = new List<char> { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            return long.Parse(PermutationHelper.GetNthLexiographicPermutation(desiredIndex, listOfCharacters));
-        }
-
         public static long GetSolutionOfProblem25()
         {
             var requiredNumberOfDigits = 1000;

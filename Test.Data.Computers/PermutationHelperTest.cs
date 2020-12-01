@@ -10,19 +10,6 @@ namespace Test.Data.Computers
     public class PermutationHelperTest
     {
         [TestMethod]
-        public void GetNthLexiographicPermutation_WithNumbers0To2AndDesiredIndex4_ReturnsCorrectResult()
-        {
-            // Arrange
-            var characters = new List<char> { '0', '1', '2' };
-
-            // Act
-            var result = PermutationHelper.GetNthLexiographicPermutation(new BigInteger(4), characters);
-
-            // Assert
-            result.Should().Be("120");
-        }
-
-        [TestMethod]
         public void ListOfNumbersWithIncreasingDigits_WithNumbers0To2And3Digits_ReturnsCorrectResult()
         {
             // Arrange

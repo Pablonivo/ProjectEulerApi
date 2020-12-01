@@ -7,11 +7,6 @@ namespace Data.Computers
 {
     public static class SolutionComputer
     {
-        public static long GetSolutionOfProblem23()
-        {
-            return AbundantNumberHelper.GetSumOfIntegersWhichCannotBeWrittenAsSumOfTwoAbundantNumber();
-        }
-
         public static long GetSolutionOfProblem24()
         {
             var desiredIndex = 1000000;

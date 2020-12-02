@@ -8,32 +8,6 @@ namespace Tests
     public class SolutionComputerTest
     {
         [TestMethod]
-        public void GetSolutionOfProblem25_WhenCalled_ReturnsExpectedResult()
-        {
-            // Arrange
-            var expectedResult = 4782;
-
-            // Act
-            var result = SolutionComputer.GetSolutionOfProblem25();
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
-        public void GetSolutionOfProblem26_WhenCalled_ReturnsExpectedResult()
-        {
-            // Arrange
-            var expectedResult = 983;
-
-            // Act
-            var result = SolutionComputer.GetSolutionOfProblem26();
-
-            // Assert
-            result.Should().Be(expectedResult);
-        }
-
-        [TestMethod]
         public void GetSolutionOfProblem27_WhenCalled_ReturnsExpectedResult()
         {
             // Arrange

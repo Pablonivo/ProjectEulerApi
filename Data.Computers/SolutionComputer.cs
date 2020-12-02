@@ -7,18 +7,6 @@ namespace Data.Computers
 {
     public static class SolutionComputer
     {
-        public static long GetSolutionOfProblem25()
-        {
-            var requiredNumberOfDigits = 1000;
-            return FibonacciHelper.GetIndexOfFirstFibonacciNumberWithAtLeastNDigits(requiredNumberOfDigits);
-        }
-
-        public static long GetSolutionOfProblem26()
-        {
-            var max = 1000;
-            return FractionHelper.GetLongestRecurringCycleFor1OverDBelowMax(max);
-        }
-
         public static long GetSolutionOfProblem27()
         {
             var maxModulus = 1000;

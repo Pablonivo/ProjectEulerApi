@@ -164,6 +164,12 @@ namespace Test.Data.Computers.Solutions
         }
 
         [TestMethod]
+        public void ComputeSolution_ForProblem0060_ReturnsSolution()
+        {
+            new Problem0060().ComputeSolution().Should().Be(26033);
+        }
+
+        [TestMethod]
         public void ComputeSolution_ForProblem0067_ReturnsSolution()
         {
             new Problem0067().ComputeSolution().Should().Be(7273);

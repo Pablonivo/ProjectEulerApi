@@ -24,8 +24,14 @@ namespace Data.Computers.Solutions
 
         public long ComputeSolution()
         {
-            ComputeCandidateConcatenaionPrimesForAllPrimesUpToUpperBound();
+            ComputeCandidateConcatenationPrimesForAllPrimesUpToUpperBound();
+            ComputeLargerGroupsOfConcatenationPrimesRecursively();
+            var groupsOfPrimesToCheck = PRIMES_GROUPED_BY_CONCATENATIONS.Keys.Where(group => group.Count == REQUIRED_NUMBER_OF_PRIMES);
+            return groupsOfPrimesToCheck.Select(primes => primes.Sum()).Min();
+        }
 
+        private void ComputeLargerGroupsOfConcatenationPrimesRecursively()
+        {
             int currentSizeOfGroups = 1;
             while (currentSizeOfGroups < REQUIRED_NUMBER_OF_PRIMES)
             {
@@ -36,8 +42,6 @@ namespace Data.Computers.Solutions
                 }
                 currentSizeOfGroups++;
             }
-            var groupsOfPrimesToCheck = PRIMES_GROUPED_BY_CONCATENATIONS.Keys.Where(group => group.Count == REQUIRED_NUMBER_OF_PRIMES);
-            return groupsOfPrimesToCheck.Select(primes => primes.Sum()).Min();
         }
 
         private Dictionary<List<long>, List<long>> ComputeConcatenationGroupsOneSizeLargerThanCurrentHighest(int currentSizeOfGroups)
@@ -59,7 +63,7 @@ namespace Data.Computers.Solutions
             return concatenationGroupsOneSizeLarger;
         }
 
-        private void ComputeCandidateConcatenaionPrimesForAllPrimesUpToUpperBound()
+        private void ComputeCandidateConcatenationPrimesForAllPrimesUpToUpperBound()
         {
             // If two different primes have sums which are 1 and 2 modulo 3,
             // then concatening them yields a number which sum is 0 modulo 3.

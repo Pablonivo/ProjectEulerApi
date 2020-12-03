@@ -8,6 +8,7 @@ namespace Data.Computers.Solutions
         // This is a bit arbitrary, but for 5 primes this is just enough to return the solution.
         private readonly int UPPER_BOUND_OF_PRIMES = 10000;
         private readonly int REQUIRED_NUMBER_OF_PRIMES = 5;
+        private readonly Dictionary<long, List<long>> PRIMES_WITH_CANDIDATE_CONCATENATIONS = new Dictionary<long, List<long>>();
         private readonly Dictionary<List<long>, List<long>> PRIMES_GROUPED_BY_CONCATENATIONS = new Dictionary<List<long>, List<long>>();
 
         public Problem0060(int upperBoundOfPrimes, int requiredNumberOfPrimes)
@@ -24,6 +25,7 @@ namespace Data.Computers.Solutions
         public long ComputeSolution()
         {
             ComputeCandidateConcatenaionPrimesForAllPrimesUpToUpperBound();
+
             int currentSizeOfGroups = 1;
             while (currentSizeOfGroups < REQUIRED_NUMBER_OF_PRIMES)
             {
@@ -46,8 +48,7 @@ namespace Data.Computers.Solutions
             {
                 foreach (long prime in PRIMES_GROUPED_BY_CONCATENATIONS[listOfPrimes])
                 {
-                    var keyOfPrime = PRIMES_GROUPED_BY_CONCATENATIONS.Keys.Single(list => list.Count() == 1 && list.Single() == prime);
-                    var intersection = PRIMES_GROUPED_BY_CONCATENATIONS[listOfPrimes].Intersect(PRIMES_GROUPED_BY_CONCATENATIONS[keyOfPrime]);
+                    var intersection = PRIMES_GROUPED_BY_CONCATENATIONS[listOfPrimes].Intersect(PRIMES_WITH_CANDIDATE_CONCATENATIONS[prime]);
                     if (intersection.Count() >= 1 || PRIMES_GROUPED_BY_CONCATENATIONS[listOfPrimes].Count == 1)
                     {
                         var newPrimeList = new List<long>(listOfPrimes) { prime };
@@ -89,6 +90,7 @@ namespace Data.Computers.Solutions
                     listOfPrimesWhichCanBeConcatedWithPrime.Add(otherPrime);
                 }
             }
+            PRIMES_WITH_CANDIDATE_CONCATENATIONS.Add(prime, listOfPrimesWhichCanBeConcatedWithPrime);
             PRIMES_GROUPED_BY_CONCATENATIONS.Add(new List<long> { prime }, listOfPrimesWhichCanBeConcatedWithPrime);
         }
 

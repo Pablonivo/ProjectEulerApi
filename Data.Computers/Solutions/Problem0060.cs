@@ -9,8 +9,8 @@ namespace Data.Computers.Solutions
         // The highest prime of this group is 8389, so the upper bound is really tight in order to speed up computation speed.
         private readonly int UPPER_BOUND_OF_PRIMES = 8400;
         private readonly int REQUIRED_NUMBER_OF_PRIMES = 5;
-        private readonly Dictionary<long, HashSet<long>> PRIMES_WITH_CANDIDATE_CONCATENATIONS = new Dictionary<long, HashSet<long>>();
-        private Dictionary<HashSet<long>, HashSet<long>> PRIMES_GROUPED_BY_CONCATENATIONS = new Dictionary<HashSet<long>, HashSet<long>>();
+        private readonly Dictionary<int, HashSet<int>> PRIMES_WITH_CANDIDATE_CONCATENATIONS = new Dictionary<int, HashSet<int>>();
+        private Dictionary<HashSet<int>, HashSet<int>> PRIMES_GROUPED_BY_CONCATENATIONS = new Dictionary<HashSet<int>, HashSet<int>>();
 
         public Problem0060(int upperBoundOfPrimes, int requiredNumberOfPrimes)
         {
@@ -41,18 +41,18 @@ namespace Data.Computers.Solutions
             }
         }
 
-        private Dictionary<HashSet<long>, HashSet<long>> ComputeConcatenationGroupsOneSizeLargerThanCurrentHighest()
+        private Dictionary<HashSet<int>, HashSet<int>> ComputeConcatenationGroupsOneSizeLargerThanCurrentHighest()
         {
-            var concatenationGroupsOneSizeLarger = new Dictionary<HashSet<long>, HashSet<long>>();
-            foreach (HashSet<long> listOfPrimes in PRIMES_GROUPED_BY_CONCATENATIONS.Keys)
+            var concatenationGroupsOneSizeLarger = new Dictionary<HashSet<int>, HashSet<int>>();
+            foreach (HashSet<int> listOfPrimes in PRIMES_GROUPED_BY_CONCATENATIONS.Keys)
             {
                 var primesWhichCanBeConcatenated = PRIMES_GROUPED_BY_CONCATENATIONS[listOfPrimes];
-                foreach (long prime in primesWhichCanBeConcatenated)
+                foreach (var prime in primesWhichCanBeConcatenated)
                 {
                     var intersection = primesWhichCanBeConcatenated.Intersect(PRIMES_WITH_CANDIDATE_CONCATENATIONS[prime]);
                     if (intersection.Count() >= 1 || primesWhichCanBeConcatenated.Count == 1)
                     {
-                        var newPrimeList = new HashSet<long>(listOfPrimes) { prime };
+                        var newPrimeList = new HashSet<int>(listOfPrimes) { prime };
                         concatenationGroupsOneSizeLarger.Add(newPrimeList, intersection.ToHashSet());
                     }
                 }
@@ -66,25 +66,27 @@ namespace Data.Computers.Solutions
             // then concatening them yields a number which sum is 0 modulo 3.
             // Hence this concatenation is divisble by 3, so not a prime.
             // Thus it suffices to consider these cases separately. 
-            // Moreover note that the prime 3 can be contained in both groups.
-            var primes = PrimeHelper.SieveOfEratosthenes(UPPER_BOUND_OF_PRIMES);
-            var firstPrimeGroup = primes.Where(prime => NumberHelper.SumOfDigits(prime) % 3 == 1).Append(3);
-            var secondPrimeGroup = primes.Where(prime => NumberHelper.SumOfDigits(prime) % 3 == 2).Append(3);
-            ComputeCandidateConcatenations(primes);
+            // Note that 3 can belong to both of these groups, so it is also treated separately.
+            var primes = PrimeHelper.SieveOfEratosthenes(UPPER_BOUND_OF_PRIMES).Select(prime => (int)prime);
+            var firstPrimeGroup = primes.Where(prime => NumberHelper.SumOfDigits(prime) % 3 == 1);
+            var secondPrimeGroup = primes.Where(prime => NumberHelper.SumOfDigits(prime) % 3 == 2);
+            ComputeCandidateConcatenations(firstPrimeGroup.ToList());
+            ComputeCandidateConcatenations(secondPrimeGroup.ToList());
+            ComputeCandidateConcatenations(3, primes.ToList());
         }
 
-        private void ComputeCandidateConcatenations(List<long> primes)
+        private void ComputeCandidateConcatenations(List<int> primes)
         {
-            foreach (long prime in primes)
+            foreach (var prime in primes)
             {
-                ComputeCandidateCatenaions(prime, primes);
+                ComputeCandidateConcatenations(prime, primes);
             }
         }
 
-        private void ComputeCandidateCatenaions(long prime, List<long> primes)
+        private void ComputeCandidateConcatenations(int prime, List<int> primes)
         {
-            var listOfPrimesWhichCanBeConcatedWithPrime = new HashSet<long>();
-            foreach (long otherPrime in primes)
+            var listOfPrimesWhichCanBeConcatedWithPrime = new HashSet<int>();
+            foreach (var otherPrime in primes)
             {
                 if (AreConcatenationsPrime(prime, otherPrime))
                 {
@@ -92,15 +94,15 @@ namespace Data.Computers.Solutions
                 }
             }
             PRIMES_WITH_CANDIDATE_CONCATENATIONS.Add(prime, listOfPrimesWhichCanBeConcatedWithPrime);
-            PRIMES_GROUPED_BY_CONCATENATIONS.Add(new HashSet<long> { prime }, listOfPrimesWhichCanBeConcatedWithPrime);
+            PRIMES_GROUPED_BY_CONCATENATIONS.Add(new HashSet<int> { prime }, listOfPrimesWhichCanBeConcatedWithPrime);
         }
 
-        private bool AreConcatenationsPrime(long a, long b)
+        private bool AreConcatenationsPrime(int a, int b)
         {
             return PrimeHelper.IsPrime(ConcatenateNumbers(a, b)) && PrimeHelper.IsPrime(ConcatenateNumbers(b, a));
         }
 
-        private int ConcatenateNumbers(long a, long b)
+        private int ConcatenateNumbers(int a, int b)
         {
             return int.Parse(a.ToString() + b.ToString());
         }
